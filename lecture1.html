@@ -1,966 +1,326 @@
 <!DOCTYPE HTML>
 <!--
-	Read Only by HTML5 UP
-	html5up.net | @n33co
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+Read Only by HTML5 UP
+html5up.net | @n33co
+Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
 <html>
-	<head>
-		<title>Node.js - Lecture 1</title>
-		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-		<meta name="description" content="" />
-		<meta name="keywords" content="" />
-		<!--[if lte IE 8]><script src="css/ie/html5shiv.js"></script><![endif]-->
-		<script src="js/jquery.min.js"></script>
-		<script src="js/jquery.scrollzer.min.js"></script>
-		<script src="js/jquery.scrolly.min.js"></script>
-		<script src="js/skel.min.js"></script>
-		<script src="js/skel-layers.min.js"></script>
-		<script src="js/init.js"></script>
-		
-		<noscript>
-			<link rel="stylesheet" href="css/skel.css" />
-			<link rel="stylesheet" href="css/style.css" />
-			<link rel="stylesheet" href="css/style-xlarge.css" />
-		</noscript>
+  <head>
+    <title>Node 4: ES6 e o que você esta fazendo de errado</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <!--[if lte IE 8]><script src="css/ie/html5shiv.js"></script><![endif]-->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery.scrollzer.min.js"></script>
+    <script src="js/jquery.scrolly.min.js"></script>
+    <script src="js/skel.min.js"></script>
+    <script src="js/skel-layers.min.js"></script>
+    <script src="js/init.js"></script>
 
-		<style>
-			.ac-caption {
-				margin: 5px 0px 10px 0px;
-				font-size: 13px;
-  				text-align: center;
-			}
+    <noscript>
+      <link rel="stylesheet" href="css/skel.css" />
+      <link rel="stylesheet" href="css/style.css" />
+      <link rel="stylesheet" href="css/style-xlarge.css" />
+    </noscript>
 
-			#header > nav ul li a {
-				padding: 0px;
-				font-size: 0.8em;
-			}
+    <style>
+    .img-caption {
+      margin: 5px 0px 10px 0px;
+      font-size: 13px;
+      text-align: center;
+    }
 
-			#one:before {
-				background-image: none;
-				height: 0em;
-			}
+    #header > nav ul li a {
+      padding: 0px;
+      font-size: 0.8em;
+    }
 
-			header.major h2 {
-				line-height: 1em;
-			}
-		</style>
+    #one:before {
+      background-image: none;
+      height: 0em;
+    }
 
-		<!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
-	</head>
-	<body>
-		<div id="wrapper">
+    header.major h2 {
+      line-height: 1em;
+    }
+    </style>
 
-			<!-- Header -->
-				<section id="header" class="skel-layers-fixed">
-					<header>
-						
-						<h1 id="logo"><a href="#">Node.js - Lecture 1</a></h1>
-						
-					</header>
-					<nav id="nav">
-						<ul>
-							<li><a href="#one" class="active">Introduction</a></li>
-							<li><a href="#two">Concepts Recap</a></li>
-							<li><a href="#three">Lim Po Kim</a></li>
-							<li><a href="#four">Package Management</a></li>
-							<li><a href="#five">Node Server</a></li>
-							<li><a href="#six">Exercises</a></li>
-						</ul>
-						<img src="http://www.avenuecode.com/wp-content/themes/ac-site/images/white-logo.png" alt="">
-					</nav>
-					<footer>
-					</footer>
-				</section>
+    <!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
+  </head>
+  <body>
+    <div id="wrapper">
 
-			<!-- Main -->
-				<div id="main">
+      <!-- Header -->
+      <section id="header" class="skel-layers-fixed">
+        <header>
+          <h1 id="logo"><a href="#">Node 4: ES6 e o que você esta fazendo de errado</a></h1>
+        </header>
 
-					<!-- One -->
-						<section id="one">
-							<div class="container">
-								<header class="major">
-									<h2>Introduction</h2>
-								</header>
+        <nav id="nav">
+          <ul>
+            <li><a href="#one" class="active">O que há de novo no Node 4.0.0?</a></li>
+            <li><a href="#two" class="active">ES6 em Node.js</a></li>
+            <li><a href="#three" class="active">Down to business</a></li>
+          </ul>
+          <img src="http://www.avenuecode.com/wp-content/themes/ac-site/images/white-logo.png" alt="">
+        </nav>
+        
+        <footer>
+        </footer>
+        
+      </section>
 
-								<p align="justify">
-                  Node.js is a JavaScript runtime environment, that allows you to build scalable network applications
-                  that is capable to deal with thousands of simultaneous connections, in just one machine. This is
-                  possible because of the power of JavaScript langague. Node.js, currently, is running on top of
-                  <a href="https://en.wikipedia.org/wiki/V8_(JavaScript_engine)">V8 JavaScript Runtime</a>.
-                </p>
+      <!-- Main -->
+      <div id="main">
 
-                <p align="justify">
-                  As Node.js is built using mostly C, it is fast, cross-plataform and, best of all, it is open source. You are
-                  able to contribute and see what is going on under the hood.
-                </p>
+        <!-- One -->
+        <section id="one">
+          <div class="container">
+            <header class="major">
+              <h2>O que há de novo no Node 4.0.0?</h2>
+            </header>
 
-								<header>
-									<h4>What is Node ?</h4>
-								</header>
-								
-								<ul>
-                  <li>Awesome;</li>
-                  <li>Event Based;</li>
-                  <li>Low Level;</li>
-                  <li>Good tool to build Real-Time data apps.</li>
-                </ul>
-																
-								<header>
-									<h4>What is not ?</h4>
-								</header>
-								
-								<ul>
-                  <li>A Web Framework;</li>
-                  <li>Multi-Threaded;</li>
-                  <li>Slow.</li>
-                </ul>
-								
-								<header>
-									<h4>Blocking and Non-Blocking</h4>
-								</header>
+            <p align="justify">
+              A pouco tempo os desenvolvedores JavaScript foram agraciados pela presença do Node.js. Esse
+              ambiente foi concebidos para que fosse possível construir aplicações desktop usando JavaScript.
+            </p>
 
-								<p align="justify">
-                  So, What is so great about this non-blocking thing? Well my friend, lets take a look in some examples:
-                  Imagine that you want to provide a file to anyone that request it to your application, what you have
-                  to do? Read the file, load it in the memory and then provide it to the requester. To illustrate it better
-                  lets take a look in the code below:
-                </p>
+            <p align="justify">
+              Entretando houve uma certa discussão sobre qual seria o melhor caminho a se trilhar com relação
+              a certas features do projeto, assim foi criado o IO.js. Felizmente, após um certo tempo
+              separados, os dois projetos foram fundidos, tornando-se um só novamente.
+            </p>
 
-                <!-- HTML generated using hilite.me -->
-                <!-- Blocking Code -->
-                <div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">fs</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">require(</span><span style="color: #ed9d13">&#39;fs&#39;</span><span style="color: #d0d0d0">);</span>
+            <p align="justify">
+              Qual foi o benefício dessa fusão? O início da implementação do ECMAScript 6! Sim meus amigos,
+              agora Node.js reconhece a sintaxe da nova versão do nosso amado JavaScript, mas infelizmente não
+              toda. Não podemos deixar de falar do LTS (Long Term Support) que agora esta sendo realizado com
+              as versões do Node, mas não é o foco dessa apresentação.
+            </p>
 
-<span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">contents</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">fs.readFileSync(</span><span style="color: #ed9d13">&#39;file.txt&#39;</span><span style="color: #d0d0d0">,</span> <span style="color: #ed9d13">&#39;utf8&#39;</span><span style="color: #d0d0d0">);</span>
+            <header>
+              <h4>Beleza, e dai?</h4>
+            </header>
 
-<span style="color: #d0d0d0">console.log(contents);</span>
-</pre></div>
+            <p align="justify">
+              A primeira coisa que nos perguntamos, ou que pelo menos deveríamos, seria: <b>E dai?</b>
+              Ora, caro colegua, com certeza essa nova sintaxe irá mudar em como programamos nossas
+              aplicações para o Node! Mas, isso não é inteiramente verdade. Veremos a seguir que, mesmo
+              com as novas funcionalidades, ainda manteremos praticamente todas as boas práticas que
+              conhecemos para Node (Já que muitas delas são boas práticas de JavaScript).
+            </p>
+          </div>
+        </section>
 
-                <div class="ac-caption">An example of Blocking I/O</div>
+        <!-- Two -->
+        <section id="two">
+          <div class="container">
+            <header class="major">
+              <h2>ES6 em Node.js</h2>
+            </header>
 
-								<p align="justify">
-                  As you see the code you can't find any problems with it, it gets the job done. However we block the entire
-                  application for this action. It will import the library, read and load the file's content and then print
-                  it on the console, but in a synchronous way. Meaning that the resource will be blocked throughout the
-                  whole action, becoming a bottleneck.
-                </p>
+            <p align="justify">
+              O que o Node 4 traz para os desenvolvedores de novo?
+            </p>
 
-                <p align="justify">
-                  JavaScript is a powerful tool to build asynchronous code. Using callbacks and the Event Emitter we can
-                  take it up a notch and refactor this code. Don't worry, we will talk about Event Emitter and Callbacks
-                  in a minute.
-                </p>
-
-                <!-- HTML generated using hilite.me -->
-                <!-- Non-Blocking Code -->
-                <div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">fs</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">require(</span><span style="color: #ed9d13">&#39;fs&#39;</span><span style="color: #d0d0d0">);</span>
-
-<span style="color: #d0d0d0">fs.readFile(</span><span style="color: #ed9d13">&#39;file.txt&#39;</span><span style="color: #d0d0d0">,</span> <span style="color: #ed9d13">&#39;utf8&#39;</span><span style="color: #d0d0d0">,</span> <span style="color: #6ab825; font-weight: bold">function</span><span style="color: #d0d0d0">(err,</span> <span style="color: #d0d0d0">contents)</span> <span style="color: #d0d0d0">{</span>
-    <span style="color: #d0d0d0">console.log(contents);</span>
-<span style="color: #d0d0d0">});</span>
-
-<span style="color: #d0d0d0">console.log(</span><span style="color: #ed9d13">&#39;after calling readFile&#39;</span><span style="color: #d0d0d0">);</span>
-</pre></div>
-                <div class="ac-caption">An example of Non-Blocking I/O</div>
-
-                <p align="justify">
-                  What we did here? We changed the method from synchronous to asynchronous and added a new parameter.
-                  This new parameter is what we call a callback. The readFile method listen to a specific event, once
-                  this event is triggered our callback will be executed and the file's content will be printed on the
-                  console. And you know what is the best part of it all? It does all that asynchronously! Yes sir! We do
-                  not block any application's resources, making it possible to request a bunch of files at once and still
-                  being able to execute any numbers of tasks later.
-                </p>
-
-                <p>
-                  <span style="color: red;">WARNING:</span> When we say asynchronously we didn't said it was parallel execution.
-                </p>
-							</div>
-						</section>
-
-					<!-- Two -->
-						<section id="two">
-							<div class="container">
-								<header class="major">
-									<h2>Concepts Recap</h2>
-								</header>
-
-								<p align="justify">
-                  The reason behind choosing JavaScript as language for Node is simple:
-                </p>
-
-                <p align="justify">
-                  <i>
-                    "JavaScript has certain characteristics that make it very different than other dynamic languages,
-                    namely that it has no concept of threads. Its model of currency is completely based around events."
-                  </i>
-                  <span style="float: right;">- Ryan Dahl</span>
-                </p>
-
-                <p align="justify">
-                  What that means is that Node.js has a procedure that looks into a queue of events, every time an
-                  event is triggered, the Event Loop will get this event, execute its handler and keep looking for a new
-                  event. And JavaScript have a code structure that enables a smooth coding for this kind of problem.
-                </p>
-
-								<header>
-									<h4>Event Loop</h4>
-								</header>
-
-								<p></p>
-								
-								<span class="image fit">
-									<img style="width: 70%; margin: 0 auto;" src="images/img1.svg" alt="Event Loop Diagram"/>
-								</span>
-								<div class="ac-caption">Event Loop Diagram</div>
-
-								<p align="justify">
-                  As you can see it is a single-thread procedure that looks into a list of events. You can take a look
-                  into <a href="https://nodejs.org/api/events.html#events_class_events_eventemitter">Event Emitter API</a>
-                  to understand its core and how it works. Nevertheless, this is what you need to know:
-                </p>
-
+            <ul>
+              <li>
+                Block scope
                 <ul>
-                  <li>Event Emitter is single threaded;</li>
-                  <li>You can add multiples Event Handlers in one event;</li>
-                  <li>Event Handlers will be executed in order of addition;</li>
-                  <li>You can trigger an event anytime you want.</li>
+                  <li>let</li>
+                  <li>const</li>
+                  <li>function-in-blocks</li>
                 </ul>
-
-                <p align="justify">
-                  It is possible to create our own EventEmitter and trigger this events. Lets do a simple log event emitter.
-                </p>
-
-                <!-- HTML generated using hilite.me -->
-                <div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">EventEmitter</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">require(</span><span style="color: #ed9d13">&#39;events&#39;</span><span style="color: #d0d0d0">).EventEmitter;</span>
-
-<span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">logger</span> <span style="color: #d0d0d0">=</span> <span style="color: #6ab825; font-weight: bold">new</span> <span style="color: #d0d0d0">EventEmitter();</span>
-
-<span style="color: #d0d0d0">logger.on(</span><span style="color: #ed9d13">&#39;error&#39;</span><span style="color: #d0d0d0">,</span> <span style="color: #6ab825; font-weight: bold">function</span><span style="color: #d0d0d0">(message){</span>
-  <span style="color: #d0d0d0">console.log(</span><span style="color: #ed9d13">&#39;Error: &#39;</span> <span style="color: #d0d0d0">+</span> <span style="color: #d0d0d0">message);</span>
-<span style="color: #d0d0d0">});</span>
-
-<span style="color: #d0d0d0">logger.emit(</span><span style="color: #ed9d13">&#39;error&#39;</span><span style="color: #d0d0d0">,</span> <span style="color: #ed9d13">&#39;All your base are belong to us.&#39;</span><span style="color: #d0d0d0">);</span>
-</pre></div>
-                <div class="ac-caption">Our First Event Emitter</div>
-
-
-                <header>
-									<h4>Callbacks</h4>
-								</header>
-
-								<p align="justify">
-                  Callbacks are functions that have its scope encapsulated and stored in memory for later use. JavaScript
-                  give us the ability to store functions in variables and pass it as a parameter for other functions, like
-                  event handlers. Maybe you know this behavior as closure.
-                </p>
-
-                <!-- HTML generated using hilite.me -->
-                <div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #d0d0d0">setTimeout(</span><span style="color: #6ab825; font-weight: bold">function</span><span style="color: #d0d0d0">()</span> <span style="color: #d0d0d0">{</span>
-    <span style="color: #d0d0d0">console.log(</span><span style="color: #ed9d13">&#39;Hi, I\&#39;m inside the call back!&#39;</span><span style="color: #d0d0d0">);</span>
-<span style="color: #d0d0d0">},</span> <span style="color: #3677a9">2000</span><span style="color: #d0d0d0">);</span>
-<span style="color: #d0d0d0">console.log(</span><span style="color: #ed9d13">&#39;Waiting 2 seconds...&#39;</span><span style="color: #d0d0d0">);</span>
-</pre></div>
-                <div class="ac-caption">Callback Example</div>
-
-                <!-- HTML generated using hilite.me -->
-                <div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">message</span> <span style="color: #d0d0d0">=</span> <span style="color: #ed9d13">&#39;Hi, I\&#39;m inside the call back!&#39;</span><span style="color: #d0d0d0">;</span>
-<span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">callback</span> <span style="color: #d0d0d0">=</span> <span style="color: #6ab825; font-weight: bold">function</span><span style="color: #d0d0d0">()</span> <span style="color: #d0d0d0">{</span>
-    <span style="color: #d0d0d0">console.log(message);</span>
-<span style="color: #d0d0d0">};</span>
-
-<span style="color: #d0d0d0">setTimeout(callback,</span> <span style="color: #3677a9">2000</span><span style="color: #d0d0d0">);</span>
-<span style="color: #d0d0d0">console.log(</span><span style="color: #ed9d13">&#39;Waiting 2 seconds...&#39;</span><span style="color: #d0d0d0">);</span>
-</pre></div>
-                <div class="ac-caption">Callback Example With Variable</div>
-
-
-
-              </div>
-						</section>
-
-					<!-- Three -->
-						<section id="three">
-							<div class="container">
-								<header class="major">
-									<h2>Lim Po Kim</h2>
-								</header>
-
-                <header>
-                  <h4>Code Import, Using Require</h4>
-                </header>
-
-								<p align="justify">
-                  Now that we have the basic concepts explained we can start with some Node.js code. You will see that
-                  it is good old JavaScript but with benefits. We can import and export files in an organized way, with
-                  simple commands. First lets take a look into how we can import a code that we created. So, one step at
-                  a time, we need to create a code snippet to be imported. Something simple, a class:
-                </p>
-
-                <!-- HTML generated using hilite.me -->
-                <div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">Dog</span> <span style="color: #d0d0d0">=</span> <span style="color: #6ab825; font-weight: bold">function</span><span style="color: #d0d0d0">(name)</span> <span style="color: #d0d0d0">{</span>
-
-  <span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">_name</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">name;</span>
-
-  <span style="color: #6ab825; font-weight: bold">this</span><span style="color: #d0d0d0">.whoIsAGoodBoy</span> <span style="color: #d0d0d0">=</span> <span style="color: #6ab825; font-weight: bold">function</span><span style="color: #d0d0d0">()</span> <span style="color: #d0d0d0">{</span>
-    <span style="color: #d0d0d0">console.log(_name</span> <span style="color: #d0d0d0">+</span> <span style="color: #ed9d13">&#39; is a good boy!&#39;</span><span style="color: #d0d0d0">);</span>
-  <span style="color: #d0d0d0">};</span>
-
-  <span style="color: #6ab825; font-weight: bold">this</span><span style="color: #d0d0d0">.wiggle</span> <span style="color: #d0d0d0">=</span> <span style="color: #6ab825; font-weight: bold">function</span><span style="color: #d0d0d0">()</span> <span style="color: #d0d0d0">{</span>
-    <span style="color: #d0d0d0">console.log(_name</span> <span style="color: #d0d0d0">+</span> <span style="color: #ed9d13">&#39; is wiggling.&#39;</span><span style="color: #d0d0d0">);</span>
-  <span style="color: #d0d0d0">};</span>
-
-<span style="color: #d0d0d0">}</span>
-
-<span style="color: #d0d0d0">module.exports</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">Dog;</span>
-</pre></div>
-                <div class="ac-caption">Exporting Dog Class</div>
-
-                <p align="justify">
-                  The line <b>"module.exports = Dog;"</b> is the Node way to export something. By doing this we are adding
-                  our code to Node environment. What is important to know is that each export actually caches the code
-                  exported, this way Node avoid parsing the file every time it is required. We should be very
-                  careful for how we export our code, because this could lead to very weird bugs.
-                </p>
-
-                <p align="justify">
-                  It is time to import our code somewhere else. And how do we do it? Simple, we require this code to Node.
-                  Now that we already did the export in the file, this class of ours is available to us:
-                </p>
-
-                <!-- HTML generated using hilite.me -->
-                <div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">Dog</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">require(</span><span style="color: #ed9d13">&#39;./dog&#39;</span><span style="color: #d0d0d0">);</span>
-
-<span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">brian</span> <span style="color: #d0d0d0">=</span> <span style="color: #6ab825; font-weight: bold">new</span> <span style="color: #d0d0d0">Dog(</span><span style="color: #ed9d13">&#39;Brian&#39;</span><span style="color: #d0d0d0">);</span>
-
-<span style="color: #d0d0d0">brian.whoIsAGoodDog();</span>
-<span style="color: #d0d0d0">brian.wiggle();</span>
-</pre></div>
-                <div class="ac-caption">Importing Dog Class</div>
-
-                <p align="justify">
-                  In the code snippet above you can see that we imported the Dog class using <b>"var Dog = require('./Dog')"</b>.
-                  So, we are passing a relative path to require, saying which file we want to import. You can give any
-                  kind of path that you want, relative, absolute or just the module's name (This one I will talk later).
-                  It is not required to add the file extension in the end of the path as Node is always expecting
-                  a JavaScript file. Even though after the first require the code is cached, we still need to execute the
-                  require in every file that we want to import our code.
-                </p>
-
-                <p align="justify">
-                  So, imagine that we have a different folder structure for our code, where index.js is not where our Dog
-                  import snippet is:
-                </p>
-
-                <div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
-                  <pre style="margin: 0; line-height: 125%">
-                    <span style="color: #d0d0d0">└── nodeCode</span>
-                    <span style="color: #d0d0d0">    ├── lib</span>
-                    <span style="color: #d0d0d0">    │   └── Dog.js</span>
-                    <span style="color: #d0d0d0">    └── src</span>
-                    <span style="color: #d0d0d0">        └── index.js</span>
-                  </pre>
-                </div>
-                <div class="ac-caption">Importing Dog Class</div>
-
-                <p align="justify">
-                  We could change the import to <b>var Dog = require('../lib/Dog')</b>, a relative path to the file that
-                  we want to import. Node is smart enough for this same relative path work on Unix or Windows machines.
-                </p>
-              </div>
-						</section>
-
-          <!-- Four -->
-            <section id="four">
-              <div class="container">
-                <header class="major">
-                  <h2>Package Management</h2>
-                </header>
-
-                <header>
-                  <h4>Node Package Manager</h4>
-                </header>
-
-                <p align="justify">
-                  Remember that I said that it is possible to import a module just by using its name to the require
-                  method? Well, this is possible because of one of Node's package manager, a.k.a <a href="https://www.npmjs.com/">NPM</a>.
-                  NPM has a huge amount of libraries that you can use. If you want, you can create your own package and
-                  publish it there, you can also contribute with your ideas on others libraries too.
-                </p>
-
-                <p align="justify">
-                  To install a new package you have to open you terminal and execute this code:
-                </p>
-
-                <!-- HTML generated using hilite.me -->
-                <div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #d0d0d0">$</span> <span style="color: #d0d0d0">npm</span> <span style="color: #d0d0d0">install</span> <span style="color: #d0d0d0">&lt;package_name&gt;</span>
-  </pre></div>
-                <div class="ac-caption">Installing a NPM Package</div>
-
-                <p align="justify">
-                  That is all it takes, seriously. No environment setup, no path settings, no bash_profile configuration.
-                  Cool isn't it? Ok, but this instruction will only add this package into your current project. So, after
-                  executing this command NPM will add a new folder into your application's root folder named <i>node_modules</i>.
-                  It will be something like this:
-                </p>
-
-                <div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
-                    <pre style="margin: 0; line-height: 125%">
-                      <span style="color: #d0d0d0">└── nodeCode</span>
-                      <span style="color: #d0d0d0">    ├── lib</span>
-                      <span style="color: #d0d0d0">    │   └── Dog.js</span>
-                      <span style="color: #d0d0d0">    ├── node_modules</span>
-                      <span style="color: #d0d0d0">    │   └── ...</span>
-                      <span style="color: #d0d0d0">    └── src</span>
-                      <span style="color: #d0d0d0">        └── index.js</span>
-                    </pre>
-                </div>
-                <div class="ac-caption">Project Folder with node_modules</div>
-
-                <p align="justify">
-                  Now, every package that you installed locally will be available to be required in your code. For instance,
-                  lets say that we decided that <i>console.log</i> is no more suitable to our Dog class. And our super cool
-                  work colleague said that he worked with this super duper package named <a href="https://www.npmjs.com/package/winston">winston</a>
-                  and it has all that cool colored alerts. We will give it a try. First we need to install it:
-                </p>
-
-                <!-- HTML generated using hilite.me -->
-                <div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #d0d0d0">$</span> <span style="color: #d0d0d0">npm</span> <span style="color: #d0d0d0">install</span> <span style="color: #d0d0d0">winston</span>
-  </pre></div>
-                <div class="ac-caption">Installing winston by NPM Package</div>
-
-                <p align="justify">
-                  Now we require it in our Dog class:
-                </p>
-
-                <!-- HTML generated using hilite.me -->
-                <div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">winston</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">require(</span><span style="color: #ed9d13">&#39;winston&#39;</span><span style="color: #d0d0d0">);</span>
-  <span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">coolLogger</span> <span style="color: #d0d0d0">=</span> <span style="color: #6ab825; font-weight: bold">new</span> <span style="color: #d0d0d0">(winston.Logger)({</span>
-        <span style="color: #d0d0d0">transports:</span> <span style="color: #d0d0d0">[</span>
-          <span style="color: #6ab825; font-weight: bold">new</span> <span style="color: #d0d0d0">(winston.transports.Console)({</span>
-            <span style="color: #d0d0d0">level:</span> <span style="color: #ed9d13">&#39;silly&#39;</span><span style="color: #d0d0d0">,</span>
-            <span style="color: #d0d0d0">colorize:</span> <span style="color: #6ab825; font-weight: bold">true</span><span style="color: #d0d0d0">,</span>
-            <span style="color: #d0d0d0">timestamp:</span> <span style="color: #6ab825; font-weight: bold">function</span><span style="color: #d0d0d0">()</span> <span style="color: #d0d0d0">{</span>
-              <span style="color: #6ab825; font-weight: bold">return</span> <span style="color: #d0d0d0">(</span><span style="color: #6ab825; font-weight: bold">new</span> <span style="color: #24909d">Date</span><span style="color: #d0d0d0">()).toISOString();</span>
-            <span style="color: #d0d0d0">}</span>
-          <span style="color: #d0d0d0">})</span>
-        <span style="color: #d0d0d0">]</span>
-      <span style="color: #d0d0d0">});</span>
-
-  <span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">Dog</span> <span style="color: #d0d0d0">=</span> <span style="color: #6ab825; font-weight: bold">function</span><span style="color: #d0d0d0">(name)</span> <span style="color: #d0d0d0">{</span>
-
-    <span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">_name</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">name;</span>
-
-    <span style="color: #6ab825; font-weight: bold">this</span><span style="color: #d0d0d0">.whoIsAGoodBoy</span> <span style="color: #d0d0d0">=</span> <span style="color: #6ab825; font-weight: bold">function</span><span style="color: #d0d0d0">()</span> <span style="color: #d0d0d0">{</span>
-      <span style="color: #d0d0d0">coolLogger.info(_name</span> <span style="color: #d0d0d0">+</span> <span style="color: #ed9d13">&#39; is a good boy!&#39;</span><span style="color: #d0d0d0">);</span>
-    <span style="color: #d0d0d0">};</span>
-
-    <span style="color: #6ab825; font-weight: bold">this</span><span style="color: #d0d0d0">.wiggle</span> <span style="color: #d0d0d0">=</span> <span style="color: #6ab825; font-weight: bold">function</span><span style="color: #d0d0d0">()</span> <span style="color: #d0d0d0">{</span>
-      <span style="color: #d0d0d0">coolLogger.info(_name</span> <span style="color: #d0d0d0">+</span> <span style="color: #ed9d13">&#39; is wiggling.&#39;</span><span style="color: #d0d0d0">);</span>
-    <span style="color: #d0d0d0">};</span>
-
-  <span style="color: #d0d0d0">}</span>
-
-  <span style="color: #d0d0d0">module.exports</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">Dog;</span>
-  </pre></div>
-                <div class="ac-caption">Dog Class With Winston Logger</div>
-
-                <p align="justify">
-                  Voilà! Now we can use winston in our code! Every time we call any method from <b>brian</b> we will display
-                  in the console with bright colors and with a timestamp.
-                </p>
-
-                <p align="justify">
-                  If I want to use this package without installing in every project? Calm dowm my friend, we have the
-                  answer for you. You can install any package globally by executing this command in you terminal:
-                </p>
-
-                <!-- HTML generated using hilite.me -->
-                <div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #d0d0d0">$</span> <span style="color: #d0d0d0">npm</span> <span style="color: #d0d0d0">install</span> <span style="color: #d0d0d0">&lt;package_name&gt;</span> <span style="color: #d0d0d0">-g</span>
-  </pre></div>
-                <div class="ac-caption">Installing a Global Package</div>
-
-                <p align="justify">
-                  This will install the package in the <i>node_modules</i> global folder for Node. This will ensure
-                  that this installed package will be available to any project that you may have. In my humble opinion I do
-                  not like to install global packages, even though I will use them in other projects. Installing packages
-                  locally will encapsulate your project and will avoid version conflicts with other projects that you
-                  might have. And this can keep your project's workspace clean. Lets keep it clean when possible!
-                </p>
-
-                <p align="justify">
-                  You may be asking yourself: "Okay, but how can I keep track of all packages installed in a project?".
-                  Node have suggested a standard file that NPM can read and know which packages with what version
-                  was installed in each project. This file is called <i>package.json</i>
-                </p>
-
-                <header>
-                  <h4>Package.json</h4>
-                </header>
-
-
-                <p align="justify">
-                  This file called <i>package.json</i> lives in your application's root folder. It will act as your
-                  application's description.
-                </p>
-
-                <div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
-                    <pre style="margin: 0; line-height: 125%">
-                      <span style="color: #d0d0d0">└── nodeCode</span>
-                      <span style="color: #d0d0d0">    ├── lib</span>
-                      <span style="color: #d0d0d0">    │   └── Dog.js</span>
-                      <span style="color: #d0d0d0">    ├── node_modules</span>
-                      <span style="color: #d0d0d0">    │   └── ...</span>
-                      <span style="color: #d0d0d0">    ├── src</span>
-                      <span style="color: #d0d0d0">    │   └── index.js</span>
-                      <span style="color: #d0d0d0">    └── package.json</span>
-                    </pre>
-                </div>
-                <div class="ac-caption">Project Folder with package.json</div>
-
-                <p align="justify">
-                  It is written using JSON annotation. It have all kind of your application's info, from the application's
-                  name, its version, quick description to the dependencies. A standard file would look like this:
-                </p>
-
-                <!-- HTML generated using hilite.me -->
-                <div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #d0d0d0">{</span>
-    <span style="color: #6ab825; font-weight: bold">&quot;name&quot;</span><span style="color: #d0d0d0">:</span> <span style="color: #ed9d13">&quot;AC-socialAPI&quot;</span><span style="color: #d0d0d0">,</span>
-    <span style="color: #6ab825; font-weight: bold">&quot;version&quot;</span><span style="color: #d0d0d0">:</span> <span style="color: #ed9d13">&quot;0.0.0&quot;</span><span style="color: #d0d0d0">,</span>
-    <span style="color: #6ab825; font-weight: bold">&quot;description&quot;</span><span style="color: #d0d0d0">:</span> <span style="color: #ed9d13">&quot;Avenue Code Training Code&quot;</span><span style="color: #d0d0d0">,</span>
-    <span style="color: #6ab825; font-weight: bold">&quot;main&quot;</span><span style="color: #d0d0d0">:</span> <span style="color: #ed9d13">&quot;index.js&quot;</span><span style="color: #d0d0d0">,</span>
-    <span style="color: #6ab825; font-weight: bold">&quot;scripts&quot;</span><span style="color: #d0d0d0">:</span> <span style="color: #d0d0d0">{</span>
-      <span style="color: #6ab825; font-weight: bold">&quot;preinstall&quot;</span><span style="color: #d0d0d0">:</span> <span style="color: #ed9d13">&quot;npm install grunt-cli -g&quot;</span>
-    <span style="color: #d0d0d0">},</span>
-    <span style="color: #6ab825; font-weight: bold">&quot;repository&quot;</span><span style="color: #d0d0d0">:</span> <span style="color: #d0d0d0">{</span>
-      <span style="color: #6ab825; font-weight: bold">&quot;type&quot;</span><span style="color: #d0d0d0">:</span> <span style="color: #ed9d13">&quot;git&quot;</span><span style="color: #d0d0d0">,</span>
-      <span style="color: #6ab825; font-weight: bold">&quot;url&quot;</span><span style="color: #d0d0d0">:</span> <span style="color: #ed9d13">&quot;https://github.com/andrebot/AC-socialApi.git&quot;</span>
-    <span style="color: #d0d0d0">},</span>
-    <span style="color: #6ab825; font-weight: bold">&quot;keywords&quot;</span><span style="color: #d0d0d0">:</span> <span style="color: #d0d0d0">[</span>
-      <span style="color: #ed9d13">&quot;Node&quot;</span><span style="color: #d0d0d0">,</span>
-      <span style="color: #ed9d13">&quot;Express&quot;</span>
-    <span style="color: #d0d0d0">],</span>
-    <span style="color: #6ab825; font-weight: bold">&quot;author&quot;</span><span style="color: #d0d0d0">:</span> <span style="color: #ed9d13">&quot;Andre Botelho, Henrique Elias&quot;</span><span style="color: #d0d0d0">,</span>
-    <span style="color: #6ab825; font-weight: bold">&quot;license&quot;</span><span style="color: #d0d0d0">:</span> <span style="color: #ed9d13">&quot;ISC&quot;</span><span style="color: #d0d0d0">,</span>
-    <span style="color: #6ab825; font-weight: bold">&quot;bugs&quot;</span><span style="color: #d0d0d0">:</span> <span style="color: #d0d0d0">{</span>
-      <span style="color: #6ab825; font-weight: bold">&quot;url&quot;</span><span style="color: #d0d0d0">:</span> <span style="color: #ed9d13">&quot;https://github.com/andrebot/AC-socialApi/issues&quot;</span>
-    <span style="color: #d0d0d0">},</span>
-    <span style="color: #6ab825; font-weight: bold">&quot;homepage&quot;</span><span style="color: #d0d0d0">:</span> <span style="color: #ed9d13">&quot;https://github.com/andrebot/AC-socialApi&quot;</span><span style="color: #d0d0d0">,</span>
-    <span style="color: #6ab825; font-weight: bold">&quot;dependencies&quot;</span><span style="color: #d0d0d0">:</span> <span style="color: #d0d0d0">{</span>
-      <span style="color: #6ab825; font-weight: bold">&quot;body-parser&quot;</span><span style="color: #d0d0d0">:</span> <span style="color: #ed9d13">&quot;^1.13.1&quot;</span><span style="color: #d0d0d0">,</span>
-      <span style="color: #6ab825; font-weight: bold">&quot;cookie-parser&quot;</span><span style="color: #d0d0d0">:</span> <span style="color: #ed9d13">&quot;^1.3.5&quot;</span><span style="color: #d0d0d0">,</span>
-      <span style="color: #6ab825; font-weight: bold">&quot;express&quot;</span><span style="color: #d0d0d0">:</span> <span style="color: #ed9d13">&quot;^4.13.0&quot;</span><span style="color: #d0d0d0">,</span>
-      <span style="color: #6ab825; font-weight: bold">&quot;jsonwebtoken&quot;</span><span style="color: #d0d0d0">:</span> <span style="color: #ed9d13">&quot;^5.0.2&quot;</span><span style="color: #d0d0d0">,</span>
-      <span style="color: #6ab825; font-weight: bold">&quot;mongoose&quot;</span><span style="color: #d0d0d0">:</span> <span style="color: #ed9d13">&quot;^4.0.6&quot;</span><span style="color: #d0d0d0">,</span>
-      <span style="color: #6ab825; font-weight: bold">&quot;mpromise&quot;</span><span style="color: #d0d0d0">:</span> <span style="color: #ed9d13">&quot;^0.5.5&quot;</span>
-    <span style="color: #d0d0d0">},</span>
-    <span style="color: #6ab825; font-weight: bold">&quot;devDependencies&quot;</span><span style="color: #d0d0d0">:</span> <span style="color: #d0d0d0">{</span>
-      <span style="color: #6ab825; font-weight: bold">&quot;blanket&quot;</span><span style="color: #d0d0d0">:</span> <span style="color: #ed9d13">&quot;^1.1.7&quot;</span><span style="color: #d0d0d0">,</span>
-      <span style="color: #6ab825; font-weight: bold">&quot;bootstrap&quot;</span><span style="color: #d0d0d0">:</span> <span style="color: #ed9d13">&quot;^3.3.5&quot;</span><span style="color: #d0d0d0">,</span>
-      <span style="color: #6ab825; font-weight: bold">&quot;grunt&quot;</span><span style="color: #d0d0d0">:</span> <span style="color: #ed9d13">&quot;^0.4.5&quot;</span><span style="color: #d0d0d0">,</span>
-      <span style="color: #6ab825; font-weight: bold">&quot;grunt-contrib-copy&quot;</span><span style="color: #d0d0d0">:</span> <span style="color: #ed9d13">&quot;^0.8.0&quot;</span><span style="color: #d0d0d0">,</span>
-      <span style="color: #6ab825; font-weight: bold">&quot;grunt-mocha-test&quot;</span><span style="color: #d0d0d0">:</span> <span style="color: #ed9d13">&quot;^0.12.7&quot;</span><span style="color: #d0d0d0">,</span>
-      <span style="color: #6ab825; font-weight: bold">&quot;grunt-nodemon&quot;</span><span style="color: #d0d0d0">:</span> <span style="color: #ed9d13">&quot;^0.4.0&quot;</span><span style="color: #d0d0d0">,</span>
-      <span style="color: #6ab825; font-weight: bold">&quot;jquery&quot;</span><span style="color: #d0d0d0">:</span> <span style="color: #ed9d13">&quot;^2.1.4&quot;</span><span style="color: #d0d0d0">,</span>
-      <span style="color: #6ab825; font-weight: bold">&quot;jquery.cookie&quot;</span><span style="color: #d0d0d0">:</span> <span style="color: #ed9d13">&quot;^1.4.1&quot;</span><span style="color: #d0d0d0">,</span>
-      <span style="color: #6ab825; font-weight: bold">&quot;mocha&quot;</span><span style="color: #d0d0d0">:</span> <span style="color: #ed9d13">&quot;^2.2.5&quot;</span><span style="color: #d0d0d0">,</span>
-      <span style="color: #6ab825; font-weight: bold">&quot;mongodb&quot;</span><span style="color: #d0d0d0">:</span> <span style="color: #ed9d13">&quot;^2.0.36&quot;</span><span style="color: #d0d0d0">,</span>
-      <span style="color: #6ab825; font-weight: bold">&quot;should&quot;</span><span style="color: #d0d0d0">:</span> <span style="color: #ed9d13">&quot;^7.0.1&quot;</span><span style="color: #d0d0d0">,</span>
-      <span style="color: #6ab825; font-weight: bold">&quot;supertest&quot;</span><span style="color: #d0d0d0">:</span> <span style="color: #ed9d13">&quot;^1.0.1&quot;</span>
-    <span style="color: #d0d0d0">}</span>
-  <span style="color: #d0d0d0">}</span>
-  </pre></div>
-                <div class="ac-caption">Standard package.json file</div>
-
-                <p align="justify">
-                  You can find the whole package.json documentation <a href="https://docs.npmjs.com/files/package.json">here</a>.
-                  It explains all the possible attributes and what you can do with each one of them.
-                </p>
-
-                <p align="justify">
-                  The only thing that will concern us right now is the last two attribute <b>dependencies</b> and
-                  <b>devDependencies</b>. As I said, we can control which version to install in the current project.
-                  Lets take the dependency "body-parse". It says that it is a dependency (duh!), however, it says
-                  <b>"^1.1.7"</b>. Obviously this is the version that we want to use in our beloved app. But what is
-                  this symbol that comes after the version number? That is another type of annotation. We can actually
-                  define if we want an exact version, any version above and etc. Here is a list about what we can do:
-                </p>
-
+              </li>
+              <li>Classes</li>
+              <li>
+                Collections
                 <ul>
-                  <li>">"</li>
-                  <li>">="</li>
-                  <li>"<"</li>
-                  <li>"<="</li>
-                  <li>"~"</li>
-                  <li>...</li>
+                  <li>Map</li>
+                  <li>WeakMap</li>
+                  <li>Set</li>
+                  <li>WeakSet</li>
                 </ul>
+              </li>
+              <li>Typed arrays</li>
+              <li>Generators</li>
+              <li>Binary and Octal literals</li>
+              <li>Object literal extensions</li>
+              <li>Promises</li>
+              <li>New String methods</li>
+              <li>Symbols</li>
+              <li>Template strings</li>
+              <li>Arrow Functions</li>
+              <li>Object.assign</li>
+            </ul>
 
-                <p align="justify">
-                  The list goes on! We can see the full list and its meaning in the same link for the package.json
-                  documentation. So you can pretty much control every aspect of you packages. Therefore, to add any new
-                  package to you project you can just edit this file and add anything that you'd like and add any version
-                  that works for you.
-                </p>
+            <p align="justify">
+              Isso são somente as funcionalidades estáveis, ainda temos as que estão em teste e
+              as que estão em desenvolvimento. Também temos que levar em consideração que o <i>let</i>
+              e as <i>Classes</i> só funcionam sobre o escope de "use strict".
+            </p>
+          </div>
+        </section>
 
-                <p align="justify">
-                  If you prefer you can add packages and save them using your terminal. It is as simple as to add a new
-                  parameter in the command that we already know and love:
-                </p>
+        <!-- three -->
+        <section id="three">
+          <div class="container">
+            <header class="major">
+              <h2>Down to business</h2>
+            </header>
 
-                <!-- HTML generated using hilite.me -->
-                <div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #d0d0d0">$</span> <span style="color: #d0d0d0">npm</span> <span style="color: #d0d0d0">install</span> <span style="color: #d0d0d0">&lt;package_name&gt;</span> <span style="color: #d0d0d0">--save</span>
-  </pre></div>
-                <div class="ac-caption">Saving package at your package.json</div>
+            <header class="major">
+              <h4>Promises</h2>
+            </header>
 
-                <p align="justify">
-                  Executing this, NPM will add a new line at <b>dependecies</b> with the latest version. You can change it
-                  editing the file itself or requesting a version that you would like:
-                </p>
+            <p align="justify">
+              Ok, primeiramente vamos falar de promises! Essa danadinha ai vai ser responsável pelas
+              maiores mudanças aqui. Como somes desenvolvedores de JavaScript somos loucos por callbacks!
+              Caramba, quantas vezes a gente fica passando callback pra cá, callback pra lá, e podemos até
+              confundir as coisas e perguntar: <b>Caramba.... onde eu posso declarar esse callback?</b>
+            </p>
 
-                <!-- HTML generated using hilite.me -->
-                <div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #d0d0d0">$</span> <span style="color: #d0d0d0">npm</span> <span style="color: #d0d0d0">install</span> <span style="color: #d0d0d0">&lt;package_name&gt;</span><span style="color: #d0d0d0;">@</span><span style="color: #d0d0d0">&lt;version&gt;</span> <span style="color: #d0d0d0">--save</span>
-  </pre></div>
-                <div class="ac-caption">Saving package at your package.json defining version</div>
+            <p align="justify">
+              Vamos lá, exemplo básico e clichê: Eu tenho aqui um servidor em Node e estou fazendo um
+              controller que vai chamar a camada de dados para pegar uns dados. O problema que, como sabemos,
+              Node é assíncrono então temos que passar as callbacks para a camada de baixo chama-las assim que
+              terminatem de fazer suas ações:
+            </p>
 
-                <p align="justify">
-                  The whole documentation can be found <a href="https://docs.npmjs.com/cli/install">here</a>.
-                </p>
+            <!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #f8f8f2">...</span>
 
-                <p align="justify">
-                  You have noticed that we have two places to add dependencies. We've just talked about where we add
-                  the packages that the application needs to run. However we have a bunch of other libraries and tools
-                  that we can add to our project that can help us out. This packages are solely for development purpose,
-                  thus we have the <b>devDependencies</b> attribute in our package.json. This is the place where we add
-                  automated tasks runner, tests frameworks and etc. This keep it simple for developers to know what he needs
-                  to install to do what he wants to do. For instance, if I just want to build the application I can install
-                  only the packages under <b>dependencies</b>. This is valid for deployment environments, that I don't need
-                  any fancy package because I just want to deploy the app. To install packages and save them at
-                  <b>devDependencies</b> we do:
-                </p>
+<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">getUsers</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">function</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">req</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">res</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+  <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">succ</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">function</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">data</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #a6e22e">res</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">json</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">data</span><span style="color: #f8f8f2">);</span>
+  <span style="color: #f8f8f2">};</span>
 
-                <!-- HTML generated using hilite.me -->
-                <div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #d0d0d0">$</span> <span style="color: #d0d0d0">npm</span> <span style="color: #d0d0d0">install</span> <span style="color: #d0d0d0">&lt;package_name&gt;</span> <span style="color: #d0d0d0">--save-dev</span>
-  </pre></div>
-                <div class="ac-caption">Saving package at your package.json devDependencies</div>
+  <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">fail</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">function</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">error</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">status</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #a6e22e">res</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">status</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">status</span><span style="color: #f8f8f2">).</span><span style="color: #a6e22e">send</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">error</span><span style="color: #f8f8f2">);</span>
+  <span style="color: #f8f8f2">}</span>
 
-                <p align="justify">
-                  Now that we have your application's package.json rocking, we can easily install all the packages on
-                  new environments any time we want. We just need to execute the install command:
-                </p>
+  <span style="color: #a6e22e">usersLayer</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">getUsers</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">succ</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">fail</span><span style="color: #f8f8f2">);</span>
+<span style="color: #f8f8f2">}</span>
 
-                <!-- HTML generated using hilite.me -->
-                <div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #d0d0d0">$</span> <span style="color: #d0d0d0">npm</span> <span style="color: #d0d0d0">install</span>
-  </pre></div>
-                <div class="ac-caption">Installing All Packages By package.json</div>
-
-                <p align="justify">
-                  If we want to install just the packages required to run the project, as in a production environment,
-                  we do:
-                </p>
-
-                <!-- HTML generated using hilite.me -->
-                <div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #d0d0d0">$</span> <span style="color: #d0d0d0">npm</span> <span style="color: #d0d0d0">install</span> <span style="color: #d0d0d0">--production</span>
-  </pre></div>
-                <div class="ac-caption">Excluding Development Packages</div>
-
-                <p align="justify">
-                  And we can easily keep things up to date:
-                </p>
-
-                <!-- HTML generated using hilite.me --><div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #d0d0d0">$</span> <span style="color: #d0d0d0">npm</span> <span style="color: #d0d0d0">update</span>
-  </pre></div>
-                <div class="ac-caption">Updating Application's Packages</div>
-
-                <p align="justify">
-                  This command will update all packages, local and global, to the latest version. We can also define only
-                  one package to update, or just the global packages, and all of that is described <a href="https://docs.npmjs.com/cli/update">here</a>.
-                </p>
-
-                <p align="justify">
-                  Of course, we can't forget how to uninstall a package. We can always be fooled by some poorly written
-                  description or we can discover a better package at some point in time. So to uninstall any package
-                  we can do:
-                </p>
-
-                <!-- HTML generated using hilite.me -->
-                <div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #d0d0d0">$</span> <span style="color: #d0d0d0">npm</span> <span style="color: #d0d0d0">uninstall</span> <span style="color: #d0d0d0">&lt;package_name&gt;</span>
+<span style="color: #f8f8f2">...</span>
 </pre></div>
-                <div class="ac-caption">Uninstalling a Package</div>
+            <div class="img-caption">Péssimo exemplo de callback</div>
 
-                <p align="justify">
-                  To save this action in your package.json we still have to add <i>--save</i> or <i>--save-dev</i>.
-                </p>
+            <p align="justify">
+              Dessa forma o getUsers da camada de dados seria algo do tipo:
+            </p>
 
+            <!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #f8f8f2">...</span>
 
+<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">getUsers</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">function</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">succ</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">fail</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+  <span style="color: #a6e22e">mongoose</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">find</span><span style="color: #f8f8f2">({...},</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">err</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">data</span><span style="color: #f8f8f2">){</span>
+    <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">err</span><span style="color: #f8f8f2">)</span> <span style="color: #a6e22e">fail</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">err</span><span style="color: #f8f8f2">);</span>
+    <span style="color: #66d9ef">else</span> <span style="color: #a6e22e">succ</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">data</span><span style="color: #f8f8f2">);</span>
+  <span style="color: #f8f8f2">});</span>
+<span style="color: #f8f8f2">}</span>
 
-              </div>
-            </section>
-
-					<!-- Five -->
-						<section id="five">
-							<div class="container">
-								<header class="major">
-									<h2>Node Server</h2>
-								</header>
-
-								<p align="justify">
-                  Now that we know what is an EventEmitter, that we know what a callback is, that we understand how the
-                  event loop works and how to import and export code we can start doing our first server!!!!!!!11!1!1!!one!
-                  Lets keep it simple. Now we will build just a server that says something useless.
-                </p>
-
-                <!-- HTML generated using hilite.me -->
-                <div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">http</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">require(</span><span style="color: #ed9d13">&#39;http&#39;</span><span style="color: #d0d0d0">);</span>
-
-<span style="color: #d0d0d0">http.createServer(</span><span style="color: #6ab825; font-weight: bold">function</span><span style="color: #d0d0d0">(request,</span> <span style="color: #d0d0d0">response){</span>
-  <span style="color: #d0d0d0">response.writeHead(</span><span style="color: #3677a9">200</span><span style="color: #d0d0d0">);</span>
-  <span style="color: #d0d0d0">response.write(</span><span style="color: #ed9d13">&#39;I\&#39;m alive!&#39;</span><span style="color: #d0d0d0">);</span>
-  <span style="color: #d0d0d0">response.end();</span>
-<span style="color: #d0d0d0">}).listen(</span><span style="color: #3677a9">8080</span><span style="color: #d0d0d0">,</span> <span style="color: #6ab825; font-weight: bold">function</span><span style="color: #d0d0d0">(){</span>
-  <span style="color: #d0d0d0">console.log(</span><span style="color: #ed9d13">&#39;Listening on port 8080...&#39;</span><span style="color: #d0d0d0">);</span>
-<span style="color: #d0d0d0">});</span>
+<span style="color: #f8f8f2">...</span>
 </pre></div>
-                <div class="ac-caption">First server</div>
+            <div class="img-caption">Exemplo de uma camada de dados</div>
 
-                <p align="justify">
-                  Basically this server replies <i>"I'm alive!"</i> to the requester. Cool! But useless. However we just
-                  used almost everything that we talked about. We imported a module, use it, listen to an event, triggered
-                  an event and executed an event handler! Awesome! What else we can demonstrate about all the yada yada
-                  written above? Oh, I know! Non-blocking execution:
-                </p>
+            <p align="justify">
+              Gente...olha isso... vocês acham isso bom? Tipo, dá pra ler porque isso é algo pequeno e apenas
+              para ilustrar. Tenho certeza que vocês já viram algo pior. Mas assim, a gente entende o que vai
+              ser executado se tiver sucesso e se tiver falha, mas podemos ver que isso depende da organização
+              do desenvolvedor (tudo depende neh? Mas tem como arrumarmos isso!).
+            </p>
 
-                <!-- HTML generated using hilite.me -->
-                <div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">http</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">require(</span><span style="color: #ed9d13">&#39;http&#39;</span><span style="color: #d0d0d0">);</span>
+            <p align="justify">
+              Agora vamos usar as promises, e vamos ver a mágica acontecendo.
+            </p>
 
-<span style="color: #d0d0d0">http.createServer(</span><span style="color: #6ab825; font-weight: bold">function</span><span style="color: #d0d0d0">(request,</span> <span style="color: #d0d0d0">response){</span>
-  <span style="color: #d0d0d0">response.writeHead(</span><span style="color: #3677a9">200</span><span style="color: #d0d0d0">);</span>
-  <span style="color: #d0d0d0">response.write(</span><span style="color: #ed9d13">&#39;I\&#39;m alive, wait and see...&#39;</span><span style="color: #d0d0d0">);</span>
-  <span style="color: #d0d0d0">setTimeout(</span><span style="color: #6ab825; font-weight: bold">function</span><span style="color: #d0d0d0">(){</span>
-    <span style="color: #d0d0d0">response.write(</span><span style="color: #ed9d13">&#39;Took me 5 seconds to finish.&#39;</span><span style="color: #d0d0d0">);</span>
-    <span style="color: #d0d0d0">response.end();</span>
-  <span style="color: #d0d0d0">},</span> <span style="color: #3677a9">5000</span><span style="color: #d0d0d0">);</span>
-  <span style="color: #d0d0d0">response.write(</span><span style="color: #ed9d13">&#39;Not yet done.&#39;</span><span style="color: #d0d0d0">);</span>
-<span style="color: #d0d0d0">}).listen(</span><span style="color: #3677a9">8080</span><span style="color: #d0d0d0">,</span> <span style="color: #6ab825; font-weight: bold">function</span><span style="color: #d0d0d0">(){</span>
-  <span style="color: #d0d0d0">console.log(</span><span style="color: #ed9d13">&#39;Listening on port 8080...&#39;</span><span style="color: #d0d0d0">);</span>
-<span style="color: #d0d0d0">});</span>
+            <!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #f8f8f2">...</span>
+
+<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">getUsers</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">function</span> <span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+  <span style="color: #66d9ef">return</span> <span style="color: #66d9ef">new</span> <span style="color: #a6e22e">Promise</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">fulfill</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">reject</span><span style="color: #f8f8f2">){</span>
+    <span style="color: #a6e22e">mongoose</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">find</span><span style="color: #f8f8f2">({...},</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">err</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">data</span><span style="color: #f8f8f2">){</span>
+      <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">err</span><span style="color: #f8f8f2">)</span> <span style="color: #a6e22e">reject</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">err</span><span style="color: #f8f8f2">);</span>
+      <span style="color: #66d9ef">else</span> <span style="color: #a6e22e">fufill</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">data</span><span style="color: #f8f8f2">);</span>
+    <span style="color: #f8f8f2">});</span>
+  <span style="color: #f8f8f2">});</span>
+<span style="color: #f8f8f2">}</span>
+
+<span style="color: #f8f8f2">...</span>
 </pre></div>
-                <div class="ac-caption">Non-Blocking Server</div>
+            <div class="img-caption">Promise na camada de Dado</div>
 
-                <p align="justify">
-                  Pretty neat, hun? We kept sending data to the requester and just only ended the request after 5 seconds,
-                  however we still could execute other functions while it was processing the other action. With the power
-                  of JavaScript syntax it was easy to code something like this, it didn't hurt, and it is readable.
-                </p>
+            <p align="justify">
+              Praticamente não se muda nada aqui. Seis por meia dúzia. Mas só de colocar a promisse temos as seguintes
+              melhoras:
+            </p>
 
-                <p align="justify">
-                  Hold on! I didn't explained much about what was going on. When we passed the function to the <b>createServer</b>
-                  method, we defined two parameters <i>request</i> and <i>response</i>. Those are the readable and writable streams.
-                  We can write and read data from those variables. Now lets print data coming from the requester:
-                </p>
+            <ul>
+              <li>Assinatura do método não possui mais a necessidade de ter as callbacks, deixando mais limpo
+              sua chamada;</li>
+              <li>É criado um padrão de resposta para o sucesso e para a falha, assim temos menos problemas de
+              um desenvolvedor qualquer fazer coisa errada e essa camada chamar uma função undefined;</li>
+              <li>Isolamos o módulo tornando ele em uma camada de verdade. Ou seja, como seguimos o padrão
+              de promisse podemos reusar melhor ainda o código sem o time ter que dissecar o que essa camada
+              esta fazendo.</li>
+            </ul>
 
-                <!-- HTML generated using hilite.me -->
-                <div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">http</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">require(</span><span style="color: #ed9d13">&#39;http&#39;</span><span style="color: #d0d0d0">);</span>
+            <p align="justify">
+              Vamos ver nosso controller agora:
+            </p>
 
-<span style="color: #d0d0d0">http.createServer(</span><span style="color: #6ab825; font-weight: bold">function</span><span style="color: #d0d0d0">(request,</span> <span style="color: #d0d0d0">response){</span>
-  <span style="color: #d0d0d0">response.writeHead(</span><span style="color: #3677a9">200</span><span style="color: #d0d0d0">);</span>
-  <span style="color: #d0d0d0">request.on(</span><span style="color: #ed9d13">&#39;readable&#39;</span><span style="color: #d0d0d0">,</span> <span style="color: #6ab825; font-weight: bold">function</span><span style="color: #d0d0d0">(){</span>
-    <span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">data</span> <span style="color: #d0d0d0">=</span> <span style="color: #6ab825; font-weight: bold">null</span><span style="color: #d0d0d0">;</span>
-    <span style="color: #6ab825; font-weight: bold">while</span><span style="color: #d0d0d0">(</span><span style="color: #6ab825; font-weight: bold">null</span> <span style="color: #d0d0d0">!==</span> <span style="color: #d0d0d0">(data</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">request.read())){</span>
-      <span style="color: #d0d0d0">console.log(data.toString());</span>
-    <span style="color: #d0d0d0">}</span>
-  <span style="color: #d0d0d0">});</span>
-  <span style="color: #d0d0d0">request.on(</span><span style="color: #ed9d13">&#39;end&#39;</span><span style="color: #d0d0d0">,</span> <span style="color: #6ab825; font-weight: bold">function</span><span style="color: #d0d0d0">(){</span>
-    <span style="color: #d0d0d0">response.end();</span>
-  <span style="color: #d0d0d0">});</span>
-<span style="color: #d0d0d0">}).listen(</span><span style="color: #3677a9">8080</span><span style="color: #d0d0d0">,</span> <span style="color: #6ab825; font-weight: bold">function</span><span style="color: #d0d0d0">(){</span>
-  <span style="color: #d0d0d0">console.log(</span><span style="color: #ed9d13">&#39;Listening on port 8080...&#39;</span><span style="color: #d0d0d0">);</span>
-<span style="color: #d0d0d0">});</span>
+            <!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #f8f8f2">...</span>
+
+<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">getUsers</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">function</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">req</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">res</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+  <span style="color: #a6e22e">usersLayer</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">getUsers</span><span style="color: #f8f8f2">().</span><span style="color: #a6e22e">then</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">data</span><span style="color: #f8f8f2">){</span>
+    <span style="color: #a6e22e">res</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">json</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">data</span><span style="color: #f8f8f2">);</span>
+  <span style="color: #f8f8f2">}).</span><span style="color: #66d9ef">catch</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">error</span><span style="color: #f8f8f2">){</span>
+    <span style="color: #a6e22e">res</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">status</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">error</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">status</span><span style="color: #f8f8f2">).</span><span style="color: #a6e22e">send</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">error</span><span style="color: #f8f8f2">);</span>
+  <span style="color: #f8f8f2">});</span>
+<span style="color: #f8f8f2">}</span>
+
+<span style="color: #f8f8f2">...</span>
 </pre></div>
-                <div class="ac-caption">Reading Data From Requester</div>
 
-                <p align="justify">
-                  Now that do something that is not that useless. With this code we can even upload files! As long as the
-                  <i>request</i> stream has data to provide, the event <b>end</b> will not be triggered, and we can keep
-                  getting data and writing it where we want.
-                </p>
+            <div class="img-caption">Promise no controller</div>
 
-                <header>
-                  <h4>Make Request</h4>
-                </header>
+            <p align="justify">
+              Um método muito mais enxuto. Nos livramos das variáveis que guardavam as callbacks e deixamos a
+              chamada da camada de dados muito mais limpa. Fica mais fácil de de entender o que esta acontecendo
+              e quem realmente chama as funções de sucesso e falha é o controller. Isos porque as promises apenas
+              sinalizam a forma como acabaram e o controller lida com elas. Fica mais claro o que esta acontecendo
+              e também dá uma martelada final de quem é responsável em lidar com os dados e de como enviar para o 
+              cliente.
+            </p>
 
-                <p align="justify">
-                  Not only we can receive requests, but we can make requests to a server.
-                </p>
+            <p align="justify">
+              Alguém percebeu que isso confronta a regra <b>Error First</b>? Com as promises não precisamos de validar
+              se existe o erro ou não, ela faz isso automáticamente com o reject (Não automáticamente, claro, mas por
+              de baixo dos panos na perspectiva do controller).
+            </p>
 
-                <!-- HTML generated using hilite.me -->
-                <div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">http</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">require(</span><span style="color: #ed9d13">&#39;http&#39;</span><span style="color: #d0d0d0">);</span>
+            <header class="major">
+              <h4>Escopo</h2>
+            </header>
 
-<span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">options</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">{</span>
-  <span style="color: #d0d0d0">host:</span> <span style="color: #ed9d13">&#39;localhost&#39;</span><span style="color: #d0d0d0">,</span>
-  <span style="color: #d0d0d0">port:</span> <span style="color: #3677a9">8080</span><span style="color: #d0d0d0">.</span>
-  <span style="color: #d0d0d0">path:</span> <span style="color: #ed9d13">&#39;/&#39;</span><span style="color: #d0d0d0">,</span>
-  <span style="color: #d0d0d0">method:</span> <span style="color: #ed9d13">&#39;POST&#39;</span>
-<span style="color: #d0d0d0">};</span>
+            <p align="justify">
+              Então, Node é bom de mais, contudo, temos o problema de que o V8 usa um GC guloso e preguiçoso. Ele tem
+              um limite padrão de 1.5GB rodando em apenas um core. Por causa disso precisamos sempre ter em mente
+              em criar aplicativos que tenham uma preocupação com a utilização de memória. Ai que entra os termos
+              <b>const</b>, <b>let</b> e as <b>arrow functions</b>. Vamos olhar para o seguinte código:
+            </p>
 
-<span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">request</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">http.request(options,</span> <span style="color: #6ab825; font-weight: bold">function</span><span style="color: #d0d0d0">(response){</span>
-  <span style="color: #d0d0d0">response.on(</span><span style="color: #ed9d13">&#39;data&#39;</span><span style="color: #d0d0d0">,</span> <span style="color: #6ab825; font-weight: bold">function</span><span style="color: #d0d0d0">(){</span>
-    <span style="color: #d0d0d0">console.log(data);</span>
-  <span style="color: #d0d0d0">});</span>
-<span style="color: #d0d0d0">});</span>
+          </div>
+        </section>
+      </div>
 
-<span style="color: #d0d0d0">request.write(</span><span style="color: #ed9d13">&#39;Are you alive?&#39;</span><span style="color: #d0d0d0">);</span>
-<span style="color: #d0d0d0">request.end();</span>
-</pre></div>
-                <div class="ac-caption">Sending Data To The Server</div>
-              </div>
-						</section>
-
-          <!-- Six -->
-            <section id="six">
-              <div class="container">
-                <header class="major">
-                  <h2>Exercises</h2>
-                </header>
-
-                <header>
-                  <h4>Exercise 1:</h4>
-                </header>
-
-                <p align="justify">
-                  Create a program that prints into the console any string that you like.
-                </p>
-
-                <header>
-                  <h4>Exercise 2:</h4>
-                </header>
-
-                <p align="justify">
-                  Create a program that reads a content from a file and print it into the console.
-                </p>
-
-                <header>
-                  <h4>Exercise 3:</h4>
-                </header>
-
-                <p align="justify">
-                  Create a program that reads a content from a file and write it in another file.
-                </p>
-
-                <header>
-                  <h4>Exercise 4:</h4>
-                </header>
-
-                <p align="justify">
-                  Create a class that its constructor receives a string and, inside this class, create a method to
-                  print this string into the console. Export this class to Node.
-                  Create a program that imports the class that you've just created. Create a new class with your
-                  name an print it into the console.
-                </p>
-
-                <header>
-                  <h4>Exercise 5:</h4>
-                </header>
-
-                <p align="justify">
-                  Create a class that its constructor receives a string and, inside this class, create a method to
-                  print this string into the console using a new Event Emitter, calling the event 'log'. Export this class
-                  to Node.
-                  Create a program that imports the class that you've just created. Create a new class with your
-                  name an print it into the console.
-                </p>
-
-                <header>
-                  <h4>Exercise 6:</h4>
-                </header>
-
-                <p align="justify">
-                  Create a class that its constructor receives a string and, inside this class, create a method to
-                  print this string into the console using winston package. Export this class to Node.
-                  Create a program that imports the class that you've just created. Create a new class with your
-                  name an print it into the console.
-                </p>
-
-                <header>
-                  <h4>Exercise 7:</h4>
-                </header>
-
-                <p align="justify">
-                  Create a simple package.json file with all the dependencies and info required to describe all of what
-                  you did at exercise 6.
-                </p>
-
-                <header>
-                  <h4>Exercise 8:</h4>
-                </header>
-
-                <p align="justify">
-                  Create a simple server that, when requested, returns the string <b>"Hello World"</b>.
-                </p>
-
-                <header>
-                  <h4>Exercise 9:</h4>
-                </header>
-
-                <p align="justify">
-                  Create a program that make a request to the local server.
-                </p>
-
-                <header>
-                  <h4>Exercise 10:</h4>
-                </header>
-
-                <p align="justify">
-                  Create a server that echoes to the requester the same data that he sent.
-                </p>
-
-                <header>
-                  <h4>Exercise 11:</h4>
-                </header>
-
-                <p align="justify">
-                  Create a server that print into the console the data that the requester sent.
-                </p>
-
-                <header>
-                  <h4>Exercise 12:</h4>
-                </header>
-
-                <p align="justify">
-                  Create a server that prints into a file the data that the requester sent.
-                </p>
-
-                <header>
-                  <h4>Exercise 13:</h4>
-                </header>
-
-                <p align="justify">
-                  Create a server that prints into a file the data that the requester sent using the method <b>pipe</b>
-                  from the stream <i>request</i>.
-                </p>
-
-                <header>
-                  <h4>Exercise 14:</h4>
-                </header>
-
-                <p align="justify">
-                  Create a upload server that receives a file, save it into the disk and returns to the requester the
-                  upload progress in real time.
-                </p>
-
-              </div>
-            </section>
+      <!-- Footer -->
+      <section id="footer">
+        <div class="container">
+          <ul class="copyright">
+            <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+          </ul>
         </div>
-
-			<!-- Footer -->
-				<section id="footer">
-					<div class="container">
-						<ul class="copyright">
-							<li>&copy; Avenue Code. All rights reserved.</li>
-							<li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-						</ul>
-					</div>
-				</section>
-
-		</div>
-	</body>
+      </section>
+    </div>
+  </body>
 </html>
