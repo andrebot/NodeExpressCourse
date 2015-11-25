@@ -306,8 +306,101 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
               Então, Node é bom de mais, contudo, temos o problema de que o V8 usa um GC guloso e preguiçoso. Ele tem
               um limite padrão de 1.5GB rodando em apenas um core. Por causa disso precisamos sempre ter em mente
               em criar aplicativos que tenham uma preocupação com a utilização de memória. Ai que entra os termos
-              <b>const</b>, <b>let</b> e as <b>arrow functions</b>. Vamos olhar para o seguinte código:
+              <b>const</b>, <b>let</b> e as <b>arrow functions</b>. Claro que uma boa estratégia de cluster ajuda
+              bastante nisso, mas agora estamos falando de processos individuais. Vamos olhar o seguinte código:
             </p>
+
+            <!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #66d9ef">for</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">var</span> <span style="color: #a6e22e">i</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">10</span><span style="color: #f8f8f2">;</span> <span style="color: #a6e22e">i</span><span style="color: #f92672">&gt;=</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span> <span style="color: #a6e22e">i</span><span style="color: #f92672">--</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+  <span style="color: #a6e22e">console</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">log</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;opa&#39;</span><span style="color: #f8f8f2">);</span>
+<span style="color: #f8f8f2">}</span>
+
+<span style="color: #a6e22e">console</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">log</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">i</span><span style="color: #f8f8f2">);</span>
+</pre></div>
+            <div class="img-caption">Variável com visibilidade fora do for</div>
+
+            <p align="justify">
+              Como podemos ver esse código faz com que possa ser usado a variável fora do for, ou seja, mesmo depois que a
+              a função da variável i já ter acabado, ela continua na memória. se possuíssemos uma porção de for rodando ao
+              mesmo tempo, pode ser que nossa memória fique sobre carregada e nosso GC trabalhe bastante, diminuindo o
+              desempenho da nossa aplicação. Assim sendo, usando o <b>let</b> sabemos que seu escopo não sai de dentro do
+              for:
+            </p>
+
+            <!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #66d9ef">for</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">let</span> <span style="color: #a6e22e">i</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">10</span><span style="color: #f8f8f2">;</span> <span style="color: #a6e22e">i</span><span style="color: #f92672">&gt;=</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span> <span style="color: #a6e22e">i</span><span style="color: #f92672">--</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+  <span style="color: #a6e22e">console</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">log</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;opa&#39;</span><span style="color: #f8f8f2">);</span>
+<span style="color: #f8f8f2">}</span>
+
+<span style="color: #a6e22e">console</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">log</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">i</span><span style="color: #f8f8f2">);</span>
+</pre></div>
+
+            <div class="img-caption">Variável sem visibilidade fora do for</div>
+
+            <p align="justify">
+              Agora a variável i tem seu escopo restrito dentro do for. Desse jeito evitamos também qualquer tipo de bug
+              que poderia causar se por um acaso sobrescrevermos ou usarmos a variável i em algum momento. Mantendo o código limpo.
+              Um pequeno exemplo prático:
+            </p>
+
+            <!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #e6db74">&#39;use strict&#39;</span><span style="color: #f8f8f2">;</span>
+
+<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">EventEmitter</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;events&#39;</span><span style="color: #f8f8f2">).</span><span style="color: #a6e22e">EventEmitter</span><span style="color: #f8f8f2">;</span>
+
+<span style="color: #66d9ef">class</span> <span style="color: #a6e22e">Dog</span> <span style="color: #66d9ef">extends</span> <span style="color: #a6e22e">EventEmitter</span><span style="color: #f8f8f2">{</span>
+  <span style="color: #a6e22e">constructor</span><span style="color: #f8f8f2">(){</span>
+    <span style="color: #66d9ef">super</span><span style="color: #f8f8f2">();</span>
+  <span style="color: #f8f8f2">}</span>
+<span style="color: #f8f8f2">};</span>
+
+<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">dogs</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">[</span><span style="color: #66d9ef">new</span> <span style="color: #a6e22e">Dog</span><span style="color: #f8f8f2">(),</span> <span style="color: #66d9ef">new</span> <span style="color: #a6e22e">Dog</span><span style="color: #f8f8f2">(),</span> <span style="color: #66d9ef">new</span> <span style="color: #a6e22e">Dog</span><span style="color: #f8f8f2">(),</span> <span style="color: #66d9ef">new</span> <span style="color: #a6e22e">Dog</span><span style="color: #f8f8f2">()];</span>
+
+<span style="color: #66d9ef">for</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">var</span> <span style="color: #a6e22e">i</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">3</span><span style="color: #f8f8f2">;</span> <span style="color: #a6e22e">i</span><span style="color: #f92672">&gt;=</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span> <span style="color: #a6e22e">i</span><span style="color: #f92672">--</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+  <span style="color: #a6e22e">dogs</span><span style="color: #f8f8f2">[</span><span style="color: #a6e22e">i</span><span style="color: #f8f8f2">].</span><span style="color: #a6e22e">on</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;bark&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(){</span>
+    <span style="color: #a6e22e">console</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">log</span><span style="color: #f8f8f2">(</span><span style="color: #960050; background-color: #1e0010">`</span><span style="color: #a6e22e">Barking</span> <span style="color: #a6e22e">at</span> <span style="color: #a6e22e">$</span><span style="color: #f8f8f2">{</span><span style="color: #a6e22e">i</span><span style="color: #f8f8f2">}</span><span style="color: #960050; background-color: #1e0010">`</span><span style="color: #f8f8f2">);</span>
+  <span style="color: #f8f8f2">});</span>
+<span style="color: #f8f8f2">}</span>
+
+<span style="color: #a6e22e">dogs</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">forEach</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">element</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">index</span><span style="color: #f8f8f2">){</span>
+  <span style="color: #a6e22e">element</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">emit</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;bark&#39;</span><span style="color: #f8f8f2">);</span>
+<span style="color: #f8f8f2">});</span>
+</pre></div>
+
+            <div class="img-caption">Definindo eventos com o escopo de var</div>
+
+            <p align="justify">
+              Executando esse código iremos ter um resultado de quatro -1 impessos no console. Mas, e se mudassemos para let
+              o nosso for?
+            </p>
+
+            <!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #e6db74">&#39;use strict&#39;</span><span style="color: #f8f8f2">;</span>
+
+<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">EventEmitter</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;events&#39;</span><span style="color: #f8f8f2">).</span><span style="color: #a6e22e">EventEmitter</span><span style="color: #f8f8f2">;</span>
+
+<span style="color: #66d9ef">class</span> <span style="color: #a6e22e">Dog</span> <span style="color: #66d9ef">extends</span> <span style="color: #a6e22e">EventEmitter</span><span style="color: #f8f8f2">{</span>
+  <span style="color: #a6e22e">constructor</span><span style="color: #f8f8f2">(){</span>
+    <span style="color: #66d9ef">super</span><span style="color: #f8f8f2">();</span>
+  <span style="color: #f8f8f2">}</span>
+<span style="color: #f8f8f2">};</span>
+
+<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">dogs</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">[</span><span style="color: #66d9ef">new</span> <span style="color: #a6e22e">Dog</span><span style="color: #f8f8f2">(),</span> <span style="color: #66d9ef">new</span> <span style="color: #a6e22e">Dog</span><span style="color: #f8f8f2">(),</span> <span style="color: #66d9ef">new</span> <span style="color: #a6e22e">Dog</span><span style="color: #f8f8f2">(),</span> <span style="color: #66d9ef">new</span> <span style="color: #a6e22e">Dog</span><span style="color: #f8f8f2">()];</span>
+
+<span style="color: #66d9ef">for</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">let</span> <span style="color: #a6e22e">i</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">3</span><span style="color: #f8f8f2">;</span> <span style="color: #a6e22e">i</span><span style="color: #f92672">&gt;=</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span> <span style="color: #a6e22e">i</span><span style="color: #f92672">--</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+  <span style="color: #a6e22e">dogs</span><span style="color: #f8f8f2">[</span><span style="color: #a6e22e">i</span><span style="color: #f8f8f2">].</span><span style="color: #a6e22e">on</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;bark&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(){</span>
+    <span style="color: #a6e22e">console</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">log</span><span style="color: #f8f8f2">(</span><span style="color: #960050; background-color: #1e0010">`</span><span style="color: #a6e22e">Barking</span> <span style="color: #a6e22e">at</span> <span style="color: #a6e22e">$</span><span style="color: #f8f8f2">{</span><span style="color: #a6e22e">i</span><span style="color: #f8f8f2">}</span><span style="color: #960050; background-color: #1e0010">`</span><span style="color: #f8f8f2">);</span>
+  <span style="color: #f8f8f2">});</span>
+<span style="color: #f8f8f2">}</span>
+
+<span style="color: #a6e22e">dogs</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">forEach</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">element</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">index</span><span style="color: #f8f8f2">){</span>
+  <span style="color: #a6e22e">element</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">emit</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;bark&#39;</span><span style="color: #f8f8f2">);</span>
+<span style="color: #f8f8f2">});</span>
+</pre></div>
+            <div class="img-caption">Definindo eventos com o escopo de var</div>
+
+            <p align="justify">
+              Agora, cada evento estará atrelado ao escopo do let e podemos ter certeza que, ao emitirmos o evento bark
+              teremos o valor correto sendo impresso.
+            </p>
+
+
 
           </div>
         </section>
