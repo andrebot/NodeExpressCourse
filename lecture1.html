@@ -400,7 +400,109 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
               teremos o valor correto sendo impresso.
             </p>
 
+            <p align="justify">
+              Agora vamos para as arrow functions. Você esta cansado de ter que descobrir em qual escopo certa
+              variável esta? De ter que ficar colocando bind no meio do seu código? Ou ficar criando aquela famigerada
+              variável self para manter o escopo pai? Pois seus problemas acabaram porque o ES6 trouxe para você essa
+              delícia de funcionalidade. Ela simplesmente é um açucar sintático para o bind. Quando você usa as arrow
+              functions vc esta, na verdade, criando uma função que contém o escopo pai. Ou seja, isso aqui:
+            </p>
 
+            <!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #66d9ef">var</span> <span style="color: #a6e22e">caraca</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+  <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">secret</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&#39;olha eu aqui&#39;</span><span style="color: #f8f8f2">;</span>
+  <span style="color: #a6e22e">setTimeout</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(){</span>
+    <span style="color: #a6e22e">console</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">log</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">secret</span><span style="color: #f8f8f2">);</span>
+  <span style="color: #f8f8f2">}.</span><span style="color: #a6e22e">bind</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">),</span> <span style="color: #ae81ff">1000</span><span style="color: #f8f8f2">);</span>
+<span style="color: #f8f8f2">}</span>
+</pre></div>
+            <div class="img-caption">Usando Bind</div>
+
+            <p align="justify">
+              É a mesma coisa que isso aqui:
+            </p>
+
+            <!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #66d9ef">var</span> <span style="color: #a6e22e">caraca</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+  <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">secret</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&#39;olha eu aqui&#39;</span><span style="color: #f8f8f2">;</span>
+  <span style="color: #a6e22e">setTimeout</span><span style="color: #f8f8f2">(()</span> <span style="color: #f92672">=&gt;</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #a6e22e">console</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">log</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">secret</span><span style="color: #f8f8f2">);</span>
+  <span style="color: #f8f8f2">},</span> <span style="color: #ae81ff">1000</span><span style="color: #f8f8f2">);</span>
+<span style="color: #f8f8f2">}</span>
+</pre></div>
+              <div class="img-caption">Usando arrow function</div>
+
+              <p align="justify">
+                Mesmo sendo praticamente a mesma coisa, temos, outra vez, um código mais limpo. Claro que isso serve
+                apenas para funções anonimas. Caso a gente precise de colcoar uma função já definida não iremos escapar
+                do bind. Mas isso já é um bom avanço.
+              </p>
+
+              <header>
+                <h4>Classes</h4>
+              </header>
+
+              <p align="justify">
+                Agora vem a parte perigosa da coisa. Houve uma boa discussão sobre classes em JavaScript. Temos um lado
+                dizendo que JS não foi feito pra isso e tem um outro lado dizendo que Classes organiza e modulariza o 
+                código. Na minha opinião, os dois lados estão certos. JavaScript é muito mais sobre funções do que
+                classes. O próprio Node é sobre isso. Mas mesmo assim ainda precisamos que certos comportamentos
+                sejam herdados e passados entre objetos, facilitando a reusabilidade do código e  diminuindo a comsumo 
+                de memória. Por causa disso que usamos o prototype. ES6 trouxe classes pensando nisso, ou seja, ES6 
+                trouxe outro açucar sintático para a linguagem. As classes nada são do que isso:
+              </p>
+
+              <!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #66d9ef">var</span> <span style="color: #a6e22e">classe</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">function</span> <span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+  <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">variavel</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span>
+<span style="color: #f8f8f2">};</span>
+
+<span style="color: #a6e22e">classe</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">prototype</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">oi</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">function</span> <span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+  <span style="color: #a6e22e">console</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">log</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;oi&#39;</span><span style="color: #f8f8f2">);</span>
+<span style="color: #f8f8f2">};</span>
+</pre></div>
+              <div class="img-caption">Proptype como feito antigamente</div>
+
+
+              <p align="justify">
+                Feito dessa forma:
+              </p>
+
+              <!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #66d9ef">class</span> <span style="color: #a6e22e">Classe</span> <span style="color: #f8f8f2">{</span>
+  <span style="color: #a6e22e">constructor</span> <span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">variavel</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span>
+  <span style="color: #f8f8f2">}</span>
+
+  <span style="color: #a6e22e">oi</span> <span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #a6e22e">console</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">log</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;oi&#39;</span><span style="color: #f8f8f2">);</span>
+  <span style="color: #f8f8f2">}</span>
+<span style="color: #f8f8f2">}</span>
+</pre></div>
+            <div class="img-caption">Usando classes em ES6</div>
+
+            <p align="justify">
+              A mesma coisa. Eu, particurlamente acho isso mais legível que os prototypes. Como é a mesma coisa eu
+              prefiro utilizar essa sintaxe. Mas isso fica totalmente a decisão do desenvolvedor.
+            </p>
+
+            <p align="justify">
+              Mas o que isso altera nas boas práticas em Node? Bem, sempre dizemos que o Node se beneficia muito de
+              seus módulos. E o que mais fica melhor encapsulado em um arquivo separado que uma classe? Deixarei em
+              aberto se isso é realmente bom para que, vocês que estão lendo isso aqui, decidam se realmente vale a
+              pena. Fiquem ligados que é interessante lembrar que vale a pena limitar o new e o this dentro do Node,
+              ainda mais porque quase toda sua execução é asincrona e callbacks (agora promises, hahaha). Ficar
+              dependendo de escopos rigidos pode ser um problema.
+            </p>
+
+            <header>
+              <h4>Generators</h4>
+            </header>
+
+            <p align="justify">
+              Agora vem a parte complicada. Sempre fomos condicionados a pensar em Node como um programa assíncrono e
+              que não devíamos mexer nisso. Contudo existem problemas que ficam muito complexos quando se trabalha com
+              código assíncrono, ainda mais quando uma função assíncrona depende de outra função assíncrona. E sabemos
+              desde a faculdade que problemas de concorrência são bem complicados. Assim, nesse panorama que chegamos
+              em Generators. Com essa feature podemos pensar em códigos assíncronos de forma síncrona (podendo até
+              usar try/catch nesse tipo de código). Vamos dar uma olhada em um código com generate e disseca-lo:
+            </p>
 
           </div>
         </section>
