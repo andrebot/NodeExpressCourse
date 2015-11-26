@@ -62,6 +62,9 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
             <li><a href="#one" class="active">O que há de novo no Node 4.0.0?</a></li>
             <li><a href="#two" class="active">ES6 em Node.js</a></li>
             <li><a href="#three" class="active">Down to business</a></li>
+            <li><a href="#four" class="active">Menções Honrosas</a></li>
+            <li><a href="#five" class="active">Conclusão</a></li>
+            <li><a href="#six" class="active">Bibliografia</a></li>
           </ul>
           <img src="http://www.avenuecode.com/wp-content/themes/ac-site/images/white-logo.png" alt="">
         </nav>
@@ -88,15 +91,15 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 
             <p align="justify">
               Entretando houve uma certa discussão sobre qual seria o melhor caminho a se trilhar com relação
-              a certas features do projeto, assim foi criado o IO.js. Felizmente, após um certo tempo
+              ao andamento do projeto do Joyent, assim foi criado o IO.js. Felizmente, após um certo tempo
               separados, os dois projetos foram fundidos, tornando-se um só novamente.
             </p>
 
             <p align="justify">
-              Qual foi o benefício dessa fusão? O início da implementação do ECMAScript 6! Sim meus amigos,
+              Qual foi o benefício dessa fusão? O início da implementação do ECMAScript 6 no Node! Sim meus amigos,
               agora Node.js reconhece a sintaxe da nova versão do nosso amado JavaScript, mas infelizmente não
               toda. Não podemos deixar de falar do LTS (Long Term Support) que agora esta sendo realizado com
-              as versões do Node, mas não é o foco dessa apresentação.
+              as versões do Node, mas não isso é o foco dessa apresentação.
             </p>
 
             <header>
@@ -176,16 +179,17 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 
             <p align="justify">
               Ok, primeiramente vamos falar de promises! Essa danadinha ai vai ser responsável pelas
-              maiores mudanças aqui. Como somes desenvolvedores de JavaScript somos loucos por callbacks!
-              Caramba, quantas vezes a gente fica passando callback pra cá, callback pra lá, e podemos até
-              confundir as coisas e perguntar: <b>Caramba.... onde eu posso declarar esse callback?</b>
+              mudanças em como realizamos os callbacks. Como somos desenvolvedores de JavaScript as callbacks
+              são uma constante em nossas vidas. Caramba, quantas vezes a gente fica passando callback pra cá, 
+              callback pra lá, podemos até confundir as coisas e perguntar: <b>Poxa.... onde eu posso 
+              declarar esse callback?</b> Sem contar no callback hell que sempre esta espreitando ali na esquina.
             </p>
 
             <p align="justify">
-              Vamos lá, exemplo básico e clichê: Eu tenho aqui um servidor em Node e estou fazendo um
-              controller que vai chamar a camada de dados para pegar uns dados. O problema que, como sabemos,
-              Node é assíncrono então temos que passar as callbacks para a camada de baixo chama-las assim que
-              terminatem de fazer suas ações:
+              Vamos lá, exemplo básico e clichê: Eu tenho aqui um servidor em Node. Estou fazendo um
+              controller que vai chamar a camada de dados para pegar... bem... dados. O problema é que, como sabemos,
+              Node é assíncrono então temos que passar as callbacks para a próxima camada, que irá determinar quando
+              excecuta-las:
             </p>
 
             <!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #f8f8f2">...</span>
@@ -224,14 +228,14 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
             <div class="img-caption">Exemplo de uma camada de dados</div>
 
             <p align="justify">
-              Gente...olha isso... vocês acham isso bom? Tipo, dá pra ler porque isso é algo pequeno e apenas
+              Gente...olha isso... vocês acham isso bonito? Tipo, dá pra ler porque isso é algo pequeno e apenas
               para ilustrar. Tenho certeza que vocês já viram algo pior. Mas assim, a gente entende o que vai
               ser executado se tiver sucesso e se tiver falha, mas podemos ver que isso depende da organização
               do desenvolvedor (tudo depende neh? Mas tem como arrumarmos isso!).
             </p>
 
             <p align="justify">
-              Agora vamos usar as promises, e vamos ver a mágica acontecendo.
+              Agora vamos usar as promises e ver a mágica acontecendo.
             </p>
 
             <!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #f8f8f2">...</span>
@@ -258,9 +262,10 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
               <li>Assinatura do método não possui mais a necessidade de ter as callbacks, deixando mais limpo
               sua chamada;</li>
               <li>É criado um padrão de resposta para o sucesso e para a falha, assim temos menos problemas de
-              um desenvolvedor qualquer fazer coisa errada e essa camada chamar uma função undefined;</li>
+              um desenvolvedor qualquer fazer coisa errada como, por exemplo, essa camada chamar uma função
+              undefined;</li>
               <li>Isolamos o módulo tornando ele em uma camada de verdade. Ou seja, como seguimos o padrão
-              de promisse podemos reusar melhor ainda o código sem o time ter que dissecar o que essa camada
+              de promisse podemos reusar melhor o código sem o time ter que dissecar o que essa camada
               esta fazendo.</li>
             </ul>
 
@@ -285,11 +290,17 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 
             <p align="justify">
               Um método muito mais enxuto. Nos livramos das variáveis que guardavam as callbacks e deixamos a
-              chamada da camada de dados muito mais limpa. Fica mais fácil de de entender o que esta acontecendo
-              e quem realmente chama as funções de sucesso e falha é o controller. Isos porque as promises apenas
-              sinalizam a forma como acabaram e o controller lida com elas. Fica mais claro o que esta acontecendo
-              e também dá uma martelada final de quem é responsável em lidar com os dados e de como enviar para o 
-              cliente.
+              chamada da camada de dados muito mais limpa. Fica mais fácil de entender o que esta acontecendo
+              e quem realmente chama as funções de sucesso e falha é o controller. Isso porque as promises apenas
+              sinalizam como acabou a sua execução e o controller lida com os diferentes tipos de finalização. Fica 
+              mais claro o que esta acontecendo e também dá uma martelada final de quem é responsável em lidar com
+              os dados e de como enviar para o cliente.
+            </p>
+
+            <p align="justify">
+              Possuir um padrão nativo de callback, como a promise faz no ES6, é formalizar um padrão para todo mundo.
+              Como esse padrão é nativo da linguagem é muito mais provavel que os desenvolvedores o conheçam. Muito melhor
+              do que ficar aprendendo um padrão novo a cada novo projeto que você entra.
             </p>
 
             <p align="justify">
@@ -298,20 +309,66 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
               de baixo dos panos na perspectiva do controller).
             </p>
 
+            <p align="justify">
+              Não podemos esquecer que também é possível encadear promises, fazendo uma ser dependente da outra. Além
+              do mais o catch consegue formalizar um local central para cuidar dos erros lançados pelas promises subsequentes.
+            </p>
+
+            <!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #a6e22e">getCatIds</span><span style="color: #f8f8f2">().</span><span style="color: #a6e22e">then</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">catIds</span><span style="color: #f8f8f2">){</span>
+  <span style="color: #66d9ef">return</span> <span style="color: #a6e22e">getCMS</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">catIds</span><span style="color: #f8f8f2">);</span>
+<span style="color: #f8f8f2">}).</span><span style="color: #a6e22e">then</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">catCMS</span><span style="color: #f8f8f2">){</span>
+  <span style="color: #75715e">//render CMS content</span>
+<span style="color: #f8f8f2">}).</span><span style="color: #66d9ef">catch</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">err</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+  <span style="color: #75715e">//error handling</span>
+<span style="color: #f8f8f2">});</span>
+</pre></div>
+            <div class="img-caption">Encadeamento de Promises com funções anônimas</div>
+
+            <p align="justify">
+              Mas é claro que podemos melhorar ainda mais a legibilidade:
+            </p>
+
+            <!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #a6e22e">getCatIds</span><span style="color: #f8f8f2">()</span>
+  <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">then</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">handleCatIds</span><span style="color: #f8f8f2">)</span>
+  <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">then</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">loadCMSForCatIds</span><span style="color: #f8f8f2">)</span>
+  <span style="color: #f8f8f2">.</span><span style="color: #66d9ef">catch</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">handleServerErros</span><span style="color: #f8f8f2">);</span>
+</pre></div>
+            <div class="img-caption">Encadeamento de Promises com funções</div>
+
+            <p align="justify">
+              Aplicando no nosso controller temos algo do tipo:
+            </p>
+
+            <!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #f8f8f2">...</span>
+
+<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">getUsers</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">function</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">req</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">res</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+  <span style="color: #a6e22e">usersLayer</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">getUsers</span><span style="color: #f8f8f2">()</span>
+    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">then</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">respondJsonData</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">res</span><span style="color: #f8f8f2">))</span>
+    <span style="color: #f8f8f2">.</span><span style="color: #66d9ef">catch</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">handleServerError</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">res</span><span style="color: #f8f8f2">));</span>
+<span style="color: #f8f8f2">}</span>
+
+<span style="color: #f8f8f2">...</span>
+</pre></div>
+            <div class="img-caption">Controller muito mais legível</div>
+
+            <p align="justify">
+              Em vez de callbacks alinhados, ou ate mesmo promises alinhados, agora temos a opção de encadear essas
+              chamadas. Tornando as coisas muito mais legíveis.
+            </p>
+
             <header class="major">
               <h4>Escopo</h2>
             </header>
 
             <p align="justify">
-              Então, Node é bom de mais, contudo, temos o problema de que o V8 usa um GC guloso e preguiçoso. Ele tem
-              um limite padrão de 1.5GB rodando em apenas um core. Por causa disso precisamos sempre ter em mente
-              em criar aplicativos que tenham uma preocupação com a utilização de memória. Ai que entra os termos
-              <b>const</b>, <b>let</b> e as <b>arrow functions</b>. Claro que uma boa estratégia de cluster ajuda
-              bastante nisso, mas agora estamos falando de processos individuais. Vamos olhar o seguinte código:
+              Beleza, outra coisa muito bacana do JavaScript são as <b>closures</b> e <b>currying</b> mas lidar com
+              escopo pode ser um pequeno problema. Lembram-se dos <i>binds</i> ou a variável <b>var self = this</b>?
+              Tudo causado por chamadas de eventos e callbacks que precisam manter o escopo de um certo bloco. Ai 
+              que entra os termos <b>const</b>, <b>let</b> e as <b>arrow functions</b>. Vamos olhar o seguinte código:
             </p>
 
             <!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #66d9ef">for</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">var</span> <span style="color: #a6e22e">i</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">10</span><span style="color: #f8f8f2">;</span> <span style="color: #a6e22e">i</span><span style="color: #f92672">&gt;=</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span> <span style="color: #a6e22e">i</span><span style="color: #f92672">--</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
-  <span style="color: #a6e22e">console</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">log</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;opa&#39;</span><span style="color: #f8f8f2">);</span>
+  <span style="color: #a6e22e">console</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">log</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;opa&#39;</span> <span style="color: #f92672">+</span> <span style="color: #a6e22e">i</span><span style="color: #f8f8f2">);</span>
 <span style="color: #f8f8f2">}</span>
 
 <span style="color: #a6e22e">console</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">log</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">i</span><span style="color: #f8f8f2">);</span>
@@ -319,11 +376,11 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
             <div class="img-caption">Variável com visibilidade fora do for</div>
 
             <p align="justify">
-              Como podemos ver esse código faz com que possa ser usado a variável fora do for, ou seja, mesmo depois que a
-              a função da variável i já ter acabado, ela continua na memória. se possuíssemos uma porção de for rodando ao
-              mesmo tempo, pode ser que nossa memória fique sobre carregada e nosso GC trabalhe bastante, diminuindo o
-              desempenho da nossa aplicação. Assim sendo, usando o <b>let</b> sabemos que seu escopo não sai de dentro do
-              for:
+              Como podemos ver esse código faz com que possa ser usado a variável fora do <b>for</b>, ou seja, mesmo depois que
+              a função da variável <b>i</b> já ter acabado, ela continua disponível no escopo global. Já vi muito desenvolvedor
+              reutilizando a variável declarada dentro de um <b>for</b> em outras iterações <b>for</b>. Gente... não façam
+              isso. Por favor. Sério. Não. Nem tente. Para. Pense em outra coisa. Meter o bedelho em variáveis alheias é
+              pedir para gerar bugs esquisitíssimos. Por isso que o let veio para salvar o dia:
             </p>
 
             <!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #66d9ef">for</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">let</span> <span style="color: #a6e22e">i</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">10</span><span style="color: #f8f8f2">;</span> <span style="color: #a6e22e">i</span><span style="color: #f92672">&gt;=</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span> <span style="color: #a6e22e">i</span><span style="color: #f92672">--</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
@@ -336,8 +393,8 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
             <div class="img-caption">Variável sem visibilidade fora do for</div>
 
             <p align="justify">
-              Agora a variável i tem seu escopo restrito dentro do for. Desse jeito evitamos também qualquer tipo de bug
-              que poderia causar se por um acaso sobrescrevermos ou usarmos a variável i em algum momento. Mantendo o código limpo.
+              Agora a variável <b>i</b> tem seu escopo restrito dentro do <b>for</b>. Desse jeito evitamos também qualquer tipo de bug
+              que poderia causar se por um acaso sobrescrevermos ou usarmos essa variável em algum outro momento. Mantendo o código limpo.
               Um pequeno exemplo prático:
             </p>
 
@@ -367,8 +424,8 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
             <div class="img-caption">Definindo eventos com o escopo de var</div>
 
             <p align="justify">
-              Executando esse código iremos ter um resultado de quatro -1 impessos no console. Mas, e se mudassemos para let
-              o nosso for?
+              Executando esse código iremos ter um resultado de quatro -1 impessos no console. Mas, e se mudassemos para <b>let</b>
+              o nosso <b>for</b>?
             </p>
 
             <!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #e6db74">&#39;use strict&#39;</span><span style="color: #f8f8f2">;</span>
@@ -396,16 +453,83 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
             <div class="img-caption">Definindo eventos com o escopo de var</div>
 
             <p align="justify">
-              Agora, cada evento estará atrelado ao escopo do let e podemos ter certeza que, ao emitirmos o evento bark
-              teremos o valor correto sendo impresso.
+              Agora, cada evento estará atrelado ao escopo do <b>let</b> e podemos ter certeza que, ao emitirmos o evento <i>bark</i>
+              teremos o valor correto sendo impresso. Isso também impede bugs com sobrescrita de variáveis.
             </p>
+
+            <!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #66d9ef">for</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">let</span> <span style="color: #a6e22e">i</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">10</span><span style="color: #f8f8f2">;</span> <span style="color: #a6e22e">i</span><span style="color: #f92672">&gt;=</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span> <span style="color: #a6e22e">i</span><span style="color: #f92672">--</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+  <span style="color: #a6e22e">console</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">log</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;opa&#39;</span> <span style="color: #f92672">+</span> <span style="color: #a6e22e">i</span><span style="color: #f8f8f2">);</span>
+  <span style="color: #66d9ef">if</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">i</span><span style="color: #f92672">%</span><span style="color: #ae81ff">2</span> <span style="color: #f92672">===</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #66d9ef">let</span> <span style="color: #a6e22e">i</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span>
+    <span style="color: #a6e22e">console</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">log</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">i</span><span style="color: #f8f8f2">);</span>
+  <span style="color: #f8f8f2">}</span>
+<span style="color: #f8f8f2">}</span>
+</pre></div>
+            <div class="img-caption">Duas definições de let de mesmo nome em escopos diferentes</div>
+
+            <p align="justify">
+              <b style="color: red;">MAS NUNCA É BOM DECLARAR VARIÁVEIS COM O MESMO NOME DESSE MODO!!!!!!!</b>
+              Eu só estou querendo dizer que isso evita bugs de sobrescrita, caso algum espertinho desavisado
+              começar a usar variáveis com o mesmo nome do que sua biblioteca bem feita. Ainda mais que Node
+              é praticamente partilhar código e modulos, faz muito bem pra saúde manter seus escopos bem
+              definidos.
+            </p>
+
+            <p align="justify">
+              As variáveis definidas como <b>const</b> são variáveis que não podem ser alteradas depois que
+              declaradas.
+            </p>
+
+            <!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #e6db74">&#39;use strict&#39;</span><span style="color: #f8f8f2">;</span>
+
+<span style="color: #75715e">// define my_fav como uma constante e atribui o valor 7</span>
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">my_fav</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">7</span><span style="color: #f8f8f2">;</span>
+
+<span style="color: #75715e">// isto falha</span>
+<span style="color: #a6e22e">my_fav</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">20</span><span style="color: #f8f8f2">;</span>
+
+<span style="color: #75715e">// retorna 7</span>
+<span style="color: #a6e22e">console</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">log</span><span style="color: #f8f8f2">(</span><span style="color: #960050; background-color: #1e0010">`</span><span style="color: #a6e22e">Meu</span> <span style="color: #a6e22e">numero</span> <span style="color: #a6e22e">favorito</span><span style="color: #f92672">:</span> <span style="color: #a6e22e">$</span><span style="color: #f8f8f2">{</span><span style="color: #a6e22e">my_fav</span><span style="color: #f8f8f2">}</span><span style="color: #960050; background-color: #1e0010">`</span><span style="color: #f8f8f2">);</span>
+
+<span style="color: #75715e">// tentar redeclarar a constante emite um erro </span>
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">my_fav</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">20</span><span style="color: #f8f8f2">;</span>
+
+<span style="color: #75715e">// o nome my_fav está reservado para a constante acima, logo também irá falhar</span>
+<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">my_fav</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">20</span><span style="color: #f8f8f2">;</span> 
+
+<span style="color: #75715e">// const deve ser inicializada</span>
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">foo</span><span style="color: #f8f8f2">;</span> <span style="color: #75715e">// SyntaxError: missing = in const declaration</span>
+
+<span style="color: #75715e">// const também funciona com objetos</span>
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">myObject</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">{</span><span style="color: #e6db74">&quot;key&quot;</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&quot;value&quot;</span><span style="color: #f8f8f2">};</span>
+
+<span style="color: #a6e22e">console</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">log</span><span style="color: #f8f8f2">(</span><span style="color: #960050; background-color: #1e0010">`</span><span style="color: #a6e22e">Minha</span> <span style="color: #a6e22e">key</span> <span style="color: #a6e22e">e</span><span style="color: #f92672">:</span> <span style="color: #a6e22e">$</span><span style="color: #f8f8f2">{</span><span style="color: #a6e22e">myObject</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">key</span><span style="color: #f8f8f2">}</span><span style="color: #960050; background-color: #1e0010">`</span><span style="color: #f8f8f2">);</span>
+
+<span style="color: #75715e">// Sobrescrever o objeto também falha</span>
+<span style="color: #a6e22e">myObject</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">{</span><span style="color: #e6db74">&quot;otherKey&quot;</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&quot;value&quot;</span><span style="color: #f8f8f2">};</span>
+
+<span style="color: #75715e">// Entretando, atributos de objetos não estão protegidos,</span>
+<span style="color: #75715e">// logo a seguinte instrução e executada sem problemas </span>
+<span style="color: #a6e22e">myObject</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">key</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;otherValue&quot;</span><span style="color: #f8f8f2">;</span>
+
+<span style="color: #a6e22e">console</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">log</span><span style="color: #f8f8f2">(</span><span style="color: #960050; background-color: #1e0010">`</span><span style="color: #a6e22e">Troquei</span> <span style="color: #a6e22e">minha</span> <span style="color: #a6e22e">key</span> <span style="color: #a6e22e">para</span><span style="color: #f92672">:</span> <span style="color: #a6e22e">$</span><span style="color: #f8f8f2">{</span><span style="color: #a6e22e">myObject</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">key</span><span style="color: #f8f8f2">}</span><span style="color: #960050; background-color: #1e0010">`</span><span style="color: #f8f8f2">);</span>
+</pre></div>
+            <div class="img-caption">Roubado discaradamente de https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Statements/const</div>
+
+            <p align="justify">
+              As <b>const</b> são uma boa fonte para avisar ao seus desenvoledores que exite algum tipo de configuração ou
+              valor que não se pode mexer. Caso você importe qualquer valor de seu arquivo de config e precisa mante-lo
+              em algum lugar que não seja o <i>config.js</i> a <b>const</b> é um bom lugar para armazena-la. Você garante
+              que ela não será alterada levianamente.
+            </p>
+
 
             <p align="justify">
               Agora vamos para as arrow functions. Você esta cansado de ter que descobrir em qual escopo certa
               variável esta? De ter que ficar colocando bind no meio do seu código? Ou ficar criando aquela famigerada
-              variável self para manter o escopo pai? Pois seus problemas acabaram porque o ES6 trouxe para você essa
+              variável self para manter o escopo pai? Pois seus problemas acabaram! ES6 trouxe para você essa
               delícia de funcionalidade. Ela simplesmente é um açucar sintático para o bind. Quando você usa as arrow
-              functions vc esta, na verdade, criando uma função que contém o escopo pai. Ou seja, isso aqui:
+              functions você esta, na verdade, criando uma função que contém o escopo pai. Ou seja, isso aqui:
             </p>
 
             <!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #66d9ef">var</span> <span style="color: #a6e22e">caraca</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
@@ -433,8 +557,18 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
               <p align="justify">
                 Mesmo sendo praticamente a mesma coisa, temos, outra vez, um código mais limpo. Claro que isso serve
                 apenas para funções anonimas. Caso a gente precise de colcoar uma função já definida não iremos escapar
-                do bind. Mas isso já é um bom avanço.
+                do bind. Mas isso já é um bom avanço. Mas espere, tem mais: e o <b>let</b>?
               </p>
+
+              <!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #66d9ef">var</span> <span style="color: #a6e22e">caraca</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+  <span style="color: #66d9ef">let</span> <span style="color: #a6e22e">secret</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&#39;olha eu aqui&#39;</span><span style="color: #f8f8f2">;</span>
+  <span style="color: #a6e22e">setTimeout</span><span style="color: #f8f8f2">(()</span> <span style="color: #f92672">=&gt;</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #a6e22e">console</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">log</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">secret</span><span style="color: #f8f8f2">);</span>
+  <span style="color: #f8f8f2">},</span> <span style="color: #ae81ff">1000</span><span style="color: #f8f8f2">);</span>
+<span style="color: #f8f8f2">}</span>
+</pre></div>
+              <div class="img-caption">let mantem escopo dentro das arrow functions</div>
+
 
               <header>
                 <h4>Classes</h4>
@@ -486,24 +620,83 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
               Mas o que isso altera nas boas práticas em Node? Bem, sempre dizemos que o Node se beneficia muito de
               seus módulos. E o que mais fica melhor encapsulado em um arquivo separado que uma classe? Deixarei em
               aberto se isso é realmente bom para que, vocês que estão lendo isso aqui, decidam se realmente vale a
-              pena. Fiquem ligados que é interessante lembrar que vale a pena limitar o new e o this dentro do Node,
-              ainda mais porque quase toda sua execução é asincrona e callbacks (agora promises, hahaha). Ficar
-              dependendo de escopos rigidos pode ser um problema.
+              pena. Fiquem ligados que é interessante lembrar que vale a pena limitar o <b>new</b> e o <b>this</b> 
+              dentro do Node, ainda mais porque quase toda sua execução é asincrona e callbacks (agora promises, hahaha).
+              Ficar dependendo de escopos rigidos pode ser um problema.
             </p>
+          </div>
+        </section>
 
-            <header>
-              <h4>Generators</h4>
+        <!-- four -->
+        <section id="four">
+          <div class="container">
+            <header class="major">
+              <h2>Menções Honrosas</h2>
             </header>
 
-            <p align="justify">
-              Agora vem a parte complicada. Sempre fomos condicionados a pensar em Node como um programa assíncrono e
-              que não devíamos mexer nisso. Contudo existem problemas que ficam muito complexos quando se trabalha com
-              código assíncrono, ainda mais quando uma função assíncrona depende de outra função assíncrona. E sabemos
-              desde a faculdade que problemas de concorrência são bem complicados. Assim, nesse panorama que chegamos
-              em Generators. Com essa feature podemos pensar em códigos assíncronos de forma síncrona (podendo até
-              usar try/catch nesse tipo de código). Vamos dar uma olhada em um código com generate e disseca-lo:
-            </p>
+            <ul>
+              <li>Generators;</li>
+              <li>Symbols;</li>
+              <li>Template Strings;</li>
+              <li>Object.assing;</li>
+              <li>Babel.</li>
+            </ul>
 
+            <p align="justify">
+              O que? o <b>import</b> não foi implementado?!?!?! Não meus amigos. Por mais que Node seja compartilhamento
+              de módulos, ainda estamos presos ao require (não que seja uma coisa ruim, veja bem), mas seria interessante
+              já usarmos o <b>import</b> como modo padrão de importação de código entre todos os ambientes JavaScript.
+            </p>
+          </div>
+        </section>
+
+        <!-- five -->
+        <section id="five">
+          <div class="container">
+            <header class="major">
+              <h2>Conclusão</h2>
+            </header>
+
+            <ul>
+              <li>
+                Use <b>Promises</b> e <b>Generator</b> para gerenciar suas funções assincronas:
+                <ul>
+                  <li>Mantém a assinatura do método limpo;</li>
+                  <li>Formaliza um padrão nativo de callbacks;</li>
+                  <li>Melhor forma de isolar <b>concerns</b> entre módulos;</li>
+                  <li>Legibilidade de códigos assíncronos;</li>
+                  <li>Tratamento centralizado de exceções;</li>
+                  <li>Organização de chamadas assíncronas.</li>
+                </ul>
+              </li>
+              <li>
+                Use <b>let</b>, <b>const</b> e <b>arrow functions</b> para limpar e delimitar o escopo de suas funções:
+                <ul>
+                  <li>Prefira o <b>let</b> do que <b>var</b> em seus módulos;</li>
+                  <li>Use const para armazenar configurações caso necessário;</li>
+                  <li>Prefira <b>arrow functions</b> do que <b>bind</b> ao declarar seus callbacks e eventos.</li>
+                </ul>
+              </li>
+              <li>Use classe apenas quando necessário;</li>
+              <li>Use o senso comum e use todas as boas práticas do JavaScript.</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- Six -->
+        <section id="six">
+          <div class="container">
+            <header class="major">
+              <h2>Bibliografia</h2>
+            </header>
+
+            <ul>
+              <li><a href="https://nodejs.org/en/docs/es6/">https://nodejs.org/en/docs/es6/</a></li>
+              <li><a href="http://www.2ality.com/2015/03/es6-generators.html">http://www.2ality.com/2015/03/es6-generators.html</a></li>
+              <li><a href="http://www.2ality.com/2015/03/no-promises.html">http://www.2ality.com/2015/03/no-promises.html</a></li>
+              <li><a href="http://chrisbuttery.com/articles/synchronous-asynchronous-javascript-with-es6-generators/">http://chrisbuttery.com/articles/synchronous-asynchronous-javascript-with-es6-generators/</a></li>
+              <li><a href="https://developer.mozilla.org/pt-BR/docs/Web/JavaScript">https://developer.mozilla.org/pt-BR/docs/Web/JavaScript</a></li>
+            </ul>
           </div>
         </section>
       </div>
