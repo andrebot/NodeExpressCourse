@@ -64,9 +64,8 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
             <li><a href="#three" class="active">Down to business</a></li>
             <li><a href="#four" class="active">Menções Honrosas</a></li>
             <li><a href="#five" class="active">Conclusão</a></li>
-            <li><a href="#six" class="active">Bibliografia</a></li>
+            <li><a href="#six" class="active">Links</a></li>
           </ul>
-          <img src="http://www.avenuecode.com/wp-content/themes/ac-site/images/white-logo.png" alt="">
         </nav>
         
         <footer>
@@ -161,7 +160,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
             <p align="justify">
               Isso são somente as funcionalidades estáveis, ainda temos as que estão em teste e
               as que estão em desenvolvimento. Também temos que levar em consideração que o <i>let</i>
-              e as <i>Classes</i> só funcionam sobre o escope de "use strict".
+              e as <i>Classes</i> só funcionam sobre o escopo de "use strict".
             </p>
           </div>
         </section>
@@ -291,7 +290,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
             <p align="justify">
               Um método muito mais enxuto. Nos livramos das variáveis que guardavam as callbacks e deixamos a
               chamada da camada de dados muito mais limpa. Fica mais fácil de entender o que esta acontecendo
-              e quem realmente chama as funções de sucesso e falha é o controller. Isso porque as promises apenas
+              e quem realmente chama as funções, de sucesso e falha, é o controller. Isso porque as promises apenas
               sinalizam como acabou a sua execução e o controller lida com os diferentes tipos de finalização. Fica 
               mais claro o que esta acontecendo e também dá uma martelada final de quem é responsável em lidar com
               os dados e de como enviar para o cliente.
@@ -514,7 +513,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 
 <span style="color: #a6e22e">console</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">log</span><span style="color: #f8f8f2">(</span><span style="color: #960050; background-color: #1e0010">`</span><span style="color: #a6e22e">Troquei</span> <span style="color: #a6e22e">minha</span> <span style="color: #a6e22e">key</span> <span style="color: #a6e22e">para</span><span style="color: #f92672">:</span> <span style="color: #a6e22e">$</span><span style="color: #f8f8f2">{</span><span style="color: #a6e22e">myObject</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">key</span><span style="color: #f8f8f2">}</span><span style="color: #960050; background-color: #1e0010">`</span><span style="color: #f8f8f2">);</span>
 </pre></div>
-            <div class="img-caption">Roubado discaradamente de https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Statements/const</div>
+            <div class="img-caption">Roubado descaradamente de <a href="https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Statements/const">MDN ES6 Documentation</a></div>
 
             <p align="justify">
               As <b>const</b> são uma boa fonte para avisar ao seus desenvoledores que exite algum tipo de configuração ou
@@ -556,7 +555,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 
               <p align="justify">
                 Mesmo sendo praticamente a mesma coisa, temos, outra vez, um código mais limpo. Claro que isso serve
-                apenas para funções anonimas. Caso a gente precise de colcoar uma função já definida não iremos escapar
+                apenas para funções anonimas. Caso a gente precise de colocar uma função já definida não iremos escapar
                 do bind. Mas isso já é um bom avanço. Mas espere, tem mais: e o <b>let</b>?
               </p>
 
@@ -579,7 +578,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
                 dizendo que JS não foi feito pra isso e tem um outro lado dizendo que Classes organiza e modulariza o 
                 código. Na minha opinião, os dois lados estão certos. JavaScript é muito mais sobre funções do que
                 classes. O próprio Node é sobre isso. Mas mesmo assim ainda precisamos que certos comportamentos
-                sejam herdados e passados entre objetos, facilitando a reusabilidade do código e  diminuindo a comsumo 
+                sejam herdados e passados entre objetos, facilitando a reusabilidade do código e  diminuindo a consumo 
                 de memória. Por causa disso que usamos o prototype. ES6 trouxe classes pensando nisso, ou seja, ES6 
                 trouxe outro açucar sintático para a linguagem. As classes nada são do que isso:
               </p>
@@ -621,7 +620,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
               seus módulos. E o que mais fica melhor encapsulado em um arquivo separado que uma classe? Deixarei em
               aberto se isso é realmente bom para que, vocês que estão lendo isso aqui, decidam se realmente vale a
               pena. Fiquem ligados que é interessante lembrar que vale a pena limitar o <b>new</b> e o <b>this</b> 
-              dentro do Node, ainda mais porque quase toda sua execução é asincrona e callbacks (agora promises, hahaha).
+              dentro do Node, ainda mais porque quase toda sua execução é assincrona e callbacks (agora promises, hahaha).
               Ficar dependendo de escopos rigidos pode ser um problema.
             </p>
           </div>
@@ -641,6 +640,15 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
               <li>Object.assing;</li>
               <li>Babel.</li>
             </ul>
+
+            <p align="justify">
+              Sobre os <b>generators</b>, ele nos possibilita fazer chamdas assíncronas, sincronamente. Ele é, de um
+              modo simples, uma função que para sua execução em pontos estratégicos e pode ser resumida em um momento
+              no futuro. Seria interessante ler <a href="https://davidwalsh.name/async-generators">este artigo</a> e 
+              entender o que um <b>generator</b> faz.
+            </p>
+
+            <p></p>
 
             <p align="justify">
               O que? o <b>import</b> não foi implementado?!?!?! Não meus amigos. Por mais que Node seja compartilhamento
@@ -687,15 +695,19 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
         <section id="six">
           <div class="container">
             <header class="major">
-              <h2>Bibliografia</h2>
+              <h2>Links</h2>
             </header>
 
             <ul>
-              <li><a href="https://nodejs.org/en/docs/es6/">https://nodejs.org/en/docs/es6/</a></li>
-              <li><a href="http://www.2ality.com/2015/03/es6-generators.html">http://www.2ality.com/2015/03/es6-generators.html</a></li>
-              <li><a href="http://www.2ality.com/2015/03/no-promises.html">http://www.2ality.com/2015/03/no-promises.html</a></li>
-              <li><a href="http://chrisbuttery.com/articles/synchronous-asynchronous-javascript-with-es6-generators/">http://chrisbuttery.com/articles/synchronous-asynchronous-javascript-with-es6-generators/</a></li>
-              <li><a href="https://developer.mozilla.org/pt-BR/docs/Web/JavaScript">https://developer.mozilla.org/pt-BR/docs/Web/JavaScript</a></li>
+              <li><a href="https://nodejs.org/en/docs/es6/">ECMAScript 2015 (ES6) in Node.js</a></li>
+              <li><a href="http://www.2ality.com/2015/03/es6-generators.html">ES6 generators in depth</a></li>
+              <li><a href="http://www.2ality.com/2015/03/no-promises.html">No promises: asynchronous JavaScript with only generators</a></li>
+              <li><a href="http://chrisbuttery.com/articles/synchronous-asynchronous-javascript-with-es6-generators/">Synchronous Asynchronous JavaScript With ES6 Generators</a></li>
+              <li><a href="https://davidwalsh.name/async-generators">Going Async With ES6 Generators</a></li>
+              <li><a href="https://blog.risingstack.com/node-js-best-practices/">Node.js Best Practices</a></li>
+              <li><a href="http://www.innofied.com/node-js-best-practices/">10 Node.js Best Practices</a></li>
+              <li><a href="https://devcenter.heroku.com/articles/node-best-practices">Best Practices for Node.js Development</a></li>
+              <li><a href="https://developer.mozilla.org/pt-BR/docs/Web/JavaScript">MDN JavaScript Documentatios</a></li>
             </ul>
           </div>
         </section>
