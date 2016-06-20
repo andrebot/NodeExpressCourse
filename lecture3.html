@@ -17,6 +17,17 @@
 		<script src="js/skel.min.js"></script>
 		<script src="js/skel-layers.min.js"></script>
 		<script src="js/init.js"></script>
+    <script type="text/javascript">
+      function toggleCode (id) {
+        var element = $(id);
+        if (element.is(':visible')) {
+          $(id).slideUp();
+        } else {
+          $(id).slideDown();
+        }
+
+      }
+    </script>
 		
 		<noscript>
 			<link rel="stylesheet" href="css/skel.css" />
@@ -44,6 +55,20 @@
 			header.major h2 {
 				line-height: 1em;
 			}
+
+      .hidden-code {
+        margin-bottom: 10px;
+      }
+
+      .hidden-code .title {
+        font-weight: bold;
+        margin-bottom: 5px;
+        cursor: pointer;
+      }
+
+      .hidden {
+        display: none;
+      }
 		</style>
 
 		<!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
@@ -62,7 +87,7 @@
             <li><a href="#two">Project Scaffolding</a></li>
             <li><a href="#three">Exercises</a></li>
           </ul>
-          <img src="http://www.avenuecode.com/wp-content/themes/ac-site/images/white-logo.png" alt="">
+          <img src="images/ac-logo.png" alt="">
         </nav>
         <footer>
         </footer>
@@ -120,9 +145,10 @@
               becomes a content server. Express makes it easy to do this.
             </p>
 
-            <!-- HTML generated using hilite.me -->
-            <div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #66d9ef">var</span> <span style="color: #a6e22e">express</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;express&#39;</span><span style="color: #f8f8f2">);</span>
-<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">app</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">express</span><span style="color: #f8f8f2">();</span>
+            <!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #e6db74">&#39;use strict&#39;</span><span style="color: #f8f8f2">;</span>
+
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">express</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;express&#39;</span><span style="color: #f8f8f2">);</span>
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">app</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">express</span><span style="color: #f8f8f2">();</span>
 
 <span style="color: #a6e22e">app</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">use</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">express</span><span style="color: #f8f8f2">.</span><span style="color: #66d9ef">static</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;public&#39;</span><span style="color: #f8f8f2">));</span>
 
@@ -130,6 +156,7 @@
   <span style="color: #a6e22e">console</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">log</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;Listening on port 8080...&#39;</span><span style="color: #f8f8f2">);</span>
 <span style="color: #f8f8f2">});</span>
 </pre></div>
+
             <div class="ac-caption">Making a Folder Public</div>
 
             <div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
@@ -147,9 +174,10 @@
               It is possible to create a "virtual" path prefix too, since the path does not actually exists in the file system.
             </p>
 
-            <!-- HTML generated using hilite.me -->
-            <div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #66d9ef">var</span> <span style="color: #a6e22e">express</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;express&#39;</span><span style="color: #f8f8f2">);</span>
-<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">app</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">express</span><span style="color: #f8f8f2">();</span>
+            <!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #e6db74">&#39;use strict&#39;</span><span style="color: #f8f8f2">;</span>
+
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">express</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;express&#39;</span><span style="color: #f8f8f2">);</span>
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">app</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">express</span><span style="color: #f8f8f2">();</span>
 
 <span style="color: #a6e22e">app</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">use</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;static&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">express</span><span style="color: #f8f8f2">.</span><span style="color: #66d9ef">static</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;public&#39;</span><span style="color: #f8f8f2">));</span>
 
@@ -157,6 +185,7 @@
   <span style="color: #a6e22e">console</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">log</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;Listening on port 8080...&#39;</span><span style="color: #f8f8f2">);</span>
 <span style="color: #f8f8f2">});</span>
 </pre></div>
+
             <div class="ac-caption">Adding a Path Prefix</div>
 
             <p align="justify">
@@ -192,9 +221,10 @@
               You can define multiple files:
             </p>
 
-            <!-- HTML generated using hilite.me -->
-            <div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #66d9ef">var</span> <span style="color: #a6e22e">express</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;express&#39;</span><span style="color: #f8f8f2">);</span>
-<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">app</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">express</span><span style="color: #f8f8f2">();</span>
+            <!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #e6db74">&#39;use strict&#39;</span><span style="color: #f8f8f2">;</span>
+
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">express</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;express&#39;</span><span style="color: #f8f8f2">);</span>
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">app</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">express</span><span style="color: #f8f8f2">();</span>
 
 <span style="color: #a6e22e">app</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">use</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">express</span><span style="color: #f8f8f2">.</span><span style="color: #66d9ef">static</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;public&#39;</span><span style="color: #f8f8f2">));</span>
 <span style="color: #a6e22e">app</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">use</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">express</span><span style="color: #f8f8f2">.</span><span style="color: #66d9ef">static</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;files&#39;</span><span style="color: #f8f8f2">));</span>
@@ -203,6 +233,7 @@
   <span style="color: #a6e22e">console</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">log</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;Listening on port 8080...&#39;</span><span style="color: #f8f8f2">);</span>
 <span style="color: #f8f8f2">});</span>
 </pre></div>
+
             <div class="ac-caption">Multiple Files Being Served</div>
 
             <p align="justify">
@@ -225,9 +256,9 @@
 
             <ul>
               <li>Express is basically a bunch of them being executed;</li>
-              <li>They are executed in oder of addition (A queue);</li>
+              <li>They are executed in order of addition (A queue);</li>
               <li>We can access response and request objects inside its functions;</li>
-              <li>A middleware <b style="font-size: 30px;">MUST</b> call the next middleware.</li>
+              <li>A middleware <b style="color: #ff0000; font-size: 20px;">MUST</b> call the next middleware.</li>
             </ul>
 
             <p align="justify">
@@ -235,23 +266,26 @@
               takes to be completed.
             </p>
 
-            <!-- HTML generated using hilite.me -->
-            <div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #66d9ef">var</span> <span style="color: #a6e22e">express</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;express&#39;</span><span style="color: #f8f8f2">);</span>
-<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">app</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">express</span><span style="color: #f8f8f2">();</span>
+            <!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #e6db74">&#39;use strict&#39;</span><span style="color: #f8f8f2">;</span>
+
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">express</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;express&#39;</span><span style="color: #f8f8f2">);</span>
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">app</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">express</span><span style="color: #f8f8f2">();</span>
 
 <span style="color: #a6e22e">app</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">use</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">request</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">next</span><span style="color: #f8f8f2">){</span>
-  <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">start</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">new</span> <span style="color: #f8f8f2">Date();</span>
-  <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">url</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">request</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">url</span><span style="color: #f8f8f2">;</span>
-  <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">method</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">request</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">method</span><span style="color: #f8f8f2">;</span>
+  <span style="color: #66d9ef">const</span> <span style="color: #a6e22e">start</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">new</span> <span style="color: #f8f8f2">Date();</span>
+  <span style="color: #66d9ef">const</span> <span style="color: #a6e22e">url</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">request</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">url</span><span style="color: #f8f8f2">;</span>
+  <span style="color: #66d9ef">const</span> <span style="color: #a6e22e">method</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">request</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">method</span><span style="color: #f8f8f2">;</span>
 
   <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">on</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;finish&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(){</span>
-    <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">duration</span> <span style="color: #f92672">=</span> <span style="color: #f92672">+</span><span style="color: #66d9ef">new</span> <span style="color: #f8f8f2">Date()</span> <span style="color: #f92672">-</span> <span style="color: #a6e22e">start</span><span style="color: #f8f8f2">;</span>
-    <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">message</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">method</span> <span style="color: #f92672">+</span><span style="color: #e6db74">&#39; to &#39;</span><span style="color: #f92672">+</span> <span style="color: #a6e22e">url</span> <span style="color: #f92672">+</span><span style="color: #e6db74">&#39;\ntook &#39;</span><span style="color: #f92672">+</span> <span style="color: #a6e22e">duration</span> <span style="color: #f92672">+</span><span style="color: #e6db74">&#39; ms \n\n&#39;</span><span style="color: #f8f8f2">;</span>
+    <span style="color: #66d9ef">const</span> <span style="color: #a6e22e">duration</span> <span style="color: #f92672">=</span> <span style="color: #f92672">+</span><span style="color: #66d9ef">new</span> <span style="color: #f8f8f2">Date()</span> <span style="color: #f92672">-</span> <span style="color: #a6e22e">start</span><span style="color: #f8f8f2">;</span>
+    <span style="color: #66d9ef">const</span> <span style="color: #a6e22e">message</span> <span style="color: #f92672">=</span> <span style="color: yellow;">`</span><span style="color: #a6e22e">$</span><span style="color: #f8f8f2">{</span><span style="color: #a6e22e">method</span><span style="color: #f8f8f2">}</span> <span style="color: #a6e22e">to</span> <span style="color: #a6e22e">$</span><span style="color: #f8f8f2">{</span><span style="color: #a6e22e">url</span><span style="color: #f8f8f2">}</span> <span style="color: blue;">\</span><span style="color: blue;">n</span><span style="color: #a6e22e">took</span> <span style="color: #a6e22e">$</span><span style="color: #f8f8f2">{</span><span style="color: #a6e22e">duration</span><span style="color: #f8f8f2">}</span> <span style="color: #a6e22e">ms</span> <span style="color: blue;">\</span><span style="color: blue;">n</span><span style="color: blue;">\</span><span style="color: blue">n</span><span style="color: yellow;">`</span><span style="color: #f8f8f2">;</span>
     <span style="color: #a6e22e">console</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">log</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">message</span><span style="color: #f8f8f2">);</span>
   <span style="color: #f8f8f2">});</span>
 
   <span style="color: #a6e22e">next</span><span style="color: #f8f8f2">();</span>
 <span style="color: #f8f8f2">});</span>
+
+<span style="color: #a6e22e">app</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">use</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">express</span><span style="color: #f8f8f2">.</span><span style="color: #66d9ef">static</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;public&#39;</span><span style="color: #f8f8f2">));</span>
 
 <span style="color: #a6e22e">app</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">listen</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">8080</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(){</span>
   <span style="color: #a6e22e">console</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">log</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;Listening on port 8080...&#39;</span><span style="color: #f8f8f2">);</span>
@@ -263,7 +297,7 @@
             <p align="justify">
               Great! Now, for every request that reaches our server we can know how much time it took! It feels great
               to know Middleware! You must have a tick behind your ear asking: Ok, you said that Express is middleware
-              behind middlewatre, prove it! I'm more than happy to do so.
+              behind middleware, prove it! I'm more than happy to do so.
             </p>
 
             <p align="justify">
@@ -271,74 +305,93 @@
               where we define all the routes for the Dog Service? Well, here we have it:
             </p>
 
-            <!-- HTML generated using hilite.me -->
-            <div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #66d9ef">var</span> <span style="color: #a6e22e">express</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;express&#39;</span><span style="color: #f8f8f2">);</span>
-<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">Dog</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;./Dog&#39;</span><span style="color: #f8f8f2">);</span>
-<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">bodyParser</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;body-parser&#39;</span><span style="color: #f8f8f2">);</span>
-<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">parseUrlencoded</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">bodyParser</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">urlencoded</span><span style="color: #f8f8f2">({</span><span style="color: #a6e22e">extend</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">false</span><span style="color: #f8f8f2">});</span>
-<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">app</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">express</span><span style="color: #f8f8f2">();</span>
-<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">dogs</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">[</span>
-  <span style="color: #66d9ef">new</span> <span style="color: #a6e22e">Dog</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;Brian&#39;</span><span style="color: #f8f8f2">),</span>
-  <span style="color: #66d9ef">new</span> <span style="color: #a6e22e">Dog</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;Tina Turner&#39;</span><span style="color: #f8f8f2">),</span>
-  <span style="color: #66d9ef">new</span> <span style="color: #a6e22e">Dog</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;Puppy 1&#39;</span><span style="color: #f8f8f2">),</span>
-  <span style="color: #66d9ef">new</span> <span style="color: #a6e22e">Dog</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;Puppy 2&#39;</span><span style="color: #f8f8f2">),</span>
-  <span style="color: #66d9ef">new</span> <span style="color: #a6e22e">Dog</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;Puppy 3&#39;</span><span style="color: #f8f8f2">)</span>
+            <!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #e6db74">&#39;use strict&#39;</span><span style="color: #f8f8f2">;</span>
+
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">express</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;express&#39;</span><span style="color: #f8f8f2">);</span>
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">Dog</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;./dogObjComposition&#39;</span><span style="color: #f8f8f2">);</span>
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">bodyParser</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;body-parser&#39;</span><span style="color: #f8f8f2">);</span>
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">parseUrlencoded</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">bodyParser</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">urlencoded</span><span style="color: #f8f8f2">({</span><span style="color: #a6e22e">extend</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">false</span><span style="color: #f8f8f2">});</span>
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">app</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">express</span><span style="color: #f8f8f2">();</span>
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">dogs</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">[</span>
+  <span style="color: #a6e22e">Dog</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;Brian&#39;</span><span style="color: #f8f8f2">),</span>
+  <span style="color: #a6e22e">Dog</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;Tina Turner&#39;</span><span style="color: #f8f8f2">),</span>
+  <span style="color: #a6e22e">Dog</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;Puppy 1&#39;</span><span style="color: #f8f8f2">),</span>
+  <span style="color: #a6e22e">Dog</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;Puppy 2&#39;</span><span style="color: #f8f8f2">),</span>
+  <span style="color: #a6e22e">Dog</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;Puppy 3&#39;</span><span style="color: #f8f8f2">)</span>
 <span style="color: #f8f8f2">];</span>
 
-<span style="color: #a6e22e">app</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">route</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;/dog&#39;</span><span style="color: #f8f8f2">)</span>
-  <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">post</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">parseUrlencoded</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">request</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">){</span>
-    <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">data</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">request</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">body</span><span style="color: #f8f8f2">;</span>
-    <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">newDog</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">new</span> <span style="color: #a6e22e">Dog</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">data</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">name</span><span style="color: #f8f8f2">);</span>
-
-    <span style="color: #a6e22e">dogs</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">push</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">newDog</span><span style="color: #f8f8f2">);</span>
-
-    <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">status</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">201</span><span style="color: #f8f8f2">).</span><span style="color: #a6e22e">send</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;Dog added! Brian loved it.&#39;</span><span style="color: #f8f8f2">);</span>
-  <span style="color: #f8f8f2">})</span>
-  <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">put</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">parseUrlencoded</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">request</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">){</span>
-    <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">dog</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">request</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">body</span><span style="color: #f8f8f2">;</span>
-    <span style="color: #66d9ef">for</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">var</span> <span style="color: #a6e22e">x</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">dogs</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">length</span> <span style="color: #f92672">-</span> <span style="color: #ae81ff">1</span><span style="color: #f8f8f2">;</span> <span style="color: #a6e22e">x</span> <span style="color: #f92672">&gt;=</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span> <span style="color: #a6e22e">x</span><span style="color: #f92672">--</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
-      <span style="color: #66d9ef">if</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">dogs</span><span style="color: #f8f8f2">[</span><span style="color: #a6e22e">x</span><span style="color: #f8f8f2">].</span><span style="color: #a6e22e">getName</span><span style="color: #f8f8f2">()</span> <span style="color: #f92672">===</span> <span style="color: #a6e22e">dog</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">name</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
-        <span style="color: #a6e22e">dogs</span><span style="color: #f8f8f2">[</span><span style="color: #a6e22e">x</span><span style="color: #f8f8f2">].</span><span style="color: #a6e22e">setName</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">dog</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">newName</span><span style="color: #f8f8f2">);</span>
-      <span style="color: #f8f8f2">}</span>
-    <span style="color: #f8f8f2">}</span>
-
-    <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">sendStatus</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">200</span><span style="color: #f8f8f2">);</span>
-  <span style="color: #f8f8f2">});</span>
-
-<span style="color: #a6e22e">app</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">route</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;/dog/:doggyId&#39;</span><span style="color: #f8f8f2">)</span>
-  <span style="color: #f8f8f2">.</span><span style="color: #66d9ef">delete</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">parseUrlencoded</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">request</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">){</span>
-    <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">doggyId</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">request</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">params</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">doggyId</span><span style="color: #f8f8f2">;</span>
-
-    <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">dog</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">dogs</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">splice</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">doggyId</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">1</span><span style="color: #f8f8f2">)[</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">];</span>
-
-    <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">json</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">dog</span><span style="color: #f8f8f2">);</span>
-  <span style="color: #f8f8f2">});</span>
-
 <span style="color: #a6e22e">app</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">route</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;/goodDog/:doggyId&#39;</span><span style="color: #f8f8f2">)</span>
-  <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">get</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">request</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
-    <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">doggyIndex</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">request</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">params</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">doggyId</span><span style="color: #f8f8f2">;</span>
-    <span style="color: #66d9ef">if</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">doggyIndex</span> <span style="color: #f92672">&amp;&amp;</span> <span style="color: #a6e22e">doggyIndex</span> <span style="color: #f92672">&lt;</span> <span style="color: #a6e22e">dogs</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">length</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
-      <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">send</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">dogs</span><span style="color: #f8f8f2">[</span><span style="color: #a6e22e">doggyIndex</span><span style="color: #f8f8f2">].</span><span style="color: #a6e22e">whoIsAGoodBoy</span><span style="color: #f8f8f2">());</span>
+  <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">get</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">function</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">request</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #66d9ef">const</span> <span style="color: #a6e22e">doggyId</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">request</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">params</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">doggyId</span><span style="color: #f8f8f2">;</span>
+
+    <span style="color: #66d9ef">if</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">doggyId</span> <span style="color: #f92672">&amp;&amp;</span> <span style="color: #a6e22e">doggyId</span> <span style="color: #f92672">&lt;</span> <span style="color: #a6e22e">dogs</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">length</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+      <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">send</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">dogs</span><span style="color: #f8f8f2">[</span><span style="color: #a6e22e">doggyId</span><span style="color: #f8f8f2">].</span><span style="color: #a6e22e">whoIsAGoodBoy</span><span style="color: #f8f8f2">());</span>
+    <span style="color: #f8f8f2">}</span> <span style="color: #66d9ef">else</span> <span style="color: #f8f8f2">{</span>
+      <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">sendStatus</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">403</span><span style="color: #f8f8f2">);</span>
     <span style="color: #f8f8f2">}</span>
   <span style="color: #f8f8f2">});</span>
 
 <span style="color: #a6e22e">app</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">route</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;/wiggle/:doggyId&#39;</span><span style="color: #f8f8f2">)</span>
-  <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">get</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">request</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
-    <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">doggyIndex</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">request</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">params</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">doggyId</span><span style="color: #f8f8f2">;</span>
-    <span style="color: #66d9ef">if</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">doggyIndex</span> <span style="color: #f92672">&amp;&amp;</span> <span style="color: #a6e22e">doggyIndex</span> <span style="color: #f92672">&lt;</span> <span style="color: #a6e22e">dogs</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">length</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
-      <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">send</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">dogs</span><span style="color: #f8f8f2">[</span><span style="color: #a6e22e">doggyIndex</span><span style="color: #f8f8f2">].</span><span style="color: #a6e22e">wiggle</span><span style="color: #f8f8f2">());</span>
+  <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">get</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">function</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">request</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #66d9ef">const</span> <span style="color: #a6e22e">doggyId</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">request</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">params</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">doggyId</span><span style="color: #f8f8f2">;</span>
+
+    <span style="color: #66d9ef">if</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">doggyId</span> <span style="color: #f92672">&amp;&amp;</span> <span style="color: #a6e22e">doggyId</span> <span style="color: #f92672">&lt;</span> <span style="color: #a6e22e">dogs</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">length</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+      <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">send</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">dogs</span><span style="color: #f8f8f2">[</span><span style="color: #a6e22e">doggyId</span><span style="color: #f8f8f2">].</span><span style="color: #a6e22e">wiggle</span><span style="color: #f8f8f2">());</span>
+    <span style="color: #f8f8f2">}</span> <span style="color: #66d9ef">else</span> <span style="color: #f8f8f2">{</span>
+      <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">sendStatus</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">403</span><span style="color: #f8f8f2">);</span>
     <span style="color: #f8f8f2">}</span>
   <span style="color: #f8f8f2">});</span>
 
-<span style="color: #a6e22e">app</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">listen</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">8080</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(){</span>
+<span style="color: #a6e22e">app</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">route</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;/dog&#39;</span><span style="color: #f8f8f2">)</span>
+  <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">post</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">parseUrlencoded</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">function</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">request</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #66d9ef">const</span> <span style="color: #a6e22e">data</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">request</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">body</span><span style="color: #f8f8f2">;</span>
+
+    <span style="color: #66d9ef">if</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">data</span><span style="color: #f8f8f2">){</span>
+      <span style="color: #66d9ef">const</span> <span style="color: #a6e22e">newDog</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">Dog</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">data</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">name</span><span style="color: #f8f8f2">);</span>
+
+      <span style="color: #a6e22e">dogs</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">push</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">newDog</span><span style="color: #f8f8f2">);</span>
+
+      <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">status</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">201</span><span style="color: #f8f8f2">).</span><span style="color: #a6e22e">send</span><span style="color: #f8f8f2">(</span><span style="color: yellow;">`</span><span style="color: #a6e22e">Dog</span> <span style="color: #a6e22e">$</span><span style="color: #f8f8f2">{</span><span style="color: #a6e22e">data</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">name</span><span style="color: #f8f8f2">}</span> <span style="color: #a6e22e">added</span><span style="color: #f92672">!</span> <span style="color: #a6e22e">Brian</span> <span style="color: #a6e22e">loved</span> <span style="color: #a6e22e">it</span><span style="color: #f8f8f2">.</span><span style="color: yellow;">`</span><span style="color: #f8f8f2">);</span>
+    <span style="color: #f8f8f2">}</span> <span style="color: #66d9ef">else</span> <span style="color: #f8f8f2">{</span>
+      <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">sendStatus</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">403</span><span style="color: #f8f8f2">);</span>
+    <span style="color: #f8f8f2">}</span>
+  <span style="color: #f8f8f2">})</span>
+  <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">put</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">parseUrlencoded</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">function</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">request</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #66d9ef">const</span> <span style="color: #a6e22e">data</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">request</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">body</span><span style="color: #f8f8f2">;</span>
+
+    <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">data</span> <span style="color: #f92672">&amp;&amp;</span> <span style="color: #a6e22e">data</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">index</span> <span style="color: #f92672">&amp;&amp;</span> <span style="color: #a6e22e">data</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">name</span><span style="color: #f8f8f2">){</span>
+      <span style="color: #66d9ef">const</span> <span style="color: #a6e22e">dog</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">dogs</span><span style="color: #f8f8f2">[</span><span style="color: #a6e22e">data</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">index</span><span style="color: #f8f8f2">];</span>
+      <span style="color: #a6e22e">dog</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">setName</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">data</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">name</span><span style="color: #f8f8f2">);</span>
+
+      <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">send</span><span style="color: #f8f8f2">(</span><span style="color: yellow;">`</span><span style="color: #a6e22e">Dog</span> <span style="color: yellow;">#</span><span style="color: #a6e22e">$</span><span style="color: #f8f8f2">{</span><span style="color: #a6e22e">data</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">index</span><span style="color: #f8f8f2">}</span> <span style="color: #a6e22e">had</span> <span style="color: #a6e22e">its</span> <span style="color: #a6e22e">name</span> <span style="color: #a6e22e">changed</span> <span style="color: #a6e22e">to</span> <span style="color: #a6e22e">$</span><span style="color: #f8f8f2">{</span><span style="color: #a6e22e">dog</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">getName</span><span style="color: #f8f8f2">()}</span><span style="color: yellow;">`</span><span style="color: #f8f8f2">);</span>
+    <span style="color: #f8f8f2">}</span> <span style="color: #66d9ef">else</span> <span style="color: #f8f8f2">{</span>
+      <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">sendStatus</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">403</span><span style="color: #f8f8f2">);</span>
+    <span style="color: #f8f8f2">}</span>
+  <span style="color: #f8f8f2">});</span>
+
+<span style="color: #a6e22e">app</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">route</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;/dog/:doggyId&#39;</span><span style="color: #f8f8f2">)</span>
+  <span style="color: #f8f8f2">.</span><span style="color: #66d9ef">delete</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">function</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">request</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #66d9ef">const</span> <span style="color: #a6e22e">doggyId</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">request</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">params</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">doggyId</span><span style="color: #f8f8f2">;</span>
+
+    <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">doggyId</span> <span style="color: #f92672">&amp;&amp;</span> <span style="color: #a6e22e">doggyId</span> <span style="color: #f92672">&lt;</span> <span style="color: #a6e22e">dogs</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">length</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+      <span style="color: #66d9ef">const</span> <span style="color: #a6e22e">removed</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">dogs</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">splice</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">doggyId</span><span style="color: #f8f8f2">);</span>
+
+      <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">send</span><span style="color: #f8f8f2">(</span><span style="color: yellow;">`</span><span style="color: #a6e22e">Dog</span> <span style="color: yellow;">#</span><span style="color: #a6e22e">$</span><span style="color: #f8f8f2">{</span><span style="color: #a6e22e">doggyId</span><span style="color: #f8f8f2">}</span> <span style="color: #a6e22e">was</span> <span style="color: #a6e22e">removed</span><span style="color: #f8f8f2">.</span> <span style="color: #a6e22e">Now</span> <span style="color: #a6e22e">we</span> <span style="color: #a6e22e">have</span> <span style="color: #a6e22e">$</span><span style="color: #f8f8f2">{</span><span style="color: #a6e22e">dogs</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">length</span><span style="color: #f8f8f2">}</span> <span style="color: #a6e22e">dogs</span><span style="color: #f8f8f2">.</span><span style="color: yellow;">`</span><span style="color: #f8f8f2">);</span>
+    <span style="color: #f8f8f2">}</span> <span style="color: #66d9ef">else</span> <span style="color: #f8f8f2">{</span>
+      <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">sendStatus</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">403</span><span style="color: #f8f8f2">);</span>
+    <span style="color: #f8f8f2">}</span>
+  <span style="color: #f8f8f2">});</span>
+
+<span style="color: #a6e22e">app</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">listen</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">8080</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">function</span> <span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
   <span style="color: #a6e22e">console</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">log</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;Listening on port 8080...&#39;</span><span style="color: #f8f8f2">);</span>
 <span style="color: #f8f8f2">});</span>
 </pre></div>
+
             <div class="ac-caption">Full Dog Service Code</div>
 
             <p align="justify">
               I will make it thinner, removing this ugly routes definitions in our bootstrap code. I can read your minds,
-              you are all: "But how André?", simple my friend! <b>MIDDLEWARE</b>! First I will create a folder to hold
+              you are all: "But how André?". Simple my friend: <b>MIDDLEWARE</b>! First I will create a folder to hold
               our routes. We have to pay attention that we have three endpoints:
             </p>
 
@@ -359,44 +412,77 @@
             </ul>
 
             <p align="justify">
-              Lets go to the <i>dogRoute.js</i> file:
+              Before creating the routes (and to keep the code cleaner), let's move the dogs array initialization to its own file:
             </p>
 
-            <!-- HTML generated using hilite.me -->
-            <div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #66d9ef">var</span> <span style="color: #a6e22e">bodyParser</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;body-parser&#39;</span><span style="color: #f8f8f2">);</span>
-<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">parseUrlencoded</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">bodyParser</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">urlencoded</span><span style="color: #f8f8f2">({</span><span style="color: #a6e22e">extend</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">false</span><span style="color: #f8f8f2">});</span>
-<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">express</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;express&#39;</span><span style="color: #f8f8f2">);</span>
-<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">router</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">express</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">Router</span><span style="color: #f8f8f2">();</span>
-<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">dogs</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;./dogs&#39;</span><span style="color: #f8f8f2">);</span>
-<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">Dog</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;./Dog&#39;</span><span style="color: #f8f8f2">);</span>
+            <!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #e6db74">&#39;use strict&#39;</span><span style="color: #f8f8f2">;</span>
+
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">Dog</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;./Dog&#39;</span><span style="color: #f8f8f2">);</span>
+
+<span style="color: #66d9ef">let</span> <span style="color: #a6e22e">dogs</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">[</span>
+    <span style="color: #a6e22e">Dog</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;Brian&#39;</span><span style="color: #f8f8f2">),</span>
+    <span style="color: #a6e22e">Dog</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;Tina Turner&#39;</span><span style="color: #f8f8f2">),</span>
+    <span style="color: #a6e22e">Dog</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;Puppy 1&#39;</span><span style="color: #f8f8f2">),</span>
+    <span style="color: #a6e22e">Dog</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;Puppy 2&#39;</span><span style="color: #f8f8f2">),</span>
+    <span style="color: #a6e22e">Dog</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;Puppy 3&#39;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">];</span>
+
+<span style="color: #a6e22e">module</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">exports</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">dogs</span><span style="color: #f8f8f2">;</span>
+</pre></div>
+
+            <div class="ac-caption">dogs.js (Using our object composition code)</div>
+
+            <p align="justify">
+              Let's go to the <i>dogRoute.js</i> file:
+            </p>
+
+            <!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #e6db74">&#39;use strict&#39;</span><span style="color: #f8f8f2">;</span>
+
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">bodyParser</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;body-parser&#39;</span><span style="color: #f8f8f2">);</span>
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">parseUrlencoded</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">bodyParser</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">urlencoded</span><span style="color: #f8f8f2">({</span><span style="color: #a6e22e">extend</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">false</span><span style="color: #f8f8f2">});</span>
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">express</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;express&#39;</span><span style="color: #f8f8f2">);</span>
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">router</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">express</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">Router</span><span style="color: #f8f8f2">();</span>
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">Dog</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;./Dog&#39;</span><span style="color: #f8f8f2">);</span>
+<span style="color: #66d9ef">let</span> <span style="color: #a6e22e">dogs</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;./dogs&#39;</span><span style="color: #f8f8f2">);</span>
 
 <span style="color: #a6e22e">router</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">route</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;/&#39;</span><span style="color: #f8f8f2">)</span>
   <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">post</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">parseUrlencoded</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">request</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">){</span>
-    <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">data</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">request</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">body</span><span style="color: #f8f8f2">;</span>
-    <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">newDog</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">new</span> <span style="color: #a6e22e">Dog</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">data</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">name</span><span style="color: #f8f8f2">);</span>
+    <span style="color: #66d9ef">const</span> <span style="color: #a6e22e">data</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">request</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">body</span><span style="color: #f8f8f2">;</span>
 
-    <span style="color: #a6e22e">dogs</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">push</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">newDog</span><span style="color: #f8f8f2">);</span>
+    <span style="color: #66d9ef">if</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">data</span><span style="color: #f8f8f2">){</span>
+      <span style="color: #66d9ef">const</span> <span style="color: #a6e22e">newDog</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">Dog</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">data</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">name</span><span style="color: #f8f8f2">);</span>
 
-    <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">status</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">201</span><span style="color: #f8f8f2">).</span><span style="color: #a6e22e">send</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;Dog added! Brian loved it.&#39;</span><span style="color: #f8f8f2">);</span>
+      <span style="color: #a6e22e">dogs</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">push</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">newDog</span><span style="color: #f8f8f2">);</span>
+
+      <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">status</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">201</span><span style="color: #f8f8f2">).</span><span style="color: #a6e22e">send</span><span style="color: #f8f8f2">(</span><span style="color: yellow;">`</span><span style="color: #a6e22e">Dog</span> <span style="color: #a6e22e">$</span><span style="color: #f8f8f2">{</span><span style="color: #a6e22e">data</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">name</span><span style="color: #f8f8f2">}</span> <span style="color: #a6e22e">added</span><span style="color: #f92672">!</span> <span style="color: #a6e22e">Brian</span> <span style="color: #a6e22e">loved</span> <span style="color: #a6e22e">it</span><span style="color: #f8f8f2">.</span><span style="color: yellow;">`</span><span style="color: #f8f8f2">);</span>
+    <span style="color: #f8f8f2">}</span> <span style="color: #66d9ef">else</span> <span style="color: #f8f8f2">{</span>
+      <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">sendStatus</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">403</span><span style="color: #f8f8f2">);</span>
+    <span style="color: #f8f8f2">}</span>
   <span style="color: #f8f8f2">})</span>
   <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">put</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">parseUrlencoded</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">request</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">){</span>
-    <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">dog</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">request</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">body</span><span style="color: #f8f8f2">;</span>
-    <span style="color: #66d9ef">for</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">var</span> <span style="color: #a6e22e">x</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">dogs</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">length</span> <span style="color: #f92672">-</span> <span style="color: #ae81ff">1</span><span style="color: #f8f8f2">;</span> <span style="color: #a6e22e">x</span> <span style="color: #f92672">&gt;=</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span> <span style="color: #a6e22e">x</span><span style="color: #f92672">--</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
-      <span style="color: #66d9ef">if</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">dogs</span><span style="color: #f8f8f2">[</span><span style="color: #a6e22e">x</span><span style="color: #f8f8f2">].</span><span style="color: #a6e22e">getName</span><span style="color: #f8f8f2">()</span> <span style="color: #f92672">===</span> <span style="color: #a6e22e">dog</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">name</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
-        <span style="color: #a6e22e">dogs</span><span style="color: #f8f8f2">[</span><span style="color: #a6e22e">x</span><span style="color: #f8f8f2">].</span><span style="color: #a6e22e">setName</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">dog</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">newName</span><span style="color: #f8f8f2">);</span>
-      <span style="color: #f8f8f2">}</span>
-    <span style="color: #f8f8f2">}</span>
+    <span style="color: #66d9ef">const</span> <span style="color: #a6e22e">data</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">request</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">body</span><span style="color: #f8f8f2">;</span>
 
-    <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">sendStatus</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">200</span><span style="color: #f8f8f2">);</span>
+    <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">data</span> <span style="color: #f92672">&amp;&amp;</span> <span style="color: #a6e22e">data</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">index</span> <span style="color: #f92672">&amp;&amp;</span> <span style="color: #a6e22e">data</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">name</span><span style="color: #f8f8f2">){</span>
+      <span style="color: #66d9ef">const</span> <span style="color: #a6e22e">dog</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">dogs</span><span style="color: #f8f8f2">[</span><span style="color: #a6e22e">data</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">index</span><span style="color: #f8f8f2">];</span>
+      <span style="color: #a6e22e">dog</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">setName</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">data</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">name</span><span style="color: #f8f8f2">);</span>
+
+      <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">send</span><span style="color: #f8f8f2">(</span><span style="color: yellow;">`</span><span style="color: #a6e22e">Dog</span> <span style="color: yellow;">#</span><span style="color: #a6e22e">$</span><span style="color: #f8f8f2">{</span><span style="color: #a6e22e">data</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">index</span><span style="color: #f8f8f2">}</span> <span style="color: #a6e22e">had</span> <span style="color: #a6e22e">its</span> <span style="color: #a6e22e">name</span> <span style="color: #a6e22e">changed</span> <span style="color: #a6e22e">to</span> <span style="color: #a6e22e">$</span><span style="color: #f8f8f2">{</span><span style="color: #a6e22e">dog</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">getName</span><span style="color: #f8f8f2">()}</span><span style="color: yellow;">`</span><span style="color: #f8f8f2">);</span>
+    <span style="color: #f8f8f2">}</span> <span style="color: #66d9ef">else</span> <span style="color: #f8f8f2">{</span>
+      <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">sendStatus</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">403</span><span style="color: #f8f8f2">);</span>
+    <span style="color: #f8f8f2">}</span>
   <span style="color: #f8f8f2">});</span>
 
 <span style="color: #a6e22e">router</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">route</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;/:doggyId&#39;</span><span style="color: #f8f8f2">)</span>
   <span style="color: #f8f8f2">.</span><span style="color: #66d9ef">delete</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">parseUrlencoded</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">request</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">){</span>
-    <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">doggyId</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">request</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">params</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">doggyId</span><span style="color: #f8f8f2">;</span>
+    <span style="color: #66d9ef">const</span> <span style="color: #a6e22e">doggyId</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">request</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">params</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">doggyId</span><span style="color: #f8f8f2">;</span>
 
-    <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">dog</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">dogs</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">splice</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">doggyId</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">1</span><span style="color: #f8f8f2">)[</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">];</span>
+    <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">doggyId</span> <span style="color: #f92672">&amp;&amp;</span> <span style="color: #a6e22e">doggyId</span> <span style="color: #f92672">&lt;</span> <span style="color: #a6e22e">dogs</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">length</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+      <span style="color: #66d9ef">const</span> <span style="color: #a6e22e">removed</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">dogs</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">splice</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">doggyId</span><span style="color: #f8f8f2">);</span>
 
-    <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">json</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">dog</span><span style="color: #f8f8f2">);</span>
+      <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">send</span><span style="color: #f8f8f2">(</span><span style="color: yellow;">`</span><span style="color: #a6e22e">Dog</span> <span style="color: yellow;">#</span><span style="color: #a6e22e">$</span><span style="color: #f8f8f2">{</span><span style="color: #a6e22e">doggyId</span><span style="color: #f8f8f2">}</span> <span style="color: #a6e22e">was</span> <span style="color: #a6e22e">removed</span><span style="color: #f8f8f2">.</span> <span style="color: #a6e22e">Now</span> <span style="color: #a6e22e">we</span> <span style="color: #a6e22e">have</span> <span style="color: #a6e22e">$</span><span style="color: #f8f8f2">{</span><span style="color: #a6e22e">dogs</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">length</span><span style="color: #f8f8f2">}</span> <span style="color: #a6e22e">dogs</span><span style="color: #f8f8f2">.</span><span style="color: yellow;">`</span><span style="color: #f8f8f2">);</span>
+    <span style="color: #f8f8f2">}</span> <span style="color: #66d9ef">else</span> <span style="color: #f8f8f2">{</span>
+      <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">sendStatus</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">403</span><span style="color: #f8f8f2">);</span>
+    <span style="color: #f8f8f2">}</span>
   <span style="color: #f8f8f2">});</span>
 
 <span style="color: #a6e22e">module</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">exports</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">router</span><span style="color: #f8f8f2">;</span>
@@ -407,63 +493,73 @@
             <p align="justify">
               It is easy to identify that I've removed the <i>'dog'</i> word from the route. That is ok, I will get there.
               The <i>router</i> object will give me the ability to create routes. So I'm defining inside this <i>router</i>
-              variable all the <b>relative</b> paths for each method that I want to map and then exporting it. <i>wiggle.js</i>
-              and <i>goodDog.js</i> will have the same structure.
+              variable all the <b>relative</b> paths for each method that I want to map and then exporting it. <i>wiggleRoute.js</i>
+              and <i>goodDogRoute.js</i> will have the same structure.
             </p>
 
-            <!-- HTML generated using hilite.me -->
-            <div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #66d9ef">var</span> <span style="color: #a6e22e">express</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;express&#39;</span><span style="color: #f8f8f2">);</span>
-<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">router</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">express</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">Router</span><span style="color: #f8f8f2">();</span>
-<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">dogs</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;./dogs&#39;</span><span style="color: #f8f8f2">);</span>
+            <!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #e6db74">&#39;use strict&#39;</span><span style="color: #f8f8f2">;</span>
+
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">express</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;express&#39;</span><span style="color: #f8f8f2">);</span>
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">router</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">express</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">Router</span><span style="color: #f8f8f2">();</span>
+<span style="color: #66d9ef">let</span> <span style="color: #a6e22e">dogs</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;./dogs&#39;</span><span style="color: #f8f8f2">);</span>
 
 <span style="color: #a6e22e">router</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">route</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;/:doggyId&#39;</span><span style="color: #f8f8f2">)</span>
-  <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">get</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">request</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
-    <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">doggyIndex</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">request</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">params</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">doggyId</span><span style="color: #f8f8f2">;</span>
-    <span style="color: #66d9ef">if</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">doggyIndex</span> <span style="color: #f92672">&amp;&amp;</span> <span style="color: #a6e22e">doggyIndex</span> <span style="color: #f92672">&lt;</span> <span style="color: #a6e22e">dogs</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">length</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
-      <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">send</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">dogs</span><span style="color: #f8f8f2">[</span><span style="color: #a6e22e">doggyIndex</span><span style="color: #f8f8f2">].</span><span style="color: #a6e22e">whoIsAGoodBoy</span><span style="color: #f8f8f2">());</span>
-    <span style="color: #f8f8f2">}</span>
-  <span style="color: #f8f8f2">});</span>
+    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">get</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">request</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+        <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">doggyIndex</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">request</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">params</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">doggyId</span><span style="color: #f8f8f2">;</span>
+        <span style="color: #66d9ef">if</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">doggyIndex</span> <span style="color: #f92672">&amp;&amp;</span> <span style="color: #a6e22e">doggyIndex</span> <span style="color: #f92672">&gt;=</span> <span style="color: #ae81ff">0</span>  <span style="color: #f92672">&amp;&amp;</span> <span style="color: #a6e22e">doggyIndex</span> <span style="color: #f92672">&lt;</span> <span style="color: #a6e22e">dogs</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">length</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+            <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">send</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">dogs</span><span style="color: #f8f8f2">[</span><span style="color: #a6e22e">doggyIndex</span><span style="color: #f8f8f2">].</span><span style="color: #a6e22e">whoIsAGoodBoy</span><span style="color: #f8f8f2">());</span>
+        <span style="color: #f8f8f2">}</span> <span style="color: #66d9ef">else</span> <span style="color: #f8f8f2">{</span>
+            <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">sendStatus</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">404</span><span style="color: #f8f8f2">);</span>
+        <span style="color: #f8f8f2">}</span>
+    <span style="color: #f8f8f2">});</span>
 
-<span style="color: #a6e22e">module</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">eports</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">router</span><span style="color: #f8f8f2">;</span>
+<span style="color: #a6e22e">module</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">exports</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">router</span><span style="color: #f8f8f2">;</span>
 </pre></div>
+
             <div class="ac-caption">Good Dog Route</div>
 
-            <!-- HTML generated using hilite.me -->
-            <div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #66d9ef">var</span> <span style="color: #a6e22e">express</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;express&#39;</span><span style="color: #f8f8f2">);</span>
-<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">router</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">express</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">Router</span><span style="color: #f8f8f2">();</span>
-<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">dogs</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;./dogs&#39;</span><span style="color: #f8f8f2">);</span>
+            <!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #e6db74">&#39;use strict&#39;</span><span style="color: #f8f8f2">;</span>
+
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">express</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;express&#39;</span><span style="color: #f8f8f2">);</span>
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">router</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">express</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">Router</span><span style="color: #f8f8f2">();</span>
+<span style="color: #66d9ef">let</span> <span style="color: #a6e22e">dogs</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;./dogs&#39;</span><span style="color: #f8f8f2">);</span>
 
 <span style="color: #a6e22e">router</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">route</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;/:doggyId&#39;</span><span style="color: #f8f8f2">)</span>
-  <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">get</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">request</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
-    <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">doggyIndex</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">request</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">params</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">doggyId</span><span style="color: #f8f8f2">;</span>
-    <span style="color: #66d9ef">if</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">doggyIndex</span> <span style="color: #f92672">&amp;&amp;</span> <span style="color: #a6e22e">doggyIndex</span> <span style="color: #f92672">&lt;</span> <span style="color: #a6e22e">dogs</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">length</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
-      <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">send</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">dogs</span><span style="color: #f8f8f2">[</span><span style="color: #a6e22e">doggyIndex</span><span style="color: #f8f8f2">].</span><span style="color: #a6e22e">wiggle</span><span style="color: #f8f8f2">());</span>
-    <span style="color: #f8f8f2">}</span>
-  <span style="color: #f8f8f2">});</span>
+    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">get</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">request</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+        <span style="color: #66d9ef">const</span> <span style="color: #a6e22e">doggyIndex</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">request</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">params</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">doggyId</span><span style="color: #f8f8f2">;</span>
+        <span style="color: #66d9ef">if</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">doggyIndex</span> <span style="color: #f92672">&amp;&amp;</span> <span style="color: #a6e22e">doggyIndex</span> <span style="color: #f92672">&gt;=</span> <span style="color: #ae81ff">0</span> <span style="color: #f92672">&amp;&amp;</span> <span style="color: #a6e22e">doggyIndex</span> <span style="color: #f92672">&lt;</span> <span style="color: #a6e22e">dogs</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">length</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+            <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">send</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">dogs</span><span style="color: #f8f8f2">[</span><span style="color: #a6e22e">doggyIndex</span><span style="color: #f8f8f2">].</span><span style="color: #a6e22e">wiggle</span><span style="color: #f8f8f2">());</span>
+        <span style="color: #f8f8f2">}</span> <span style="color: #66d9ef">else</span> <span style="color: #f8f8f2">{</span>
+            <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">sendStatus</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">404</span><span style="color: #f8f8f2">);</span>
+        <span style="color: #f8f8f2">}</span>
+    <span style="color: #f8f8f2">});</span>
 
-<span style="color: #a6e22e">module</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">eports</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">router</span><span style="color: #f8f8f2">;</span>
+<span style="color: #a6e22e">module</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">exports</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">router</span><span style="color: #f8f8f2">;</span>
 </pre></div>
+
             <div class="ac-caption">Wiggle Route</div>
 
             <p align="justify">
               Nothing on my right hand....nothing on my left hand....TA-DA!
             </p>
 
-            <!-- HTML generated using hilite.me -->
-            <div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #66d9ef">var</span> <span style="color: #a6e22e">express</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;express&#39;</span><span style="color: #f8f8f2">);</span>
-<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">app</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">express</span><span style="color: #f8f8f2">();</span>
-<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">dogRoute</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;./dogRoute&#39;</span><span style="color: #f8f8f2">);</span>
-<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">goodDogRoute</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;./goodDogRoute&#39;</span><span style="color: #f8f8f2">);</span>
-<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">wiggleRoute</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;./wiggleRoute&#39;</span><span style="color: #f8f8f2">);</span>
+            <!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #e6db74">&#39;use strict&#39;</span><span style="color: #f8f8f2">;</span>
+
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">express</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;express&#39;</span><span style="color: #f8f8f2">);</span>
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">app</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">express</span><span style="color: #f8f8f2">();</span>
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">dogRoute</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;./dogRoute&#39;</span><span style="color: #f8f8f2">);</span>
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">goodDogRoute</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;./goodDogRoute&#39;</span><span style="color: #f8f8f2">);</span>
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">wiggleRoute</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;./wiggleRoute&#39;</span><span style="color: #f8f8f2">);</span>
 
 <span style="color: #a6e22e">app</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">use</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;/dog&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">dogRoute</span><span style="color: #f8f8f2">);</span>
 <span style="color: #a6e22e">app</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">use</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;/goodDog&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">goodDogRoute</span><span style="color: #f8f8f2">);</span>
 <span style="color: #a6e22e">app</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">use</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;/wiggle&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">wiggleRoute</span><span style="color: #f8f8f2">);</span>
 
 <span style="color: #a6e22e">app</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">listen</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">8080</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(){</span>
-  <span style="color: #a6e22e">console</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">log</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;Listening on port 8080...&#39;</span><span style="color: #f8f8f2">);</span>
+    <span style="color: #a6e22e">console</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">log</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;Listening on port 8080...&#39;</span><span style="color: #f8f8f2">);</span>
 <span style="color: #f8f8f2">});</span>
 </pre></div>
+
             <div class="ac-caption">Index.js Refactored</div>
 
             <p align="justify">
@@ -471,6 +567,7 @@
               here, but now we are defining a common prefix for each route!
             </p>
           </div>
+
         </section>
 
         <!-- Two -->

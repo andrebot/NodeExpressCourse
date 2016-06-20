@@ -17,6 +17,17 @@
 		<script src="js/skel.min.js"></script>
 		<script src="js/skel-layers.min.js"></script>
 		<script src="js/init.js"></script>
+    <script type="text/javascript">
+      function toggleCode (id) {
+        var element = $(id);
+        if (element.is(':visible')) {
+          $(id).slideUp();
+        } else {
+          $(id).slideDown();
+        }
+
+      }
+    </script>
 		
 		<noscript>
 			<link rel="stylesheet" href="css/skel.css" />
@@ -44,6 +55,20 @@
 			header.major h2 {
 				line-height: 1em;
 			}
+
+      .hidden-code {
+        margin-bottom: 10px;
+      }
+
+      .hidden-code .title {
+        font-weight: bold;
+        margin-bottom: 5px;
+        cursor: pointer;
+      }
+
+      .hidden {
+        display: none;
+      }
 		</style>
 
 		<!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
@@ -63,7 +88,7 @@
 						<li><a href="#three">Hello World With Express</a></li>
 						<li><a href="#four">Exercises</a></li>
 					</ul>
-					<img src="http://www.avenuecode.com/wp-content/themes/ac-site/images/white-logo.png" alt="">
+					<img src="images/ac-logo.png" alt="">
 				</nav>
 				<footer>
 				</footer>
@@ -131,8 +156,8 @@
 							<li>
                 <p align="justify">
                   <b>Port: </b>each server has a collection of numbered ports. Some port numbers are "special", like 80
-                  and 443. If you omit the port, port 80 is assumed for HTTP and 443 for HTTPS. In general if aren't using
-                  one of those, you should use a port number greater than 1023.
+                  and 443. If you omit the port, port 80 is assumed for HTTP and 443 for HTTPS. In general if you aren't using
+                  none of those, you should use a port number greater than 1023.
                 </p>
 							</li>
 							<li>
@@ -161,7 +186,7 @@
 
             <p align="justify">
               <i>
-                "HTTP (Hypertext Transfer Protocol) is an aplpication protocol for distributed, collaborative, hypermedia
+                "HTTP (Hypertext Transfer Protocol) is an application protocol for distributed, collaborative, hypermedia
                 information systems."
               </i>
               <span style="float: right">- Wikipedia</span>
@@ -217,7 +242,7 @@
             </header>
 
             <p align="justify">
-              Alright gentlemen, and lady, now it is the time! We will learn what you all came here for! Express!
+              Alright ladies and gentlemen, now it is the time! We will learn what you all came here for! Express!
             </p>
 
             <p align="justify">
@@ -233,18 +258,20 @@
               Sweet! No more talk! Here is some <b>CODE</b>:
             </p>
 
-            <!-- HTML generated using hilite.me -->
-            <div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">express</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">require(</span><span style="color: #ed9d13">&#39;express&#39;</span><span style="color: #d0d0d0">);</span>
-<span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">app</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">express();</span>
+            <!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #e6db74">&#39;use strict&#39;</span><span style="color: #f8f8f2">;</span>
 
-<span style="color: #d0d0d0">app.get(</span><span style="color: #ed9d13">&#39;/&#39;</span><span style="color: #d0d0d0">,</span> <span style="color: #6ab825; font-weight: bold">function</span><span style="color: #d0d0d0">(request,</span> <span style="color: #d0d0d0">response)</span> <span style="color: #d0d0d0">{</span>
-  <span style="color: #d0d0d0">response.send(</span><span style="color: #ed9d13">&#39;I\&#39;m alive!&#39;</span><span style="color: #d0d0d0">);</span>
-<span style="color: #d0d0d0">});</span>
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">express</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;express&#39;</span><span style="color: #f8f8f2">);</span>
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">app</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">express</span><span style="color: #f8f8f2">();</span>
 
-<span style="color: #d0d0d0">app.listen(</span><span style="color: #3677a9">8080</span><span style="color: #d0d0d0">,</span> <span style="color: #6ab825; font-weight: bold">function</span><span style="color: #d0d0d0">(){</span>
-  <span style="color: #d0d0d0">console.log(</span><span style="color: #ed9d13">&#39;Listening on port 8080...&#39;</span><span style="color: #d0d0d0">);</span>
-<span style="color: #d0d0d0">});</span>
+<span style="color: #a6e22e">app</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">get</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;/&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">request</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+  <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">send</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;I\&#39;m alive!&#39;</span><span style="color: #f8f8f2">);</span>
+<span style="color: #f8f8f2">});</span>
+
+<span style="color: #a6e22e">app</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">listen</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">8080</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(){</span>
+  <span style="color: #a6e22e">console</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">log</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;Listening on port 8080...&#39;</span><span style="color: #f8f8f2">);</span>
+<span style="color: #f8f8f2">});</span>
 </pre></div>
+
             <div class="ac-caption">Simple HTTP server with Express</div>
 
             <header class="major">
@@ -258,36 +285,40 @@
               Express technomagically does that for us. Nevertheless, if you want you can do this by yourself:
             </p>
 
-            <!-- HTML generated using hilite.me -->
-            <div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">express</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">require(</span><span style="color: #ed9d13">&#39;express&#39;</span><span style="color: #d0d0d0">);</span>
-<span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">app</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">express();</span>
+            <!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #e6db74">&#39;use strict&#39;</span><span style="color: #f8f8f2">;</span>
 
-<span style="color: #d0d0d0">app.get(</span><span style="color: #ed9d13">&#39;/&#39;</span><span style="color: #d0d0d0">,</span> <span style="color: #6ab825; font-weight: bold">function</span><span style="color: #d0d0d0">(request,</span> <span style="color: #d0d0d0">response)</span> <span style="color: #d0d0d0">{</span>
-  <span style="color: #d0d0d0">response.status(</span><span style="color: #3677a9">200</span><span style="color: #d0d0d0">).send(</span><span style="color: #ed9d13">&#39;I\&#39;m alive!&#39;</span><span style="color: #d0d0d0">);</span>
-<span style="color: #d0d0d0">});</span>
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">express</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;express&#39;</span><span style="color: #f8f8f2">);</span>
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">app</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">express</span><span style="color: #f8f8f2">();</span>
 
-<span style="color: #d0d0d0">app.listen(</span><span style="color: #3677a9">8080</span><span style="color: #d0d0d0">,</span> <span style="color: #6ab825; font-weight: bold">function</span><span style="color: #d0d0d0">(){</span>
-  <span style="color: #d0d0d0">console.log(</span><span style="color: #ed9d13">&#39;Listening on port 8080...&#39;</span><span style="color: #d0d0d0">);</span>
-<span style="color: #d0d0d0">});</span>
+<span style="color: #a6e22e">app</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">get</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;/&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">request</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+  <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">status</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">200</span><span style="color: #f8f8f2">).</span><span style="color: #a6e22e">send</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;I\&#39;m alive!&#39;</span><span style="color: #f8f8f2">);</span>
+<span style="color: #f8f8f2">});</span>
+
+<span style="color: #a6e22e">app</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">listen</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">8080</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(){</span>
+  <span style="color: #a6e22e">console</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">log</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;Listening on port 8080...&#39;</span><span style="color: #f8f8f2">);</span>
+<span style="color: #f8f8f2">});</span>
 </pre></div>
+
             <div class="ac-caption">Setting Status For Yourself</div>
 
             <p align="justify">
               We can send objects too. They will be stringfied and sent to the requester:
             </p>
 
-            <!-- HTML generated using hilite.me -->
-            <div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">express</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">require(</span><span style="color: #ed9d13">&#39;express&#39;</span><span style="color: #d0d0d0">);</span>
-<span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">app</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">express();</span>
+            <!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #e6db74">&#39;use strict&#39;</span><span style="color: #f8f8f2">;</span>
 
-<span style="color: #d0d0d0">app.get(</span><span style="color: #ed9d13">&#39;/&#39;</span><span style="color: #d0d0d0">,</span> <span style="color: #6ab825; font-weight: bold">function</span><span style="color: #d0d0d0">(request,</span> <span style="color: #d0d0d0">response)</span> <span style="color: #d0d0d0">{</span>
-  <span style="color: #d0d0d0">response.status(</span><span style="color: #3677a9">200</span><span style="color: #d0d0d0">).json({msg:</span> <span style="color: #ed9d13">&#39;I\&#39;m alive!&#39;</span><span style="color: #d0d0d0">});</span>
-<span style="color: #d0d0d0">});</span>
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">express</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;express&#39;</span><span style="color: #f8f8f2">);</span>
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">app</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">express</span><span style="color: #f8f8f2">();</span>
 
-<span style="color: #d0d0d0">app.listen(</span><span style="color: #3677a9">8080</span><span style="color: #d0d0d0">,</span> <span style="color: #6ab825; font-weight: bold">function</span><span style="color: #d0d0d0">(){</span>
-  <span style="color: #d0d0d0">console.log(</span><span style="color: #ed9d13">&#39;Listening on port 8080...&#39;</span><span style="color: #d0d0d0">);</span>
-<span style="color: #d0d0d0">});</span>
+<span style="color: #a6e22e">app</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">get</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;/&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">request</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+  <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">status</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">200</span><span style="color: #f8f8f2">).</span><span style="color: #a6e22e">json</span><span style="color: #f8f8f2">({</span><span style="color: #a6e22e">msg</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;I\&#39;m alive!&#39;</span><span style="color: #f8f8f2">});</span>
+<span style="color: #f8f8f2">});</span>
+
+<span style="color: #a6e22e">app</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">listen</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">8080</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(){</span>
+  <span style="color: #a6e22e">console</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">log</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;Listening on port 8080...&#39;</span><span style="color: #f8f8f2">);</span>
+<span style="color: #f8f8f2">});</span>
 </pre></div>
+
             <div class="ac-caption">Sending an Object</div>
 
             <p align="justify">
@@ -295,23 +326,27 @@
               we can be more fancy. What about read some query string from the request?
             </p>
 
-            <!-- HTML generated using hilite.me -->
-            <div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">express</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">require(</span><span style="color: #ed9d13">&#39;express&#39;</span><span style="color: #d0d0d0">);</span>
-<span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">app</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">express();</span>
+            <!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #e6db74">&#39;use strict&#39;</span><span style="color: #f8f8f2">;</span>
 
-<span style="color: #d0d0d0">app.get(</span><span style="color: #ed9d13">&#39;/&#39;</span><span style="color: #d0d0d0">,</span> <span style="color: #6ab825; font-weight: bold">function</span><span style="color: #d0d0d0">(request,</span> <span style="color: #d0d0d0">response)</span> <span style="color: #d0d0d0">{</span>
-  <span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">msgStrings</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">[</span><span style="color: #ed9d13">&#39;First String&#39;</span><span style="color: #d0d0d0">,</span> <span style="color: #ed9d13">&#39;Second String&#39;</span><span style="color: #d0d0d0">];</span>
-  <span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">messageIndex</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">request.query.index;</span>
-  <span style="color: #6ab825; font-weight: bold">if</span><span style="color: #d0d0d0">(messageIndex</span> <span style="color: #d0d0d0">&amp;&amp;</span> <span style="color: #d0d0d0">messageIndex</span> <span style="color: #d0d0d0">&lt;</span> <span style="color: #d0d0d0">msgStrings.length)</span> <span style="color: #d0d0d0">{</span>
-    <span style="color: #d0d0d0">response.send(msgStrings[messageIndex]);</span>
-  <span style="color: #d0d0d0">}</span> <span style="color: #6ab825; font-weight: bold">else</span> <span style="color: #d0d0d0">{</span>
-    <span style="color: #d0d0d0">response.sendStatus(</span><span style="color: #3677a9">403</span><span style="color: #d0d0d0">);</span>
-  <span style="color: #d0d0d0">}</span>
-<span style="color: #d0d0d0">});</span>
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">express</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;express&#39;</span><span style="color: #f8f8f2">);</span>
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">app</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">express</span><span style="color: #f8f8f2">();</span>
 
-<span style="color: #d0d0d0">app.listen(</span><span style="color: #3677a9">8080</span><span style="color: #d0d0d0">,</span> <span style="color: #6ab825; font-weight: bold">function</span><span style="color: #d0d0d0">(){</span>
-  <span style="color: #d0d0d0">console.log(</span><span style="color: #ed9d13">&#39;Listening on port 8080...&#39;</span><span style="color: #d0d0d0">);</span>
-<span style="color: #d0d0d0">});</span>
+<span style="color: #a6e22e">app</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">get</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;/&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">request</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #66d9ef">const</span> <span style="color: #a6e22e">msgStrings</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">[</span><span style="color: #e6db74">&#39;First String&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;Second String&#39;</span><span style="color: #f8f8f2">];</span>
+    <span style="color: #75715e">// request.query is the query string. In this case we will return the</span>
+    <span style="color: #75715e">// String present on the position msgStrings[index].</span>
+    <span style="color: #75715e">// To test your server, use http://localhost:8080/?index=0</span>
+    <span style="color: #66d9ef">const</span> <span style="color: #a6e22e">messageIndex</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">request</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">query</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">index</span><span style="color: #f8f8f2">;</span>
+    <span style="color: #66d9ef">if</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">messageIndex</span> <span style="color: #f92672">&amp;&amp;</span> <span style="color: #a6e22e">messageIndex</span> <span style="color: #f92672">&lt;</span> <span style="color: #a6e22e">msgStrings</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">length</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+        <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">send</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">msgStrings</span><span style="color: #f8f8f2">[</span><span style="color: #a6e22e">messageIndex</span><span style="color: #f8f8f2">]);</span>
+    <span style="color: #f8f8f2">}</span> <span style="color: #66d9ef">else</span> <span style="color: #f8f8f2">{</span>
+        <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">sendStatus</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">403</span><span style="color: #f8f8f2">);</span>
+    <span style="color: #f8f8f2">}</span>
+<span style="color: #f8f8f2">});</span>
+
+<span style="color: #a6e22e">app</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">listen</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">8080</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(){</span>
+    <span style="color: #a6e22e">console</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">log</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;Listening on port 8080...&#39;</span><span style="color: #f8f8f2">);</span>
+<span style="color: #f8f8f2">});</span>
 </pre></div>
 
             <div class="ac-caption">Retrieving Query String Data</div>
@@ -329,68 +364,205 @@
             <p align="justify">
               We didn't had much fun yet. Now, with Express, we can create a more useful server. Lets keep using the
               <i>GET</i> request type. How about define a server that plays with our old friend <b>brian</b>, remember him?
-              Our dog from <a href=/acbook-nodejs/lecture1.html#five">Lecture 1: Lim Po Kim</a>.
+              Our dog from <a href="/acbook-nodejs/lecture1.html#five">Lecture 1: Lim Po Kim</a>.
               But this time we will change the Dog class a little bit:
             </p>
 
-            <!-- HTML generated using hilite.me -->
-            <div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">Dog</span> <span style="color: #d0d0d0">=</span> <span style="color: #6ab825; font-weight: bold">function</span><span style="color: #d0d0d0">(name)</span> <span style="color: #d0d0d0">{</span>
+            <!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #e6db74">&#39;use strict&#39;</span><span style="color: #f8f8f2">;</span>
 
-  <span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">_name</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">name;</span>
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">Dog</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">name</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
 
-  <span style="color: #6ab825; font-weight: bold">this</span><span style="color: #d0d0d0">.whoIsAGoodBoy</span> <span style="color: #d0d0d0">=</span> <span style="color: #6ab825; font-weight: bold">function</span><span style="color: #d0d0d0">()</span> <span style="color: #d0d0d0">{</span>
-    <span style="color: #6ab825; font-weight: bold">return</span> <span style="color: #d0d0d0">_name</span> <span style="color: #d0d0d0">+</span> <span style="color: #ed9d13">&#39; is a good boy!&#39;</span><span style="color: #d0d0d0">;</span>
-  <span style="color: #d0d0d0">};</span>
+  <span style="color: #66d9ef">let</span> <span style="color: #a6e22e">_name</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">name</span><span style="color: #f8f8f2">;</span>
 
-  <span style="color: #6ab825; font-weight: bold">this</span><span style="color: #d0d0d0">.wiggle</span> <span style="color: #d0d0d0">=</span> <span style="color: #6ab825; font-weight: bold">function</span><span style="color: #d0d0d0">()</span> <span style="color: #d0d0d0">{</span>
-    <span style="color: #6ab825; font-weight: bold">return</span> <span style="color: #d0d0d0">_name</span> <span style="color: #d0d0d0">+</span> <span style="color: #ed9d13">&#39; is wiggling.&#39;</span><span style="color: #d0d0d0">;</span>
-  <span style="color: #d0d0d0">};</span>
+  <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">whoIsAGoodBoy</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #66d9ef">return</span> <span style="color: #a6e22e">_name</span> <span style="color: #f92672">+</span> <span style="color: #e6db74">&#39; is a good boy!&#39;</span><span style="color: #f8f8f2">;</span>
+  <span style="color: #f8f8f2">};</span>
 
-  <span style="color: #6ab825; font-weight: bold">this</span><span style="color: #d0d0d0">.getName</span> <span style="color: #d0d0d0">=</span> <span style="color: #6ab825; font-weight: bold">function</span><span style="color: #d0d0d0">()</span> <span style="color: #d0d0d0">{</span>
-    <span style="color: #6ab825; font-weight: bold">return</span> <span style="color: #d0d0d0">_name;</span>
-  <span style="color: #d0d0d0">};</span>
+  <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">wiggle</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #66d9ef">return</span> <span style="color: #a6e22e">_name</span> <span style="color: #f92672">+</span> <span style="color: #e6db74">&#39; is wiggling.&#39;</span><span style="color: #f8f8f2">;</span>
+  <span style="color: #f8f8f2">};</span>
 
-  <span style="color: #6ab825; font-weight: bold">this</span><span style="color: #d0d0d0">.setName</span> <span style="color: #d0d0d0">=</span> <span style="color: #6ab825; font-weight: bold">function</span><span style="color: #d0d0d0">(newName)</span> <span style="color: #d0d0d0">{</span>
-    <span style="color: #d0d0d0">_name</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">newName;</span>
-  <span style="color: #d0d0d0">}</span>
+  <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">getName</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #66d9ef">return</span> <span style="color: #a6e22e">_name</span><span style="color: #f8f8f2">;</span>
+  <span style="color: #f8f8f2">};</span>
 
-<span style="color: #d0d0d0">}</span>
+  <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">setName</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">newName</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #a6e22e">_name</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">newName</span><span style="color: #f8f8f2">;</span>
+  <span style="color: #f8f8f2">}</span>
 
-<span style="color: #d0d0d0">module.exports</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">Dog;</span>
+<span style="color: #f8f8f2">}</span>
+
+<span style="color: #a6e22e">module</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">exports</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">Dog</span><span style="color: #f8f8f2">;</span>
 </pre></div>
             <div class="ac-caption">New Dog Class</div>
+
+            <div class="hidden-code">
+              <div><span class="title" onclick="toggleCode('#DogES6Class')">Dog ES6 Class</span></div>
+              <div class="hidden" id="DogES6Class">
+              <!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #e6db74">&#39;use strict&#39;</span><span style="color: #f8f8f2">;</span>
+
+<span style="color: #66d9ef">class</span> <span style="color: #a6e22e">Dog</span> <span style="color: #f8f8f2">{</span>
+  <span style="color: #a6e22e">constructor</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">name</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">_name</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">name</span><span style="color: #f8f8f2">;</span>
+  <span style="color: #f8f8f2">}</span>
+
+  <span style="color: #a6e22e">whoIsAGoodBoy</span> <span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #66d9ef">return</span> <span style="color: yellow;">`</span><span style="color: #a6e22e">$</span><span style="color: #f8f8f2">{</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">_name</span><span style="color: #f8f8f2">}</span> <span style="color: #a6e22e">is</span> <span style="color: #a6e22e">a</span> <span style="color: #a6e22e">good</span> <span style="color: #a6e22e">boy</span><span style="color: #f92672">!</span><span style="color: yellow;">`</span><span style="color: #f8f8f2">;</span>
+  <span style="color: #f8f8f2">}</span>
+
+  <span style="color: #a6e22e">wiggle</span> <span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #66d9ef">return</span> <span style="color: yellow;">`</span><span style="color: #a6e22e">$</span><span style="color: #f8f8f2">{</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">_name</span><span style="color: #f8f8f2">}</span> <span style="color: #a6e22e">is</span> <span style="color: #a6e22e">wiggling</span><span style="color: #f8f8f2">.</span><span style="color: yellow;">`</span><span style="color: #f8f8f2">;</span>
+  <span style="color: #f8f8f2">}</span>
+
+  <span style="color: #a6e22e">getName</span> <span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #66d9ef">return</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">_name</span><span style="color: #f8f8f2">;</span>
+  <span style="color: #f8f8f2">}</span>
+
+  <span style="color: #a6e22e">setName</span> <span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #66d9ef">return</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">_name</span><span style="color: #f8f8f2">;</span>
+  <span style="color: #f8f8f2">}</span>
+<span style="color: #f8f8f2">}</span>
+
+<span style="color: #a6e22e">module</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">exports</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">Dog</span><span style="color: #f8f8f2">;</span>
+</pre></div>
+
+              </div>
+            </div>
+
+            <div class="hidden-code">
+              <div><span class="title" onclick="toggleCode('#DogObjComposition')">Dog Object Composition</span></div>
+              <div class="hidden" id="DogObjComposition">
+              <!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #e6db74">&#39;use strict&#39;</span><span style="color: #f8f8f2">;</span>
+
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">Dog</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">name</span><span style="color: #f8f8f2">)</span> <span style="color: #f92672">=&gt;</span> <span style="color: #f8f8f2">{</span>
+  <span style="color: #66d9ef">let</span> <span style="color: #a6e22e">_name</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">name</span><span style="color: #f8f8f2">;</span>
+
+  <span style="color: #66d9ef">return</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #a6e22e">whoIsAGoodBoy</span><span style="color: #f92672">:</span> <span style="color: #f8f8f2">()</span> <span style="color: #f92672">=&gt;</span> <span style="color: yellow;">`</span><span style="color: #a6e22e">$</span><span style="color: #f8f8f2">{</span><span style="color: #a6e22e">_name</span><span style="color: #f8f8f2">}</span> <span style="color: #a6e22e">is</span> <span style="color: #a6e22e">a</span> <span style="color: #a6e22e">good</span> <span style="color: #a6e22e">boy</span><span style="color: #f92672">!</span><span style="color: yellow;">`</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #a6e22e">wiggle</span><span style="color: #f92672">:</span> <span style="color: #f8f8f2">()</span> <span style="color: #f92672">=&gt;</span> <span style="color: yellow;">`</span><span style="color: #a6e22e">$</span><span style="color: #f8f8f2">{</span><span style="color: #a6e22e">_name</span><span style="color: #f8f8f2">}</span> <span style="color: #a6e22e">is</span> <span style="color: #a6e22e">wiggling</span><span style="color: #f8f8f2">.</span><span style="color: yellow;">`</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #a6e22e">getName</span><span style="color: #f92672">:</span> <span style="color: #f8f8f2">()</span> <span style="color: #f92672">=&gt;</span> <span style="color: #a6e22e">_name</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #a6e22e">setName</span><span style="color: #f92672">:</span> <span style="color: #a6e22e">name</span> <span style="color: #f92672">=&gt;</span> <span style="color: #a6e22e">_name</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">name</span>
+  <span style="color: #f8f8f2">}</span>
+<span style="color: #f8f8f2">};</span>
+
+<span style="color: #a6e22e">module</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">exports</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">Dog</span><span style="color: #f8f8f2">;</span>
+</pre></div>
+
+              </div>
+            </div>
 
             <p align="justfy">
               With this brand new Dog class we can create different routes in our server.
             </p>
 
-            <!-- HTML generated using hilite.me -->
-            <div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">express</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">require(</span><span style="color: #ed9d13">&#39;express&#39;</span><span style="color: #d0d0d0">);</span>
-<span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">Dog</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">require(</span><span style="color: #ed9d13">&#39;./Dog&#39;</span><span style="color: #d0d0d0">);</span>
-<span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">app</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">express();</span>
-<span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">brian</span> <span style="color: #d0d0d0">=</span> <span style="color: #6ab825; font-weight: bold">new</span> <span style="color: #d0d0d0">Dog(</span><span style="color: #ed9d13">&#39;Brian&#39;</span><span style="color: #d0d0d0">);</span>
+            <!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #e6db74">&#39;use strict&#39;</span><span style="color: #f8f8f2">;</span>
 
-<span style="color: #d0d0d0">app.get(</span><span style="color: #ed9d13">&#39;/goodDog&#39;</span><span style="color: #d0d0d0">,</span> <span style="color: #6ab825; font-weight: bold">function</span><span style="color: #d0d0d0">(request,</span> <span style="color: #d0d0d0">response)</span> <span style="color: #d0d0d0">{</span>
-  <span style="color: #d0d0d0">response.send(brian.whoIsAGoodBoy());</span>
-<span style="color: #d0d0d0">});</span>
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">express</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;express&#39;</span><span style="color: #f8f8f2">);</span>
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">Dog</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;./Dog&#39;</span><span style="color: #f8f8f2">);</span>
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">app</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">express</span><span style="color: #f8f8f2">();</span>
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">brian</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">new</span> <span style="color: #a6e22e">Dog</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;Brian&#39;</span><span style="color: #f8f8f2">);</span>
 
-<span style="color: #d0d0d0">app.get(</span><span style="color: #ed9d13">&#39;/wiggle&#39;</span><span style="color: #d0d0d0">,</span> <span style="color: #6ab825; font-weight: bold">function</span><span style="color: #d0d0d0">(request,</span> <span style="color: #d0d0d0">response)</span> <span style="color: #d0d0d0">{</span>
-  <span style="color: #d0d0d0">response.send(brian.wiggle());</span>
-<span style="color: #d0d0d0">});</span>
+<span style="color: #a6e22e">app</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">get</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;/goodDog&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">request</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+  <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">send</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">brian</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">whoIsAGoodBoy</span><span style="color: #f8f8f2">());</span>
+<span style="color: #f8f8f2">});</span>
 
-<span style="color: #d0d0d0">app.listen(</span><span style="color: #3677a9">8080</span><span style="color: #d0d0d0">,</span> <span style="color: #6ab825; font-weight: bold">function</span><span style="color: #d0d0d0">(){</span>
-  <span style="color: #d0d0d0">console.log(</span><span style="color: #ed9d13">&#39;Listening on port 8080...&#39;</span><span style="color: #d0d0d0">);</span>
-<span style="color: #d0d0d0">});</span>
+<span style="color: #a6e22e">app</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">get</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;/wiggle&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">request</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+  <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">send</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">brian</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">wiggle</span><span style="color: #f8f8f2">());</span>
+<span style="color: #f8f8f2">});</span>
+
+<span style="color: #a6e22e">app</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">listen</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">8080</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(){</span>
+  <span style="color: #a6e22e">console</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">log</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;Listening on port 8080...&#39;</span><span style="color: #f8f8f2">);</span>
+<span style="color: #f8f8f2">});</span>
 </pre></div>
             <div class="ac-caption">Adding New Route To Our Server</div>
+
+            <div class="hidden-code">
+              <div><span class="title" onclick="toggleCode('#nodeNoExpress')">Doing it without Express</span></div>
+              <div class="hidden" id="nodeNoExpress">
+              <!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #e6db74">&#39;use strict&#39;</span><span style="color: #f8f8f2">;</span>
+
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">http</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;http&#39;</span><span style="color: #f8f8f2">);</span>
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">Dog</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;./dogObjComposition&#39;</span><span style="color: #f8f8f2">);</span>
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">brian</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">Dog</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;Brian&#39;</span><span style="color: #f8f8f2">);</span>
+
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">respondClient</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">function</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">response</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">msg</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+  <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">writeHead</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">200</span><span style="color: #f8f8f2">);</span>
+  <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">write</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">msg</span><span style="color: #f8f8f2">);</span>
+  <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">end</span><span style="color: #f8f8f2">();</span>
+<span style="color: #f8f8f2">};</span>
+
+<span style="color: #a6e22e">http</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">createServer</span><span style="color: #f8f8f2">((</span><span style="color: #a6e22e">request</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">)</span> <span style="color: #f92672">=&gt;</span> <span style="color: #f8f8f2">{</span>
+  <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">request</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">method</span> <span style="color: #f92672">===</span> <span style="color: #e6db74">&#39;GET&#39;</span> <span style="color: #f92672">&amp;&amp;</span> <span style="color: #a6e22e">request</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">url</span> <span style="color: #f92672">===</span> <span style="color: #e6db74">&#39;/goodDog&#39;</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #a6e22e">respondClient</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">response</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">brian</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">whoIsAGoodBoy</span><span style="color: #f8f8f2">());</span>
+  <span style="color: #f8f8f2">}</span> <span style="color: #66d9ef">else</span> <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">request</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">method</span> <span style="color: #f92672">===</span> <span style="color: #e6db74">&#39;GET&#39;</span> <span style="color: #f92672">&amp;&amp;</span> <span style="color: #a6e22e">request</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">url</span> <span style="color: #f92672">===</span> <span style="color: #e6db74">&#39;/wiggle&#39;</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #a6e22e">respondClient</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">response</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">brian</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">wiggle</span><span style="color: #f8f8f2">());</span>
+  <span style="color: #f8f8f2">}</span> <span style="color: #66d9ef">else</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">writeHead</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">404</span><span style="color: #f8f8f2">);</span>
+    <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">end</span><span style="color: #f8f8f2">();</span>
+  <span style="color: #f8f8f2">}</span>
+<span style="color: #f8f8f2">}).</span><span style="color: #a6e22e">listen</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">8080</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">()</span> <span style="color: #f92672">=&gt;</span> <span style="color: #f8f8f2">{</span>
+  <span style="color: #a6e22e">console</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">log</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;Listening on port 8080...&#39;</span><span style="color: #f8f8f2">);</span>
+<span style="color: #f8f8f2">});</span>
+</pre></div>
+              </div>
+            </div>
+
+            <div class="hidden-code">
+              <div><span class="title" onclick="toggleCode('#nodeNoExpressFacy')">Doing it fancy without Express</span></div>
+              <div class="hidden" id="nodeNoExpressFacy">
+              <!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #e6db74">&#39;use strict&#39;</span><span style="color: #f8f8f2">;</span>
+
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">http</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;http&#39;</span><span style="color: #f8f8f2">);</span>
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">Dog</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;./dogObjComposition&#39;</span><span style="color: #f8f8f2">);</span>
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">brian</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">Dog</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;Brian&#39;</span><span style="color: #f8f8f2">);</span>
+
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">respondClient</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">function</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">response</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">msg</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+  <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">writeHead</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">200</span><span style="color: #f8f8f2">);</span>
+  <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">write</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">msg</span><span style="color: #f8f8f2">);</span>
+  <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">end</span><span style="color: #f8f8f2">();</span>
+<span style="color: #f8f8f2">};</span>
+
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">routes</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">{</span>
+  <span style="color: #e6db74">&#39;GET&#39;</span><span style="color: #f92672">:</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #e6db74">&#39;/goodDog&#39;</span><span style="color: #f92672">:</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">request</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">)</span> <span style="color: #f92672">=&gt;</span> <span style="color: #f8f8f2">{</span>
+      <span style="color: #a6e22e">respondClient</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">response</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">brian</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">whoIsAGoodBoy</span><span style="color: #f8f8f2">())</span>
+    <span style="color: #f8f8f2">},</span>
+    <span style="color: #e6db74">&#39;/wiggle&#39;</span><span style="color: #f92672">:</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">request</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">)</span> <span style="color: #f92672">=&gt;</span> <span style="color: #f8f8f2">{</span>
+      <span style="color: #a6e22e">respondClient</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">response</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">brian</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">wiggle</span><span style="color: #f8f8f2">())</span>
+    <span style="color: #f8f8f2">}</span>
+  <span style="color: #f8f8f2">}</span>
+<span style="color: #f8f8f2">};</span>
+
+<span style="color: #a6e22e">http</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">createServer</span><span style="color: #f8f8f2">((</span><span style="color: #a6e22e">request</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">)</span> <span style="color: #f92672">=&gt;</span> <span style="color: #f8f8f2">{</span>
+  <span style="color: #66d9ef">try</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #66d9ef">const</span> <span style="color: #a6e22e">route</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">routes</span><span style="color: #f8f8f2">[</span><span style="color: #a6e22e">request</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">method</span><span style="color: #f8f8f2">][</span><span style="color: #a6e22e">request</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">url</span><span style="color: #f8f8f2">];</span>
+
+    <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">route</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+      <span style="color: #a6e22e">route</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">request</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">);</span>
+    <span style="color: #f8f8f2">}</span> <span style="color: #66d9ef">else</span> <span style="color: #f8f8f2">{</span>
+      <span style="color: #66d9ef">throw</span> <span style="color: #66d9ef">new</span> <span style="color: #f8f8f2">Error(</span><span style="color: #e6db74">&#39;No matching route&#39;</span><span style="color: #f8f8f2">);</span>
+    <span style="color: #f8f8f2">}</span>
+  <span style="color: #f8f8f2">}</span> <span style="color: #66d9ef">catch</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">error</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #a6e22e">console</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">log</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">error</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">message</span><span style="color: #f8f8f2">);</span>
+
+    <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">writeHead</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">404</span><span style="color: #f8f8f2">);</span>
+    <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">end</span><span style="color: #f8f8f2">();</span>
+  <span style="color: #f8f8f2">}</span>
+<span style="color: #f8f8f2">}).</span><span style="color: #a6e22e">listen</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">8080</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">()</span> <span style="color: #f92672">=&gt;</span> <span style="color: #f8f8f2">{</span>
+  <span style="color: #a6e22e">console</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">log</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;Listening on port 8080...&#39;</span><span style="color: #f8f8f2">);</span>
+<span style="color: #f8f8f2">});</span>
+</pre></div>
+
+              </div>
+            </div>
 
             <p align="justify">
               With this setup we have a server hosted at <b><i>localhost:8080</i></b> that have two routes:
             </p>
 
             <ul>
-              <li><b>localhost:8080/goodDog:</b> that will return who is a good dog;</li>
-              <li><b>localhost:8080/wiggle:</b> that will wiggle our dog's tail.</li>
+              <li><b><a href="localhost:8080/goodDog">localhost:8080/goodDog</a>:</b> that will return who is a good dog;</li>
+              <li><b><a href="localhost:8080/wiggle">localhost:8080/wiggle:</a></b> that will wiggle our dog's tail.</li>
             </ul>
 
             <p align="justify">
@@ -400,40 +572,42 @@
               routing.
             </p>
 
-            <!-- HTML generated using hilite.me -->
-            <div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">express</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">require(</span><span style="color: #ed9d13">&#39;express&#39;</span><span style="color: #d0d0d0">);</span>
-<span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">Dog</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">require(</span><span style="color: #ed9d13">&#39;./Dog&#39;</span><span style="color: #d0d0d0">);</span>
-<span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">app</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">express();</span>
-<span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">dogs</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">[</span>
-  <span style="color: #6ab825; font-weight: bold">new</span> <span style="color: #d0d0d0">Dog(</span><span style="color: #ed9d13">&#39;Brian&#39;</span><span style="color: #d0d0d0">),</span>
-  <span style="color: #6ab825; font-weight: bold">new</span> <span style="color: #d0d0d0">Dog(</span><span style="color: #ed9d13">&#39;Tina Turner&#39;</span><span style="color: #d0d0d0">),</span>
-  <span style="color: #6ab825; font-weight: bold">new</span> <span style="color: #d0d0d0">Dog(</span><span style="color: #ed9d13">&#39;Puppy 1&#39;</span><span style="color: #d0d0d0">),</span>
-  <span style="color: #6ab825; font-weight: bold">new</span> <span style="color: #d0d0d0">Dog(</span><span style="color: #ed9d13">&#39;Puppy 2&#39;</span><span style="color: #d0d0d0">),</span>
-  <span style="color: #6ab825; font-weight: bold">new</span> <span style="color: #d0d0d0">Dog(</span><span style="color: #ed9d13">&#39;Puppy 3&#39;</span><span style="color: #d0d0d0">)</span>
-<span style="color: #d0d0d0">];</span>
+            <!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #e6db74">&#39;use strict&#39;</span><span style="color: #f8f8f2">;</span>
 
-<span style="color: #d0d0d0">app.get(</span><span style="color: #ed9d13">&#39;/goodDog/:doggyId&#39;</span><span style="color: #d0d0d0">,</span> <span style="color: #6ab825; font-weight: bold">function</span><span style="color: #d0d0d0">(request,</span> <span style="color: #d0d0d0">response)</span> <span style="color: #d0d0d0">{</span>
-  <span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">doggyIndex</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">request.params.doggyId;</span>
-  <span style="color: #6ab825; font-weight: bold">if</span><span style="color: #d0d0d0">(doggyIndex</span> <span style="color: #d0d0d0">&amp;&amp;</span> <span style="color: #d0d0d0">doggyIndex</span> <span style="color: #d0d0d0">&lt;</span> <span style="color: #d0d0d0">dogs.length)</span> <span style="color: #d0d0d0">{</span>
-    <span style="color: #d0d0d0">response.send(dogs[doggyIndex].whoIsAGoodBoy());</span>
-  <span style="color: #d0d0d0">}</span> <span style="color: #6ab825; font-weight: bold">else</span> <span style="color: #d0d0d0">{</span>
-    <span style="color: #d0d0d0">response.sendStatus(</span><span style="color: #3677a9">403</span><span style="color: #d0d0d0">);</span>
-  <span style="color: #d0d0d0">}</span>
-<span style="color: #d0d0d0">});</span>
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">express</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;express&#39;</span><span style="color: #f8f8f2">);</span>
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">Dog</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;./Dog&#39;</span><span style="color: #f8f8f2">);</span>
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">app</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">express</span><span style="color: #f8f8f2">();</span>
+<span style="color: #66d9ef">let</span> <span style="color: #a6e22e">dogs</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">[</span>
+  <span style="color: #66d9ef">new</span> <span style="color: #a6e22e">Dog</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;Brian&#39;</span><span style="color: #f8f8f2">),</span>
+  <span style="color: #66d9ef">new</span> <span style="color: #a6e22e">Dog</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;Tina Turner&#39;</span><span style="color: #f8f8f2">),</span>
+  <span style="color: #66d9ef">new</span> <span style="color: #a6e22e">Dog</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;Puppy 1&#39;</span><span style="color: #f8f8f2">),</span>
+  <span style="color: #66d9ef">new</span> <span style="color: #a6e22e">Dog</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;Puppy 2&#39;</span><span style="color: #f8f8f2">),</span>
+  <span style="color: #66d9ef">new</span> <span style="color: #a6e22e">Dog</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;Puppy 3&#39;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">];</span>
 
-<span style="color: #d0d0d0">app.get(</span><span style="color: #ed9d13">&#39;/wiggle/:doggyId&#39;</span><span style="color: #d0d0d0">,</span> <span style="color: #6ab825; font-weight: bold">function</span><span style="color: #d0d0d0">(request,</span> <span style="color: #d0d0d0">response)</span> <span style="color: #d0d0d0">{</span>
-  <span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">doggyIndex</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">request.params.doggyId;</span>
-  <span style="color: #6ab825; font-weight: bold">if</span><span style="color: #d0d0d0">(doggyIndex</span> <span style="color: #d0d0d0">&amp;&amp;</span> <span style="color: #d0d0d0">doggyIndex</span> <span style="color: #d0d0d0">&lt;</span> <span style="color: #d0d0d0">dogs.length)</span> <span style="color: #d0d0d0">{</span>
-    <span style="color: #d0d0d0">response.send(dogs[doggyIndex].wiggle());</span>
-  <span style="color: #d0d0d0">}</span> <span style="color: #6ab825; font-weight: bold">else</span> <span style="color: #d0d0d0">{</span>
-    <span style="color: #d0d0d0">response.sendStatus(</span><span style="color: #3677a9">403</span><span style="color: #d0d0d0">);</span>
-  <span style="color: #d0d0d0">}</span>
-<span style="color: #d0d0d0">});</span>
+<span style="color: #a6e22e">app</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">get</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;/goodDog/:doggyId&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">request</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+  <span style="color: #66d9ef">const</span> <span style="color: #a6e22e">doggyIndex</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">request</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">params</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">doggyId</span><span style="color: #f8f8f2">;</span>
+  <span style="color: #66d9ef">if</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">doggyIndex</span> <span style="color: #f92672">&amp;&amp;</span> <span style="color: #a6e22e">doggyIndex</span> <span style="color: #f92672">&lt;</span> <span style="color: #a6e22e">dogs</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">length</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">send</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">dogs</span><span style="color: #f8f8f2">[</span><span style="color: #a6e22e">doggyIndex</span><span style="color: #f8f8f2">].</span><span style="color: #a6e22e">whoIsAGoodBoy</span><span style="color: #f8f8f2">());</span>
+  <span style="color: #f8f8f2">}</span> <span style="color: #66d9ef">else</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">sendStatus</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">403</span><span style="color: #f8f8f2">);</span>
+  <span style="color: #f8f8f2">}</span>
+<span style="color: #f8f8f2">});</span>
 
-<span style="color: #d0d0d0">app.listen(</span><span style="color: #3677a9">8080</span><span style="color: #d0d0d0">,</span> <span style="color: #6ab825; font-weight: bold">function</span><span style="color: #d0d0d0">(){</span>
-  <span style="color: #d0d0d0">console.log(</span><span style="color: #ed9d13">&#39;Listening on port 8080...&#39;</span><span style="color: #d0d0d0">);</span>
-<span style="color: #d0d0d0">});</span>
+<span style="color: #a6e22e">app</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">get</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;/wiggle/:doggyId&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">request</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+  <span style="color: #66d9ef">const</span> <span style="color: #a6e22e">doggyIndex</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">request</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">params</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">doggyId</span><span style="color: #f8f8f2">;</span>
+  <span style="color: #66d9ef">if</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">doggyIndex</span> <span style="color: #f92672">&amp;&amp;</span> <span style="color: #a6e22e">doggyIndex</span> <span style="color: #f92672">&lt;</span> <span style="color: #a6e22e">dogs</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">length</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">send</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">dogs</span><span style="color: #f8f8f2">[</span><span style="color: #a6e22e">doggyIndex</span><span style="color: #f8f8f2">].</span><span style="color: #a6e22e">wiggle</span><span style="color: #f8f8f2">());</span>
+  <span style="color: #f8f8f2">}</span> <span style="color: #66d9ef">else</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">sendStatus</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">403</span><span style="color: #f8f8f2">);</span>
+  <span style="color: #f8f8f2">}</span>
+<span style="color: #f8f8f2">});</span>
+
+<span style="color: #a6e22e">app</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">listen</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">8080</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(){</span>
+  <span style="color: #a6e22e">console</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">log</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;Listening on port 8080...&#39;</span><span style="color: #f8f8f2">);</span>
+<span style="color: #f8f8f2">});</span>
 </pre></div>
+
             <div class="ac-caption">Dynamic Routing</div>
 
             <p align="justify">
@@ -442,9 +616,9 @@
 
             <ul>
               <li><b>localhost:8080/goodDog/_doggyId_:</b> Where <i>_doggyId_</i> could be replaced by a number like
-                <i>localhost:8080/goodDog/2</i>. This will make puppy 1 says that he is the good dog;</li>
+                <i><a href="localhost:8080/goodDog/2">localhost:8080/goodDog/2</a></i>. This will make puppy 1 says that he is the good dog;</li>
               <li><b>localhost:8080/wiggle/_doggyId_:</b> Where <i>_doggyId_</i> could be replaced by a number like
-                <i>localhost:8080/wiggle/0</i>. This will make Brian wiggle his tail.</li>
+                <i><a href="localhost:8080/wiggle/0">localhost:8080/wiggle/0</a></i>. This will make Brian wiggle his tail.</li>
             </ul>
 
             <p align="justify">
@@ -463,32 +637,35 @@
               Just assume that this will solve our problems.
             </p>
 
-            <!-- HTML generated using hilite.me --><div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">express</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">require(</span><span style="color: #ed9d13">&#39;express&#39;</span><span style="color: #d0d0d0">);</span>
-<span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">Dog</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">require(</span><span style="color: #ed9d13">&#39;./Dog&#39;</span><span style="color: #d0d0d0">);</span>
-<span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">bodyParser</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">require(</span><span style="color: #ed9d13">&#39;body-parser&#39;</span><span style="color: #d0d0d0">);</span>
-<span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">parseUrlencoded</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">bodyParser.urlencoded({extend:</span> <span style="color: #6ab825; font-weight: bold">false</span><span style="color: #d0d0d0">});</span>
-<span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">app</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">express();</span>
-<span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">dogs</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">[...];</span>
+            <!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #e6db74">&#39;use strict&#39;</span><span style="color: #f8f8f2">;</span>
 
-<span style="color: #999999; font-style: italic">//app.get()...</span>
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">express</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;express&#39;</span><span style="color: #f8f8f2">);</span>
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">Dog</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;./Dog&#39;</span><span style="color: #f8f8f2">);</span>
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">bodyParser</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;body-parser&#39;</span><span style="color: #f8f8f2">);</span>
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">parseUrlencoded</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">bodyParser</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">urlencoded</span><span style="color: #f8f8f2">({</span><span style="color: #a6e22e">extend</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">false</span><span style="color: #f8f8f2">});</span>
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">app</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">express</span><span style="color: #f8f8f2">();</span>
+<span style="color: #66d9ef">let</span> <span style="color: #a6e22e">dogs</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">[...];</span>
 
-<span style="color: #d0d0d0">app.post(</span><span style="color: #ed9d13">&#39;/dog&#39;</span><span style="color: #d0d0d0">,</span> <span style="color: #d0d0d0">parseUrlencoded,</span> <span style="color: #6ab825; font-weight: bold">function</span><span style="color: #d0d0d0">(request,</span> <span style="color: #d0d0d0">response){</span>
-  <span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">data</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">request.body;</span>
-  <span style="color: #6ab825; font-weight: bold">if</span><span style="color: #d0d0d0">(data){</span>
-    <span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">newDog</span> <span style="color: #d0d0d0">=</span> <span style="color: #6ab825; font-weight: bold">new</span> <span style="color: #d0d0d0">Dog(data.name);</span>
+<span style="color: #75715e">//app.get()...</span>
 
-    <span style="color: #d0d0d0">dogs.push(newDog);</span>
+<span style="color: #a6e22e">app</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">post</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;/dog&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">parseUrlencoded</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">function</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">request</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+  <span style="color: #66d9ef">const</span> <span style="color: #a6e22e">data</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">request</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">body</span><span style="color: #f8f8f2">;</span>
+  <span style="color: #66d9ef">if</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">data</span><span style="color: #f8f8f2">){</span>
+    <span style="color: #66d9ef">const</span> <span style="color: #a6e22e">newDog</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">new</span> <span style="color: #a6e22e">Dog</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">data</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">name</span><span style="color: #f8f8f2">);</span>
 
-    <span style="color: #d0d0d0">response.status(</span><span style="color: #3677a9">201</span><span style="color: #d0d0d0">).send(</span><span style="color: #ed9d13">&#39;Dog added! Brian loved it.&#39;</span><span style="color: #d0d0d0">);</span>
-  <span style="color: #d0d0d0">}</span> <span style="color: #6ab825; font-weight: bold">else</span> <span style="color: #d0d0d0">{</span>
-    <span style="color: #d0d0d0">response.sendStatus(</span><span style="color: #3677a9">403</span><span style="color: #d0d0d0">);</span>
-  <span style="color: #d0d0d0">}</span>
-<span style="color: #d0d0d0">});</span>
+    <span style="color: #a6e22e">dogs</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">push</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">newDog</span><span style="color: #f8f8f2">);</span>
 
-<span style="color: #d0d0d0">app.listen(</span><span style="color: #3677a9">8080</span><span style="color: #d0d0d0">,</span> <span style="color: #6ab825; font-weight: bold">function</span><span style="color: #d0d0d0">(){</span>
-  <span style="color: #d0d0d0">console.log(</span><span style="color: #ed9d13">&#39;Listening on port 8080...&#39;</span><span style="color: #d0d0d0">);</span>
-<span style="color: #d0d0d0">});</span>
+    <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">status</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">201</span><span style="color: #f8f8f2">).</span><span style="color: #a6e22e">send</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;Dog added! Brian loved it.&#39;</span><span style="color: #f8f8f2">);</span>
+  <span style="color: #f8f8f2">}</span> <span style="color: #66d9ef">else</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">sendStatus</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">403</span><span style="color: #f8f8f2">);</span>
+  <span style="color: #f8f8f2">}</span>
+<span style="color: #f8f8f2">});</span>
+
+<span style="color: #a6e22e">app</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">listen</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">8080</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(){</span>
+  <span style="color: #a6e22e">console</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">log</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;Listening on port 8080...&#39;</span><span style="color: #f8f8f2">);</span>
+<span style="color: #f8f8f2">});</span>
 </pre></div>
+
             <div class="ac-caption">Post Request</div>
 
             <p align="justify">
@@ -503,15 +680,15 @@
               two would be implemented them.
             </p>
 
-            <!-- HTML generated using hilite.me -->
-            <div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #d0d0d0">...</span>
+            <!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #f8f8f2">...</span>
 
-<span style="color: #d0d0d0">app.put(</span><span style="color: #ed9d13">&#39;/dog&#39;</span><span style="color: #d0d0d0">,</span> <span style="color: #d0d0d0">parseUrlencoded,</span> <span style="color: #6ab825; font-weight: bold">function</span><span style="color: #d0d0d0">(request,</span> <span style="color: #d0d0d0">response){...});</span>
+<span style="color: #a6e22e">app</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">put</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;/dog&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">parseUrlencoded</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">request</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">){...});</span>
 
-<span style="color: #d0d0d0">app.</span><span style="color: #6ab825; font-weight: bold">delete</span><span style="color: #d0d0d0">(</span><span style="color: #ed9d13">&#39;/dog/:doggyId&#39;</span><span style="color: #d0d0d0">,</span> <span style="color: #d0d0d0">parseUrlencoded,</span> <span style="color: #6ab825; font-weight: bold">function</span><span style="color: #d0d0d0">(request,</span> <span style="color: #d0d0d0">response){...});</span>
+<span style="color: #a6e22e">app</span><span style="color: #f8f8f2">.</span><span style="color: #66d9ef">delete</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;/dog/:doggyId&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">request</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">){...});</span>
 
-<span style="color: #d0d0d0">...</span>
+<span style="color: #f8f8f2">...</span>
 </pre></div>
+
             <div class="ac-caption">Put and Delete Routes</div>
 
             <p align="justify">
@@ -520,35 +697,35 @@
               With it we can define our routes in other way.
             </p>
 
-            <!-- HTML generated using hilite.me -->
-            <div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #d0d0d0">...</span>
+            <!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #f8f8f2">...</span>
 
-<span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">dogRoute</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">app.route(</span><span style="color: #ed9d13">&#39;/dog&#39;</span><span style="color: #d0d0d0">);</span>
-<span style="color: #d0d0d0">dogRoute.post(parseUrlencoded,</span><span style="color: #6ab825; font-weight: bold">function</span><span style="color: #d0d0d0">(request,</span> <span style="color: #d0d0d0">response){...})</span>
-<span style="color: #d0d0d0">dogRoute.put(parseUrlencoded,</span> <span style="color: #6ab825; font-weight: bold">function</span><span style="color: #d0d0d0">(request,</span> <span style="color: #d0d0d0">response){...})</span>
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">dogRoute</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">app</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">route</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;/dog&#39;</span><span style="color: #f8f8f2">);</span>
+<span style="color: #a6e22e">dogRoute</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">post</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">parseUrlencoded</span><span style="color: #f8f8f2">,</span><span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">request</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">){...})</span>
+<span style="color: #a6e22e">dogRoute</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">put</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">parseUrlencoded</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">request</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">){...})</span>
 
-<span style="color: #d0d0d0">...</span>
+<span style="color: #f8f8f2">...</span>
 </pre></div>
+
             <div class="ac-caption">Using Route Object</div>
 
             <p align="justify">
               Hhhmmm.... Still not good. We are using the variable <i>dogRoute</i> too many times. Imagine if we have all
-              method types related to this route? No, we should have a better way! In fact, we have.
+              method types related to this route? No, we should have a better way! In fact, we have, just use chaining.
             </p>
 
-            <!-- HTML generated using hilite.me -->
-            <div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #d0d0d0">...</span>
+            <!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #f8f8f2">...</span>
 
-<span style="color: #d0d0d0">app.route(</span><span style="color: #ed9d13">&#39;/dog&#39;</span><span style="color: #d0d0d0">);</span>
-  <span style="color: #d0d0d0">.post(parseUrlencoded,</span><span style="color: #6ab825; font-weight: bold">function</span><span style="color: #d0d0d0">(request,</span> <span style="color: #d0d0d0">response){...})</span>
-  <span style="color: #d0d0d0">.put(parseUrlencoded,</span> <span style="color: #6ab825; font-weight: bold">function</span><span style="color: #d0d0d0">(request,</span> <span style="color: #d0d0d0">response){...})</span>
+<span style="color: #a6e22e">app</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">route</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;/dog&#39;</span><span style="color: #f8f8f2">)</span>
+  <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">post</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">parseUrlencoded</span><span style="color: #f8f8f2">,</span><span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">request</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">){...})</span>
+  <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">put</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">parseUrlencoded</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">request</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">){...})</span>
 
-<span style="color: #d0d0d0">...</span>
+<span style="color: #f8f8f2">...</span>
 </pre></div>
+
             <div class="ac-caption">Chaining Route Calls</div>
 
             <p align="justify">
-              That is how I like it! One less variable! Clean code! Smells like vicotry!
+              That is how I like it! One less variable! Clean code! Beautiful code! Smells like victory!
             </p>
           </div>
 				</section>
