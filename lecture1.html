@@ -116,7 +116,7 @@
                 </p>
 
                 <p align="justify">
-                  As Node.js is built using mostly C, it is fast, cross-plataform and, best of all, it is open source. You are
+                  As Node.js is built using mostly C++, it is fast, cross-plataform and, best of all, it is open source. You are
                   able to contribute and see what is going on under the hood.
                 </p>
 
@@ -224,7 +224,9 @@
                 <p align="justify">
                   What that means is that Node.js has a procedure that looks into a queue of events, every time an
                   event is triggered, the Event Loop will get this event, execute its handler and keep looking for a new
-                  event. And JavaScript have a code structure that enables a smooth coding for this kind of problem.
+                  event. And JavaScript have a code structure that enables a smooth coding for this kind of problem. You
+                  can have a look into this awesome <a href="https://youtu.be/8aGhZQkoFbQ?t=768">video</a> about how 
+                  event loop works.
                 </p>
 
 								<header>
@@ -274,7 +276,7 @@
                   <div class="hidden" id="eventEmitterClass">
                     <!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #e6db74">&#39;use strict&#39;</span><span style="color: #f8f8f2">;</span>
 
-<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">EventEmitter</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;events&#39;</span><span style="color: #f8f8f2">).</span><span style="color: #a6e22e">EventEmitter</span><span style="color: #f8f8f2">;</span>
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">EventEmitter</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;events&#39;</span><span style="color: #f8f8f2">).</span><span style="color: #a6e22e">EventEmitter</span><span style="color: #f8f8f2">;</span>
 
 <span style="color: #66d9ef">class</span> <span style="color: #a6e22e">Logger</span> <span style="color: #66d9ef">extends</span> <span style="color: #a6e22e">EventEmitter</span> <span style="color: #f8f8f2">{</span>
   <span style="color: #a6e22e">constructor</span> <span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
@@ -282,7 +284,7 @@
   <span style="color: #f8f8f2">}</span>
 <span style="color: #f8f8f2">}</span>
 
-<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">logger</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">new</span> <span style="color: #a6e22e">Logger</span><span style="color: #f8f8f2">();</span>
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">logger</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">new</span> <span style="color: #a6e22e">Logger</span><span style="color: #f8f8f2">();</span>
 
 <span style="color: #a6e22e">console</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">log</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;this is logger&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">logger</span><span style="color: #f8f8f2">);</span>
 
@@ -299,9 +301,9 @@
                 <div class="hidden-code">
                   <div><span class="title" onclick="toggleCode('#eventEmitterComposition')">Event Emitter as Object Composition</span></div>
                   <div class="hidden" id="eventEmitterComposition">
-                  <!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #e6db74">&#39;use strict&#39;</span><span style="color: #f8f8f2">;</span>
+                    <!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #e6db74">&#39;use strict&#39;</span><span style="color: #f8f8f2">;</span>
 
-<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">EventEmitter</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;events&#39;</span><span style="color: #f8f8f2">).</span><span style="color: #a6e22e">EventEmitter</span><span style="color: #f8f8f2">;</span>
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">EventEmitter</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;events&#39;</span><span style="color: #f8f8f2">).</span><span style="color: #a6e22e">EventEmitter</span><span style="color: #f8f8f2">;</span>
 
 <span style="color: #66d9ef">const</span> <span style="color: #a6e22e">Logger</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">()</span> <span style="color: #f92672">=&gt;</span> <span style="color: #f8f8f2">{</span>
   <span style="color: #66d9ef">return</span> <span style="color: #f8f8f2">Object.</span><span style="color: #a6e22e">assign</span><span style="color: #f8f8f2">({},</span> <span style="color: #f8f8f2">{</span>
@@ -309,7 +311,7 @@
   <span style="color: #f8f8f2">});</span>
 <span style="color: #f8f8f2">};</span>
 
-<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">logger</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">Logger</span><span style="color: #f8f8f2">();</span>
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">logger</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">Logger</span><span style="color: #f8f8f2">();</span>
 
 <span style="color: #a6e22e">logger</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">events</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">on</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;error&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">message</span><span style="color: #f8f8f2">){</span>
   <span style="color: #a6e22e">console</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">log</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;Error: &#39;</span> <span style="color: #f92672">+</span> <span style="color: #a6e22e">message</span><span style="color: #f8f8f2">);</span>
@@ -317,6 +319,7 @@
 
 <span style="color: #a6e22e">logger</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">events</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">emit</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;error&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;All your base are belong to us.&#39;</span><span style="color: #f8f8f2">);</span>
 </pre></div>
+
 
                   </div>
                 </div>
@@ -929,7 +932,92 @@
                   To save this action in your package.json we still have to add <i>--save</i> or <i>--save-dev</i>.
                 </p>
 
+                <p align="justify">
+                  Another thing that you might have noticed is an attribute called <b>scripts</b>. This field is where
+                  you can some shell commands (or shell scripts) to be run. We have pre defined values that we can add
+                  under <b>scripts</b>:
+                </p>
 
+                <ul>
+                  <li>prepublish;</li>
+                  <li>publish & postpublish;</li>
+                  <li>preinstall;</li>
+                  <li>install & postinstall;</li>
+                  <li>preuninstall & uninstall;</li>
+                  <li>postuninstall;</li>
+                  <li>preversion & version;</li>
+                  <li>postversion;</li>
+                  <li>pretest;</li>
+                  <li>test;</li>
+                  <li>posttest;</li>
+                  <li>prestop;</li>
+                  <li>stop;</li>
+                  <li>poststop;</li>
+                  <li>prestart;</li>
+                  <li>start;</li>
+                  <li>poststart;</li>
+                  <li>prerestart;</li>
+                  <li>restart;</li>
+                  <li>postrestart.</li>
+                </ul>
+
+                <p align="justify">
+                  You can find the whole documentation for that in this <a href="https://docs.npmjs.com/misc/scripts">
+                  link</a>. This is a long list, but I want you to pay attention to this set of values: preinstall, 
+                  install, postinstall, pretest, test, posttest and start. As you have already figured it out, all the
+                  values that start with "post" and "pre" are scripts run before and after its actions (install, test 
+                  and start) respectively. This way you can define commands to be executed in a pre-determined order
+                  so your app can work as expected.
+                </p>
+
+                <!-- HTML generated using hilite.me --><div style="background: #000000; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #cccccc">$</span> <span style="color: #cccccc">npm</span> <span style="color: #cccccc">start</span>
+</pre></div>
+              <div class="ac-caption">Calling a NPM script in the terminal</div>
+
+                <p align="justify">
+                  Another useful thing about this <b>scripts</b> attribute is that you can add any other value that
+                  you want to run any other task/command you may think of. This way you can define flows to be
+                  executed and give meaningful names to them.
+                </p>
+
+                <!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #f8f8f2">{</span>
+  <span style="color: #f8f8f2">...</span>
+  <span style="color: #e6db74">&quot;scripts&quot;</span><span style="color: #f92672">:</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #e6db74">&quot;clearModules&quot;</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&quot;rm -rf node_modules&quot;</span>
+  <span style="color: #f8f8f2">},</span>
+  <span style="color: #f8f8f2">...</span>
+<span style="color: #f8f8f2">}</span>
+</pre></div>
+                <div class="ac-caption">Example of a custom script</div>
+
+                <p align="justify">
+                  And we can easily execute them using:
+                </p>
+
+                <!-- HTML generated using hilite.me --><div style="background: #000000; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #cccccc">$</span> <span style="color: #cccccc">npm</span> <span style="color: #cccccc">run</span> <span style="color: #cccccc">clearModules</span>
+</pre></div>
+              <div class="ac-caption">Executing custom script</div>
+
+
+                <p align="justify">
+                  Ok, awesome features! Now, I want to tell you a secret. However, I don't want this to be a secret 
+                  anymore! Just tell everybody about this mind blowing information: remember that I told you guys about
+                  some libraries that needed to be installed globally? So, this way, we can use them in the command
+                  line? Well, there is some issues/problems about asking your team members to install global
+                  packages: they can't be described in the package.json; you have to document this somewhere else about
+                  this package that needs to be installed; it is one more step to add to the instalation process for 
+                  each global package; hard to manage the package's version throughout the whole team; we could face 
+                  some permission issues. But fear not, NPM have a solution.
+                </p>
+
+                <p align="justify">
+                  Instead of installing your pretty global packages globaly, install them locally, without the parameter
+                  "-g" (yes! you read it right.). "So how do I run those global packages now?", is that what you 
+                  thinking. I know. Come closer. Read this carefully: <span style="font-size: 4px;">all the packages 
+                  that you've installed locally can be used in the scripts that you defined under the <b>scripts</b> 
+                  attribute in your package.json. That said, you can install your "global" packages locally and use them
+                  for your pre-defined scripts.</span>.
+                </p>
 
               </div>
             </section>
