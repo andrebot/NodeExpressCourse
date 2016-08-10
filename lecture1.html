@@ -18,9 +18,9 @@
 		<script src="js/skel-layers.min.js"></script>
 		<script src="js/init.js"></script>
     <script type="text/javascript">
-      function toggleCode (id) {
-        var element = $(id);
-        if (element.is(':visible')) {
+      function toggleCode(id) {
+        var $element = $(id);
+        if ($element.is(':visible')) {
           $(id).slideUp();
         } else {
           $(id).slideDown();
@@ -28,7 +28,7 @@
 
       }
     </script>
-		
+
 		<noscript>
 			<link rel="stylesheet" href="css/skel.css" />
 			<link rel="stylesheet" href="css/style.css" />
@@ -79,9 +79,9 @@
 			<!-- Header -->
 				<section id="header" class="skel-layers-fixed">
 					<header>
-						
+
 						<h1 id="logo"><a href="#">Node.js - Lecture 1</a></h1>
-						
+
 					</header>
 					<nav id="nav">
 						<ul>
@@ -123,24 +123,24 @@
 								<header>
 									<h4>What is Node ?</h4>
 								</header>
-								
+
 								<ul>
                   <li>Awesome;</li>
                   <li>Event Based;</li>
                   <li>Low Level;</li>
                   <li>Good tool to build Real-Time data apps.</li>
                 </ul>
-																
+
 								<header>
 									<h4>What is not ?</h4>
 								</header>
-								
+
 								<ul>
                   <li>A Web Framework;</li>
                   <li>Multi-Threaded;</li>
                   <li>Slow.</li>
                 </ul>
-								
+
 								<header>
 									<h4>Blocking and Non-Blocking</h4>
 								</header>
@@ -225,7 +225,7 @@
                   What that means is that Node.js has a procedure that looks into a queue of events, every time an
                   event is triggered, the Event Loop will get this event, execute its handler and keep looking for a new
                   event. And JavaScript have a code structure that enables a smooth coding for this kind of problem. You
-                  can have a look into this awesome <a href="https://youtu.be/8aGhZQkoFbQ?t=768">video</a> about how 
+                  can have a look into this awesome <a href="https://youtu.be/8aGhZQkoFbQ?t=768">video</a> about how
                   event loop works.
                 </p>
 
@@ -234,7 +234,7 @@
 								</header>
 
 								<p></p>
-								
+
 								<span class="image fit">
 									<img style="width: 70%; margin: 0 auto;" src="images/img1.svg" alt="Event Loop Diagram"/>
 								</span>
@@ -963,9 +963,9 @@
 
                 <p align="justify">
                   You can find the whole documentation for that in this <a href="https://docs.npmjs.com/misc/scripts">
-                  link</a>. This is a long list, but I want you to pay attention to this set of values: preinstall, 
+                  link</a>. This is a long list, but I want you to pay attention to this set of values: preinstall,
                   install, postinstall, pretest, test, posttest and start. As you have already figured it out, all the
-                  values that start with "post" and "pre" are scripts run before and after its actions (install, test 
+                  values that start with "post" and "pre" are scripts run before and after its actions (install, test
                   and start) respectively. This way you can define commands to be executed in a pre-determined order
                   so your app can work as expected.
                 </p>
@@ -1000,21 +1000,21 @@
 
 
                 <p align="justify">
-                  Ok, awesome features! Now, I want to tell you a secret. However, I don't want this to be a secret 
+                  Ok, awesome features! Now, I want to tell you a secret. However, I don't want this to be a secret
                   anymore! Just tell everybody about this mind blowing information: remember that I told you guys about
                   some libraries that needed to be installed globally? So, this way, we can use them in the command
                   line? Well, there is some issues/problems about asking your team members to install global
                   packages: they can't be described in the package.json; you have to document this somewhere else about
-                  this package that needs to be installed; it is one more step to add to the instalation process for 
-                  each global package; hard to manage the package's version throughout the whole team; we could face 
+                  this package that needs to be installed; it is one more step to add to the instalation process for
+                  each global package; hard to manage the package's version throughout the whole team; we could face
                   some permission issues. But fear not, NPM have a solution.
                 </p>
 
                 <p align="justify">
                   Instead of installing your pretty global packages globaly, install them locally, without the parameter
-                  "-g" (yes! you read it right.). "So how do I run those global packages now?", is that what you 
-                  thinking. I know. Come closer. Read this carefully: <span style="font-size: 4px;">all the packages 
-                  that you've installed locally can be used in the scripts that you defined under the <b>scripts</b> 
+                  "-g" (yes! you read it right.). "So how do I run those global packages now?", is that what you
+                  thinking. I know. Come closer. Read this carefully: <span style="font-size: 4px;">all the packages
+                  that you've installed locally can be used in the scripts that you defined under the <b>scripts</b>
                   attribute in your package.json. That said, you can install your "global" packages locally and use them
                   for your pre-defined scripts.</span>.
                 </p>
