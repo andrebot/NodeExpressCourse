@@ -18,9 +18,9 @@
 		<script src="js/skel-layers.min.js"></script>
 		<script src="js/init.js"></script>
     <script type="text/javascript">
-      function toggleCode (id) {
-        var element = $(id);
-        if (element.is(':visible')) {
+      function toggleCode(id) {
+        var $element = $(id);
+        if ($element.is(':visible')) {
           $(id).slideUp();
         } else {
           $(id).slideDown();
@@ -28,7 +28,7 @@
 
       }
     </script>
-		
+
 		<noscript>
 			<link rel="stylesheet" href="css/skel.css" />
 			<link rel="stylesheet" href="css/style.css" />
@@ -79,14 +79,15 @@
 			<!-- Header -->
 				<section id="header" class="skel-layers-fixed">
 					<header>
-						
+
 						<h1 id="logo"><a href="#">Node.js - Lecture 4</a></h1>
-						
+
 					</header>
 					<nav id="nav">
 						<ul>
               <li><a href="#one">Security Measures</a></li>
-              <li><a href="#two">Cookie Authentication</a></li>
+              <li><a href="#two">Cross-Origin Resource Sharing</a></li>
+              <li><a href="#three">Cookie Authentication</a></li>
               <li><a href="#six">Exercises</a></li>
 						</ul>
 						<img src="images/ac-logo.png" alt="">
@@ -107,33 +108,33 @@
 
               <p align="justify">
                 As we well know the web has several flaws and security issues which we try to protect against every day.
-                Among them we have XSS (Cross-site scripting), Session Hijack and Cross-Origin Resource Sharing. In 
+                Among them we have XSS (Cross-site scripting), Session Hijack and Cross-Origin Resource Sharing. In
                 short sentences we can describe each of them as:
               </p>
 
               <ul>
                 <li>
-                  <b>XSS</b>: Cross-Site Scripting is when a user tries to inject executable scripts into your site to 
-                  try to get sensitive data, do malicious actions into you domain or into other users computers. This 
+                  <b>XSS</b>: Cross-Site Scripting is when a user tries to inject executable scripts into your site to
+                  try to get sensitive data, do malicious actions into you domain or into other users computers. This
                   kind of security breach is due to lack of validation by the application in question;
                 </li>
                 <li>
-                  <b>Session Hijacking</b>: is when a cracker steals an user's session to pretend to be him to do 
+                  <b>Session Hijacking</b>: is when a cracker steals an user's session to pretend to be him to do
                   malicous actions or steal sensitive data. It can be done using <i>XSS</i>, a <i>Malware</i>, <i>
                   fixation</i> or <i>sidejacking</i>. It consists of an attacker getting the user's cookie/
                   authentication token an use it to access the service/application;
                 </li>
                 <li>
-                  <b>CORS</b>: Cross-Origin Resource Sharing standard is a set of headers that grant different domians 
-                  access to a different domain than which they are from. For instance, a website at http://domain.com 
-                  links a image from http://domainX.com, and the last domain allows for external clients get its 
+                  <b>CORS</b>: Cross-Origin Resource Sharing standard is a set of headers that grant different domains
+                  access to a different domain than which they are from. For instance, a website at http://domain.com
+                  links a image from http://domainX.com, and the last domain allows for external clients get its
                   resources.
                 </li>
               </ul>
 
               <p align="justify">
-                So, every time we build a web application we must be aware of these flaws and fight against them, as 
-                hard as we can! Now is the time to ask: André, how can we fight against tem? No rush, take your time 
+                So, every time we build a web application we must be aware of these flaws and fight against them, as
+                hard as we can! Now is the time to ask: André, how can we fight against them? No rush, take your time
                 to ask, don't be shy, I'm very friendly.
               </p>
 
@@ -144,7 +145,7 @@
               </p>
 
               <p align="justify">
-                One more time... How? Well, you can start making your backend fool-proof! And to do that you should 
+                One more time... How? Well, you can start making your backend fool-proof! And to do that you should
                 always validate all client's/requester's input data. You can even go one step further and validate
                 your output value after processing a request.
               </p>
@@ -158,14 +159,14 @@
               <p align="justify">
                 You might be asking about how can you validate your output. For pure services, which do not provide
                 webpages, it is easier to check this, as you can guess is just to validate your data. However, for HTML
-                it might be trickier, you might have to escape dangerous HTML and such. The good news is that some 
+                it might be trickier, you might have to escape dangerous HTML and such. The good news is that some
                 HTML templating framework already do this kind of work for you, for example Handlebars. All variables
                 added to the template inside the double brackets <i>{{}}</i> are escaped.
               </p>
 
               <p align="justify">
                 Other useful tool to make it even harder to crackers to do something malicious into your application
-                is to create session restrictions and mechanism such authentication tokens (ex: cookies). Those tokens 
+                is to create session restrictions and mechanism such authentication tokens (ex: cookies). Those tokens
                 can be ruled by a set of guidelines which will give some headache to break. Some of these rules are:
               </p>
 
@@ -190,6 +191,85 @@
 
           <!-- Two -->
           <section id="two">
+            <div class="container">
+              <header class="major">
+                <h2>Cross-Origin Resource Sharing</h2>
+              </header>
+
+              <p align="justify">
+                Lets start with something easy to solve, CORS. Imagine that you have a bunch of different APIs up and running in
+                different places. One day you had the big idea to create another SPA, however you decided to reuse some endpoints
+                from another API which you have, because it felt right. So, as a smart boy as you are, you dicided to create
+                a server just to serve your new SPA application. However, while you were developing your SPA, for some reason, you 
+                couldn´t do any AJAX.
+              </p>
+
+              <p align="justify">
+                Well, this happens to protect any server from running any harmful or unauthorized action into its core. So enabling
+                CORS to a specific amount of domains is a secure way to white list which domain is secure to receive actions from.
+                So now it is a good moment to show you guys how to do this in Node. As Express is all about middlewares, why not
+                creating one?
+              </p>
+
+              <!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #e6db74">&#39;use strict&#39;</span><span style="color: #f8f8f2">;</span>
+
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">allowedMethods</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">[</span><span style="color: #e6db74">&#39;GET&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;PUT&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;POST&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;DELETE&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;PATCH&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;OPTIONS&#39;</span><span style="color: #f8f8f2">];</span>
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">allowedHeaders</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">[</span><span style="color: #e6db74">&#39;Content-Type&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;Authorization&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;Content-Length&#39;</span><span style="color: #f8f8f2">];</span>
+
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">CORSEnabler</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">function</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">request</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">next</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+  <span style="color: #a6e22e">console</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">log</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;Configuring CORS&#39;</span><span style="color: #f8f8f2">);</span>
+  <span style="color: #a6e22e">console</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">log</span><span style="color: #f8f8f2">(</span><span style="color: yellow;">`</span><span style="color: #a6e22e">Method</span> <span style="color: #a6e22e">$</span><span style="color: #f8f8f2">{</span><span style="color: #a6e22e">request</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">method</span><span style="color: #f8f8f2">}</span> <span style="color: #a6e22e">from</span> <span style="color: #a6e22e">$</span><span style="color: #f8f8f2">{</span><span style="color: #a6e22e">request</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">origin</span><span style="color: #f8f8f2">}</span><span style="color: yellow;">`</span><span style="color: #f8f8f2">);</span>
+
+  <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">allowedMethod</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">indexOf</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">request</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">method</span><span style="color: #f8f8f2">)</span> <span style="color: #f92672">&gt;</span> <span style="color: #f92672">-</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">header</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;Access-Control-Allow-Origin&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;*&#39;</span><span style="color: #f8f8f2">);</span>
+    <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">header</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;Access-Control-Allow-Methods&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">allowedMethods</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">join</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;,&#39;</span><span style="color: #f8f8f2">));</span>
+    <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">header</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;Access-Control-Allow-Headers&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">allowedHeaders</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">join</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;, &#39;</span><span style="color: #f8f8f2">));</span>
+  <span style="color: #f8f8f2">}</span>
+
+  <span style="color: #a6e22e">next</span><span style="color: #f8f8f2">();</span>
+<span style="color: #f8f8f2">}</span>
+
+<span style="color: #a6e22e">module</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">exports</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">CORSEnabler</span><span style="color: #f8f8f2">;</span>
+</pre></div>
+
+              <div class="ac-caption">CORS Middleware</div>
+
+              <p align="justify">
+                Now we add it as a middleware in our API.
+              </p>
+
+              <!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #e6db74">&#39;use strict&#39;</span><span style="color: #f8f8f2">;</span>
+
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">express</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;express&#39;</span><span style="color: #f8f8f2">);</span>
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">dogRoute</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;./dogRoute&#39;</span><span style="color: #f8f8f2">);</span>
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">goodDogRoute</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;./goodDogRoute&#39;</span><span style="color: #f8f8f2">);</span>
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">wiggleRoute</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;./wiggleRoute&#39;</span><span style="color: #f8f8f2">);</span>
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">CORS</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;./CORSEnabler&#39;</span><span style="color: #f8f8f2">);</span>
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">app</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">express</span><span style="color: #f8f8f2">();</span>
+
+<span style="color: #a6e22e">app</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">use</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">CORS</span><span style="color: #f8f8f2">);</span>
+
+<span style="color: #a6e22e">app</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">use</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;/dog&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">dogRoute</span><span style="color: #f8f8f2">);</span>
+<span style="color: #a6e22e">app</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">use</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;/goodDog&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">goodDogRoute</span><span style="color: #f8f8f2">);</span>
+<span style="color: #a6e22e">app</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">use</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;/wiggle&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">wiggleRoute</span><span style="color: #f8f8f2">);</span>
+
+<span style="color: #a6e22e">app</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">listen</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">8080</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">function</span> <span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+  <span style="color: #a6e22e">console</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">log</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;Listening on port 8080...&#39;</span><span style="color: #f8f8f2">);</span>
+<span style="color: #f8f8f2">});</span>
+</pre></div>
+
+              <div class="ac-caption">Server with CORS configuration</div>
+
+              <p align="justify">
+                As this CORS configuration is a middleware we can use it in all the ways we now it can be used, like enabling CORS for
+                just a specific route or a specific endpoint.
+              </p>
+
+            </div>
+          </section>
+
+          <!-- Three -->
+          <section id="three">
             <div class="container">
               <header class="major">
                 <h2>Cookie Authentication</h2>
@@ -254,24 +334,26 @@
                 what matters. Create a auth.js file with the content below.
               </p>
 
-              <!-- HTML generated using hilite.me -->
-              <div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #66d9ef">var</span> <span style="color: #a6e22e">jwt</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;jsonwebtoken&#39;</span><span style="color: #f8f8f2">);</span>
-<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">cookieName</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&#39;dogServiceCookie&#39;</span><span style="color: #f8f8f2">;</span>
-<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">secret</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&#39;HanSoloShootsFirst&#39;</span><span style="color: #f8f8f2">;</span>
-<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">issuer</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&#39;Peter Griffin&#39;</span><span style="color: #f8f8f2">;</span>
-<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">twoMinutes</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&#39;2&#39;</span><span style="color: #f8f8f2">;</span>
+							<!-- HTML generated using hilite.me -->
+							<div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #e6db74">&#39;use strict&#39;</span><span style="color: #f8f8f2">;</span>
 
-<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">Auth</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
-  <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">verifyAuth</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">request</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
-    <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">cookie</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">request</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">cookies</span><span style="color: #f8f8f2">[</span><span style="color: #a6e22e">cookieName</span><span style="color: #f8f8f2">];</span>
-    <span style="color: #66d9ef">if</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">cookie</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">jwt</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;jsonwebtoken&#39;</span><span style="color: #f8f8f2">);</span>
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">cookieName</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&#39;dogServiceCookie&#39;</span><span style="color: #f8f8f2">;</span>
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">secret</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&#39;HanSoloShootsFirst&#39;</span><span style="color: #f8f8f2">;</span>
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">issuer</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&#39;Peter Griffin&#39;</span><span style="color: #f8f8f2">;</span>
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">twoMinutes</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&#39;2&#39;</span><span style="color: #f8f8f2">;</span>
+
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">Auth</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+  <span style="color: #66d9ef">const</span> <span style="color: #a6e22e">verifyAuth</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">request</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #66d9ef">let</span> <span style="color: #a6e22e">cookie</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">request</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">cookies</span><span style="color: #f8f8f2">[</span><span style="color: #a6e22e">cookieName</span><span style="color: #f8f8f2">];</span>
+    <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">cookie</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
       <span style="color: #66d9ef">try</span> <span style="color: #f8f8f2">{</span>
         <span style="color: #a6e22e">request</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">token</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">jwt</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">verify</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">cookie</span><span style="color: #f8f8f2">,</span>
                                    <span style="color: #a6e22e">secret</span><span style="color: #f8f8f2">,</span>
                                    <span style="color: #f8f8f2">{</span><span style="color: #a6e22e">issuer</span><span style="color: #f92672">:</span> <span style="color: #a6e22e">issuer</span><span style="color: #f8f8f2">,</span>
                                     <span style="color: #a6e22e">ignoreExpiration</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">false</span><span style="color: #f8f8f2">});</span>
         <span style="color: #66d9ef">return</span> <span style="color: #66d9ef">true</span><span style="color: #f8f8f2">;</span>
-      <span style="color: #f8f8f2">}</span> <span style="color: #66d9ef">catch</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">error</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+      <span style="color: #f8f8f2">}</span> <span style="color: #66d9ef">catch</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">error</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
         <span style="color: #a6e22e">console</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">log</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;Request unauthorized. Error decoding token.&#39;</span><span style="color: #f8f8f2">);</span>
         <span style="color: #66d9ef">return</span> <span style="color: #66d9ef">false</span><span style="color: #f8f8f2">;</span>
       <span style="color: #f8f8f2">}</span>
@@ -281,16 +363,16 @@
     <span style="color: #f8f8f2">}</span>
   <span style="color: #f8f8f2">};</span>
 
-  <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">isAuthenticated</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">request</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">next</span><span style="color: #f8f8f2">){</span>
+  <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">isAuthenticated</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">function</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">request</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">next</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
 
-    <span style="color: #66d9ef">if</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">verifyAuth</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">request</span><span style="color: #f8f8f2">))</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">verifyAuth</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">request</span><span style="color: #f8f8f2">))</span> <span style="color: #f8f8f2">{</span>
       <span style="color: #a6e22e">next</span><span style="color: #f8f8f2">();</span>
     <span style="color: #f8f8f2">}</span> <span style="color: #66d9ef">else</span> <span style="color: #f8f8f2">{</span>
       <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">sendStatus</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">407</span><span style="color: #f8f8f2">);</span>
     <span style="color: #f8f8f2">}</span>
   <span style="color: #f8f8f2">};</span>
 
-  <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">signToken</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">payload</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+  <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">signToken</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">function</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">payload</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
     <span style="color: #66d9ef">return</span> <span style="color: #a6e22e">jwt</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">sign</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">payload</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">secret</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">{</span><span style="color: #a6e22e">issuer</span><span style="color: #f92672">:</span> <span style="color: #a6e22e">issuer</span><span style="color: #f8f8f2">,</span>
                                       <span style="color: #a6e22e">expiresInMinutes</span><span style="color: #f92672">:</span> <span style="color: #a6e22e">twoMinutes</span><span style="color: #f8f8f2">});</span>
   <span style="color: #f8f8f2">};</span>
@@ -300,52 +382,184 @@
 </pre></div>
               <div class="ac-caption">Cookie Authentication Middleware</div>
 
+							<div class="hidden-code">
+	              <div><span class="title" onclick="toggleCode('#CookieMiddlewareES6Class')">Cookie Middleware ES6 Class</span></div>
+	              <div class="hidden" id="CookieMiddlewareES6Class">
+									<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #e6db74">&#39;use strict&#39;</span><span style="color: #f8f8f2">;</span>
+
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">jwt</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;jsonwebtoken&#39;</span><span style="color: #f8f8f2">);</span>
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">cookieName</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&#39;dogServiceCookie&#39;</span><span style="color: #f8f8f2">;</span>
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">secret</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&#39;HanSoloShootsFirst&#39;</span><span style="color: #f8f8f2">;</span>
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">issuer</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&#39;Peter Griffin&#39;</span><span style="color: #f8f8f2">;</span>
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">twoMinutes</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&#39;2&#39;</span><span style="color: #f8f8f2">;</span>
+
+<span style="color: #66d9ef">class</span> <span style="color: #a6e22e">Auth</span> <span style="color: #f8f8f2">{</span>
+  <span style="color: #a6e22e">constructor</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{}</span>
+
+  <span style="color: #a6e22e">isAuthenticated</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #66d9ef">return</span> <span style="color: #66d9ef">function</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">request</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">next</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+      <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">verifyAuth</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">request</span><span style="color: #f8f8f2">))</span> <span style="color: #f8f8f2">{</span>
+        <span style="color: #a6e22e">next</span><span style="color: #f8f8f2">();</span>
+      <span style="color: #f8f8f2">}</span> <span style="color: #66d9ef">else</span> <span style="color: #f8f8f2">{</span>
+        <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">sendStatus</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">407</span><span style="color: #f8f8f2">);</span>
+      <span style="color: #f8f8f2">}</span>
+    <span style="color: #f8f8f2">};</span>
+  <span style="color: #f8f8f2">}</span>
+
+  <span style="color: #a6e22e">verifyAuth</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">request</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #66d9ef">let</span> <span style="color: #a6e22e">cookie</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">request</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">cookies</span><span style="color: #f8f8f2">[</span><span style="color: #a6e22e">cookieName</span><span style="color: #f8f8f2">];</span>
+    <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">cookie</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+      <span style="color: #66d9ef">try</span> <span style="color: #f8f8f2">{</span>
+        <span style="color: #a6e22e">request</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">token</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">jwt</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">verify</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">cookie</span><span style="color: #f8f8f2">,</span>
+                                   <span style="color: #a6e22e">secret</span><span style="color: #f8f8f2">,</span>
+                                   <span style="color: #f8f8f2">{</span>
+                                     <span style="color: #a6e22e">issuer</span><span style="color: #f92672">:</span> <span style="color: #a6e22e">issuer</span><span style="color: #f8f8f2">,</span>
+                                     <span style="color: #a6e22e">ignoreExpiration</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">false</span>
+                                   <span style="color: #f8f8f2">});</span>
+        <span style="color: #66d9ef">return</span> <span style="color: #66d9ef">true</span><span style="color: #f8f8f2">;</span>
+      <span style="color: #f8f8f2">}</span> <span style="color: #66d9ef">catch</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">error</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+        <span style="color: #a6e22e">console</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">log</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;Request unauthorized. Error decoding token.&#39;</span><span style="color: #f8f8f2">);</span>
+        <span style="color: #66d9ef">return</span> <span style="color: #66d9ef">false</span><span style="color: #f8f8f2">;</span>
+      <span style="color: #f8f8f2">}</span>
+    <span style="color: #f8f8f2">}</span> <span style="color: #66d9ef">else</span> <span style="color: #f8f8f2">{</span>
+      <span style="color: #a6e22e">console</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">log</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;Request unauthorized. No token available.&#39;</span><span style="color: #f8f8f2">);</span>
+      <span style="color: #66d9ef">return</span> <span style="color: #66d9ef">false</span><span style="color: #f8f8f2">;</span>
+    <span style="color: #f8f8f2">}</span>
+  <span style="color: #f8f8f2">}</span>
+
+  <span style="color: #a6e22e">signToken</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">payload</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #66d9ef">return</span> <span style="color: #a6e22e">jwt</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">sign</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">payload</span><span style="color: #f8f8f2">,</span>
+               <span style="color: #a6e22e">secret</span><span style="color: #f8f8f2">,</span>
+               <span style="color: #f8f8f2">{</span>
+                 <span style="color: #a6e22e">issuer</span><span style="color: #f92672">:</span> <span style="color: #a6e22e">issuer</span><span style="color: #f8f8f2">,</span>
+                 <span style="color: #a6e22e">expiresInMinutes</span><span style="color: #f92672">:</span> <span style="color: #a6e22e">twoMinutes</span>
+               <span style="color: #f8f8f2">});</span>
+  <span style="color: #f8f8f2">}</span>
+<span style="color: #f8f8f2">}</span>
+
+<span style="color: #a6e22e">module</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">exports</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">new</span> <span style="color: #a6e22e">Auth</span><span style="color: #f8f8f2">();</span>
+</pre></div>
+
+								</div>
+							</div>
+
+							<div class="hidden-code">
+	              <div><span class="title" onclick="toggleCode('#CookieMiddlewareObjComp')">Cookie Middleware Object Composition</span></div>
+	              <div class="hidden" id="CookieMiddlewareObjComp">
+									<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #e6db74">&#39;use strict&#39;</span><span style="color: #f8f8f2">;</span>
+
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">jwt</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;jsonwebtoken&#39;</span><span style="color: #f8f8f2">);</span>
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">cookieName</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&#39;dogServiceCookie&#39;</span><span style="color: #f8f8f2">;</span>
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">secret</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&#39;HanSoloShootsFirst&#39;</span><span style="color: #f8f8f2">;</span>
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">issuer</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&#39;Peter Griffin&#39;</span><span style="color: #f8f8f2">;</span>
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">twoMinutes</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&#39;2&#39;</span><span style="color: #f8f8f2">;</span>
+
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">Auth</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">()</span> <span style="color: #f92672">=&gt;</span> <span style="color: #f8f8f2">{</span>
+  <span style="color: #66d9ef">const</span> <span style="color: #a6e22e">verifyAuth</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">function</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">request</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #66d9ef">let</span> <span style="color: #a6e22e">cookie</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">request</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">cookies</span><span style="color: #f8f8f2">[</span><span style="color: #a6e22e">cookieName</span><span style="color: #f8f8f2">];</span>
+    <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">cookie</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+      <span style="color: #66d9ef">try</span> <span style="color: #f8f8f2">{</span>
+        <span style="color: #a6e22e">request</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">token</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">jwt</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">verify</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">cookie</span><span style="color: #f8f8f2">,</span>
+                                   <span style="color: #a6e22e">secret</span><span style="color: #f8f8f2">,</span>
+                                   <span style="color: #f8f8f2">{</span>
+                                     <span style="color: #a6e22e">issuer</span><span style="color: #f92672">:</span> <span style="color: #a6e22e">issuer</span><span style="color: #f8f8f2">,</span>
+                                     <span style="color: #a6e22e">ignoreExpiration</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">false</span>
+                                   <span style="color: #f8f8f2">});</span>
+        <span style="color: #66d9ef">return</span> <span style="color: #66d9ef">true</span><span style="color: #f8f8f2">;</span>
+      <span style="color: #f8f8f2">}</span> <span style="color: #66d9ef">catch</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">error</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+        <span style="color: #a6e22e">console</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">log</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;Request unauthorized. Error decoding token.&#39;</span><span style="color: #f8f8f2">);</span>
+        <span style="color: #66d9ef">return</span> <span style="color: #66d9ef">false</span><span style="color: #f8f8f2">;</span>
+      <span style="color: #f8f8f2">}</span>
+    <span style="color: #f8f8f2">}</span> <span style="color: #66d9ef">else</span> <span style="color: #f8f8f2">{</span>
+      <span style="color: #a6e22e">console</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">log</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;Request unauthorized. No token available.&#39;</span><span style="color: #f8f8f2">);</span>
+      <span style="color: #66d9ef">return</span> <span style="color: #66d9ef">false</span><span style="color: #f8f8f2">;</span>
+    <span style="color: #f8f8f2">}</span>
+  <span style="color: #f8f8f2">};</span>
+
+  <span style="color: #66d9ef">return</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #a6e22e">isAuthenticated</span><span style="color: #f92672">:</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">request</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">next</span><span style="color: #f8f8f2">)</span> <span style="color: #f92672">=&gt;</span> <span style="color: #f8f8f2">{</span>
+      <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">verifyAuth</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">request</span><span style="color: #f8f8f2">))</span> <span style="color: #f8f8f2">{</span>
+        <span style="color: #a6e22e">next</span><span style="color: #f8f8f2">();</span>
+      <span style="color: #f8f8f2">}</span> <span style="color: #66d9ef">else</span> <span style="color: #f8f8f2">{</span>
+        <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">sendStatus</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">407</span><span style="color: #f8f8f2">);</span>
+      <span style="color: #f8f8f2">}</span>
+    <span style="color: #f8f8f2">},</span>
+
+    <span style="color: #a6e22e">signToken</span><span style="color: #f92672">:</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">payload</span><span style="color: #f8f8f2">)</span> <span style="color: #f92672">=&gt;</span> <span style="color: #f8f8f2">{</span>
+      <span style="color: #66d9ef">return</span> <span style="color: #a6e22e">jwt</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">sign</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">payload</span><span style="color: #f8f8f2">,</span>
+                 <span style="color: #a6e22e">secret</span><span style="color: #f8f8f2">,</span>
+                 <span style="color: #f8f8f2">{</span>
+                   <span style="color: #a6e22e">issuer</span><span style="color: #f92672">:</span> <span style="color: #a6e22e">issuer</span><span style="color: #f8f8f2">,</span>
+                   <span style="color: #a6e22e">expiresInMinutes</span><span style="color: #f92672">:</span> <span style="color: #a6e22e">twoMinutes</span>
+                 <span style="color: #f8f8f2">});</span>
+    <span style="color: #f8f8f2">},</span>
+
+  <span style="color: #f8f8f2">};</span>
+<span style="color: #f8f8f2">};</span>
+
+<span style="color: #a6e22e">module</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">exports</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">Auth</span><span style="color: #f8f8f2">();</span>
+</pre></div>
+								</div>
+							</div>
+
               <p align="justify">
                 Now I'm going to add these middleware in the Dog Service code. I will add it in the <i>dog</i> route
                 since it has the <b>DELETE</b>, <b>POST</b> and <b>PUT</b> methods.
               </p>
 
-              <!-- HTML generated using hilite.me --><div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">bodyParser</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">require(</span><span style="color: #ed9d13">&#39;body-parser&#39;</span><span style="color: #d0d0d0">);</span>
-<span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">parseUrlencoded</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">bodyParser.urlencoded({extend:</span> <span style="color: #6ab825; font-weight: bold">false</span><span style="color: #d0d0d0">});</span>
-<span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">express</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">require(</span><span style="color: #ed9d13">&#39;express&#39;</span><span style="color: #d0d0d0">);</span>
-<span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">router</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">express.Router();</span>
-<span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">dogs</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">require(</span><span style="color: #ed9d13">&#39;./dogs&#39;</span><span style="color: #d0d0d0">);</span>
-<span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">Dog</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">require(</span><span style="color: #ed9d13">&#39;./Dog&#39;</span><span style="color: #d0d0d0">);</span>
-<span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">auth</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">require(</span><span style="color: #ed9d13">&#39;./auth&#39;</span><span style="color: #d0d0d0">);</span>
+							<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #e6db74">&#39;use strict&#39;</span><span style="color: #f8f8f2">;</span>
 
-<span style="color: #d0d0d0">router.use(auth.isAuthenticated);</span>
-<span style="color: #d0d0d0">router.use(parseUrlencoded);</span>
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">bodyParser</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;body-parser&#39;</span><span style="color: #f8f8f2">);</span>
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">parseUrlencoded</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">bodyParser</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">urlencoded</span><span style="color: #f8f8f2">({</span><span style="color: #a6e22e">extend</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">false</span><span style="color: #f8f8f2">});</span>
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">express</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;express&#39;</span><span style="color: #f8f8f2">);</span>
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">router</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">express</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">Router</span><span style="color: #f8f8f2">();</span>
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">Dog</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;./Dog&#39;</span><span style="color: #f8f8f2">);</span>
+<span style="color: #66d9ef">let</span> <span style="color: #a6e22e">dogs</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;./dogs&#39;</span><span style="color: #f8f8f2">);</span>
 
-<span style="color: #d0d0d0">router.route(</span><span style="color: #ed9d13">&#39;/&#39;</span><span style="color: #d0d0d0">)</span>
-    <span style="color: #d0d0d0">.post(</span><span style="color: #6ab825; font-weight: bold">function</span><span style="color: #d0d0d0">(request,</span> <span style="color: #d0d0d0">response){</span>
-        <span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">data</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">request.body;</span>
-        <span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">newDog</span> <span style="color: #d0d0d0">=</span> <span style="color: #6ab825; font-weight: bold">new</span> <span style="color: #d0d0d0">Dog(data.name);</span>
+<span style="color: #a6e22e">router</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">use</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">auth</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">isAuthenticated</span><span style="color: #f8f8f2">);</span>
+<span style="color: #a6e22e">router</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">use</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">parseUrlencoded</span><span style="color: #f8f8f2">);</span>
 
-        <span style="color: #d0d0d0">dogs.push(newDog);</span>
+<span style="color: #a6e22e">router</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">route</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;/&#39;</span><span style="color: #f8f8f2">)</span>
+  <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">post</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">request</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">){</span>
+    <span style="color: #66d9ef">const</span> <span style="color: #a6e22e">data</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">request</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">body</span><span style="color: #f8f8f2">;</span>
 
-        <span style="color: #d0d0d0">response.status(</span><span style="color: #3677a9">201</span><span style="color: #d0d0d0">).json(</span><span style="color: #ed9d13">&#39;Dog added! Brian loved it.&#39;</span><span style="color: #d0d0d0">);</span>
-    <span style="color: #d0d0d0">})</span>
-    <span style="color: #d0d0d0">.put(</span><span style="color: #6ab825; font-weight: bold">function</span><span style="color: #d0d0d0">(request,</span> <span style="color: #d0d0d0">response){</span>
-        <span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">dog</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">request.body;</span>
-        <span style="color: #6ab825; font-weight: bold">for</span><span style="color: #d0d0d0">(</span><span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">x</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">dogs.length</span> <span style="color: #d0d0d0">-</span> <span style="color: #3677a9">1</span><span style="color: #d0d0d0">;</span> <span style="color: #d0d0d0">x</span> <span style="color: #d0d0d0">&gt;=</span> <span style="color: #3677a9">0</span><span style="color: #d0d0d0">;</span> <span style="color: #d0d0d0">x--)</span> <span style="color: #d0d0d0">{</span>
-            <span style="color: #6ab825; font-weight: bold">if</span><span style="color: #d0d0d0">(dogs[x].getName()</span> <span style="color: #d0d0d0">===</span> <span style="color: #d0d0d0">dog.name)</span> <span style="color: #d0d0d0">{</span>
-                <span style="color: #d0d0d0">dogs[x].setName(dog.newName);</span>
-            <span style="color: #d0d0d0">}</span>
-        <span style="color: #d0d0d0">}</span>
+    <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">data</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+      <span style="color: #66d9ef">const</span> <span style="color: #a6e22e">newDog</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">Dog</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">data</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">name</span><span style="color: #f8f8f2">);</span>
 
-        <span style="color: #d0d0d0">response.sendStatus(</span><span style="color: #3677a9">200</span><span style="color: #d0d0d0">);</span>
-    <span style="color: #d0d0d0">});</span>
+      <span style="color: #a6e22e">dogs</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">push</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">newDog</span><span style="color: #f8f8f2">);</span>
 
-<span style="color: #d0d0d0">router.route(</span><span style="color: #ed9d13">&#39;/:doggyId&#39;</span><span style="color: #d0d0d0">)</span>
-    <span style="color: #d0d0d0">.</span><span style="color: #6ab825; font-weight: bold">delete</span><span style="color: #d0d0d0">(</span><span style="color: #6ab825; font-weight: bold">function</span><span style="color: #d0d0d0">(request,</span> <span style="color: #d0d0d0">response){</span>
-        <span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">doggyId</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">request.params.doggyId;</span>
+      <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">status</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">201</span><span style="color: #f8f8f2">).</span><span style="color: #a6e22e">send</span><span style="color: #f8f8f2">(</span><span style="color: yellow;">`</span><span style="color: #a6e22e">Dog</span> <span style="color: #a6e22e">$</span><span style="color: #f8f8f2">{</span><span style="color: #a6e22e">data</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">name</span><span style="color: #f8f8f2">}</span> <span style="color: #a6e22e">added</span><span style="color: #f92672">!</span> <span style="color: #a6e22e">Brian</span> <span style="color: #a6e22e">loved</span> <span style="color: #a6e22e">it</span><span style="color: #f8f8f2">.</span><span style="color: yellow;">`</span><span style="color: #f8f8f2">);</span>
+    <span style="color: #f8f8f2">}</span> <span style="color: #66d9ef">else</span> <span style="color: #f8f8f2">{</span>
+      <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">sendStatus</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">403</span><span style="color: #f8f8f2">);</span>
+    <span style="color: #f8f8f2">}</span>
+  <span style="color: #f8f8f2">})</span>
+  <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">put</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">function</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">request</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #66d9ef">const</span> <span style="color: #a6e22e">data</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">request</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">body</span><span style="color: #f8f8f2">;</span>
 
-        <span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">dog</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">dogs.splice(doggyId,</span> <span style="color: #3677a9">1</span><span style="color: #d0d0d0">)[</span><span style="color: #3677a9">0</span><span style="color: #d0d0d0">];</span>
+    <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">data</span> <span style="color: #f92672">&amp;&amp;</span> <span style="color: #a6e22e">data</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">index</span> <span style="color: #f92672">&amp;&amp;</span> <span style="color: #a6e22e">data</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">name</span><span style="color: #f8f8f2">){</span>
+      <span style="color: #66d9ef">const</span> <span style="color: #a6e22e">dog</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">dogs</span><span style="color: #f8f8f2">[</span><span style="color: #a6e22e">data</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">index</span><span style="color: #f8f8f2">];</span>
+      <span style="color: #a6e22e">dog</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">setName</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">data</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">name</span><span style="color: #f8f8f2">);</span>
 
-        <span style="color: #d0d0d0">response.json(dog);</span>
-    <span style="color: #d0d0d0">});</span>
+      <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">send</span><span style="color: #f8f8f2">(</span><span style="color: yellow;">`</span><span style="color: #a6e22e">Dog</span> <span style="color: yellow;">#</span><span style="color: #a6e22e">$</span><span style="color: #f8f8f2">{</span><span style="color: #a6e22e">data</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">index</span><span style="color: #f8f8f2">}</span> <span style="color: #a6e22e">had</span> <span style="color: #a6e22e">its</span> <span style="color: #a6e22e">name</span> <span style="color: #a6e22e">changed</span> <span style="color: #a6e22e">to</span> <span style="color: #a6e22e">$</span><span style="color: #f8f8f2">{</span><span style="color: #a6e22e">dog</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">getName</span><span style="color: #f8f8f2">()}</span><span style="color: yellow;">`</span><span style="color: #f8f8f2">);</span>
+    <span style="color: #f8f8f2">}</span> <span style="color: #66d9ef">else</span> <span style="color: #f8f8f2">{</span>
+      <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">sendStatus</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">403</span><span style="color: #f8f8f2">);</span>
+    <span style="color: #f8f8f2">}</span>
+  <span style="color: #f8f8f2">});</span>
 
-<span style="color: #d0d0d0">module.exports</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">router;</span>
+<span style="color: #a6e22e">router</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">route</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;/:doggyId&#39;</span><span style="color: #f8f8f2">)</span>
+  <span style="color: #f8f8f2">.</span><span style="color: #66d9ef">delete</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">request</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">){</span>
+    <span style="color: #66d9ef">const</span> <span style="color: #a6e22e">doggyId</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">request</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">params</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">doggyId</span><span style="color: #f8f8f2">;</span>
+
+    <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">doggyId</span> <span style="color: #f92672">&amp;&amp;</span> <span style="color: #a6e22e">doggyId</span> <span style="color: #f92672">&lt;</span> <span style="color: #a6e22e">dogs</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">length</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+      <span style="color: #66d9ef">const</span> <span style="color: #a6e22e">removed</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">dogs</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">splice</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">doggyId</span><span style="color: #f8f8f2">);</span>
+
+      <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">send</span><span style="color: #f8f8f2">(</span><span style="color: yellow;">`</span><span style="color: #a6e22e">Dog</span> <span style="color: yellow;">#</span><span style="color: #a6e22e">$</span><span style="color: #f8f8f2">{</span><span style="color: #a6e22e">doggyId</span><span style="color: #f8f8f2">}</span> <span style="color: #a6e22e">was</span> <span style="color: #a6e22e">removed</span><span style="color: #f8f8f2">.</span> <span style="color: #a6e22e">Now</span> <span style="color: #a6e22e">we</span> <span style="color: #a6e22e">have</span> <span style="color: #a6e22e">$</span><span style="color: #f8f8f2">{</span><span style="color: #a6e22e">dogs</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">length</span><span style="color: #f8f8f2">}</span> <span style="color: #a6e22e">dogs</span><span style="color: #f8f8f2">.</span><span style="color: yellow;">`</span><span style="color: #f8f8f2">);</span>
+    <span style="color: #f8f8f2">}</span> <span style="color: #66d9ef">else</span> <span style="color: #f8f8f2">{</span>
+      <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">sendStatus</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">403</span><span style="color: #f8f8f2">);</span>
+    <span style="color: #f8f8f2">}</span>
+  <span style="color: #f8f8f2">});</span>
+
+<span style="color: #a6e22e">module</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">exports</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">router</span><span style="color: #f8f8f2">;</span>
 </pre></div>
 
               <div class="ac-caption">Dog Service With Authentication</div>
@@ -354,51 +568,56 @@
                 Now I will create a login route.
               </p>
 
-              <!-- HTML generated using hilite.me --><div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">express</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">require(</span><span style="color: #ed9d13">&#39;express&#39;</span><span style="color: #d0d0d0">);</span>
-<span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">router</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">express.Router();</span>
-<span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">dogs</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">require(</span><span style="color: #ed9d13">&#39;./dogs&#39;</span><span style="color: #d0d0d0">);</span>
-<span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">auth</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">require(</span><span style="color: #ed9d13">&#39;./auth&#39;</span><span style="color: #d0d0d0">);</span>
-<span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">bodyParser</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">require(</span><span style="color: #ed9d13">&#39;body-parser&#39;</span><span style="color: #d0d0d0">);</span>
-<span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">parseUrlencoded</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">bodyParser.urlencoded({extended:</span> <span style="color: #6ab825; font-weight: bold">false</span><span style="color: #d0d0d0">});</span>
+							<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #e6db74">&#39;use strict&#39;</span><span style="color: #f8f8f2">;</span>
 
-<span style="color: #d0d0d0">router.route(</span><span style="color: #ed9d13">&#39;/&#39;</span><span style="color: #d0d0d0">)</span>
-    <span style="color: #d0d0d0">.post(parseUrlencoded,</span> <span style="color: #6ab825; font-weight: bold">function</span><span style="color: #d0d0d0">(request,</span> <span style="color: #d0d0d0">response){</span>
-        <span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">data</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">request.body;</span>
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">express</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;express&#39;</span><span style="color: #f8f8f2">);</span>
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">router</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">express</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">Router</span><span style="color: #f8f8f2">();</span>
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">auth</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;./auth&#39;</span><span style="color: #f8f8f2">);</span>
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">bodyParser</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;body-parser&#39;</span><span style="color: #f8f8f2">);</span>
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">parseUrlencoded</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">bodyParser</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">urlencoded</span><span style="color: #f8f8f2">({</span><span style="color: #a6e22e">extended</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">false</span><span style="color: #f8f8f2">});</span>
+<span style="color: #66d9ef">let</span> <span style="color: #a6e22e">dogs</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;./dogs&#39;</span><span style="color: #f8f8f2">);</span>
 
-        <span style="color: #6ab825; font-weight: bold">if</span><span style="color: #d0d0d0">(data</span> <span style="color: #d0d0d0">&amp;&amp;</span> <span style="color: #d0d0d0">data.doggyId</span> <span style="color: #d0d0d0">&amp;&amp;</span> <span style="color: #d0d0d0">data.doggyId</span> <span style="color: #d0d0d0">&lt;</span> <span style="color: #d0d0d0">dogs.length)</span> <span style="color: #d0d0d0">{</span>
-            <span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">dog</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">dogs[data.doggyId];</span>
-            <span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">payload</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">{name:</span> <span style="color: #d0d0d0">dog.getName(),</span> <span style="color: #d0d0d0">id:</span> <span style="color: #d0d0d0">data.doggyId};</span>
-            <span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">token</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">auth.signToken(payload);</span>
-            <span style="color: #999999; font-style: italic">// set the cookie on the response</span>
-            <span style="color: #d0d0d0">response.cookie(</span><span style="color: #ed9d13">&quot;dogServiceCookie&quot;</span> <span style="color: #d0d0d0">,token);</span>
-            <span style="color: #d0d0d0">response.status(</span><span style="color: #3677a9">200</span><span style="color: #d0d0d0">).json(token);</span>
-        <span style="color: #d0d0d0">}</span><span style="color: #6ab825; font-weight: bold">else</span><span style="color: #d0d0d0">{</span>
-            <span style="color: #d0d0d0">response.sendStatus(</span><span style="color: #3677a9">403</span><span style="color: #d0d0d0">);</span>
-        <span style="color: #d0d0d0">}</span>
-    <span style="color: #d0d0d0">});</span>
+<span style="color: #a6e22e">router</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">route</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;/&#39;</span><span style="color: #f8f8f2">)</span>
+    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">post</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">parseUrlencoded</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">request</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">){</span>
+        <span style="color: #66d9ef">let</span> <span style="color: #a6e22e">data</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">request</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">body</span><span style="color: #f8f8f2">;</span>
 
-<span style="color: #d0d0d0">module.exports</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">router;</span>
+        <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">data</span> <span style="color: #f92672">&amp;&amp;</span> <span style="color: #a6e22e">data</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">doggyId</span> <span style="color: #f92672">&amp;&amp;</span> <span style="color: #a6e22e">data</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">doggyId</span> <span style="color: #f92672">&lt;</span> <span style="color: #a6e22e">dogs</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">length</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+            <span style="color: #66d9ef">let</span> <span style="color: #a6e22e">dog</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">dogs</span><span style="color: #f8f8f2">[</span><span style="color: #a6e22e">data</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">doggyId</span><span style="color: #f8f8f2">];</span>
+            <span style="color: #66d9ef">let</span> <span style="color: #a6e22e">payload</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">{</span><span style="color: #a6e22e">name</span><span style="color: #f92672">:</span> <span style="color: #a6e22e">dog</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">getName</span><span style="color: #f8f8f2">(),</span> <span style="color: #a6e22e">id</span><span style="color: #f92672">:</span> <span style="color: #a6e22e">data</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">doggyId</span><span style="color: #f8f8f2">};</span>
+            <span style="color: #66d9ef">const</span> <span style="color: #a6e22e">token</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">auth</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">signToken</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">payload</span><span style="color: #f8f8f2">);</span>
+
+            <span style="color: #75715e">// set the cookie on the response</span>
+            <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">cookie</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;dogServiceCookie&quot;</span> <span style="color: #f8f8f2">,</span><span style="color: #a6e22e">token</span><span style="color: #f8f8f2">);</span>
+            <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">status</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">200</span><span style="color: #f8f8f2">).</span><span style="color: #a6e22e">json</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">token</span><span style="color: #f8f8f2">);</span>
+        <span style="color: #f8f8f2">}</span><span style="color: #66d9ef">else</span><span style="color: #f8f8f2">{</span>
+            <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">sendStatus</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">403</span><span style="color: #f8f8f2">);</span>
+        <span style="color: #f8f8f2">}</span>
+    <span style="color: #f8f8f2">});</span>
+
+<span style="color: #a6e22e">module</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">exports</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">router</span><span style="color: #f8f8f2">;</span>
 </pre></div>
 
               <div class="ac-caption">loginRoute.js</div>
 
-              <!-- HTML generated using hilite.me --><div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">express</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">require(</span><span style="color: #ed9d13">&#39;express&#39;</span><span style="color: #d0d0d0">);</span>
-<span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">app</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">express();</span>
-<span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">dogRoute</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">require(</span><span style="color: #ed9d13">&#39;./dogRoute&#39;</span><span style="color: #d0d0d0">);</span>
-<span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">goodDogRoute</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">require(</span><span style="color: #ed9d13">&#39;./goodDogRoute&#39;</span><span style="color: #d0d0d0">);</span>
-<span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">wiggleRoute</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">require(</span><span style="color: #ed9d13">&#39;./wiggleRoute&#39;</span><span style="color: #d0d0d0">);</span>
-<span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">loginRoute</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">require(</span><span style="color: #ed9d13">&#39;./loginRoute&#39;</span><span style="color: #d0d0d0">);</span>
-<span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">cookieParser</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">require(</span><span style="color: #ed9d13">&#39;cookie-parser&#39;</span><span style="color: #d0d0d0">);</span>
+							<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #e6db74">&#39;use strict&#39;</span><span style="color: #f8f8f2">;</span>
 
-<span style="color: #d0d0d0">app.use(cookieParser());</span>
-<span style="color: #d0d0d0">app.use(</span><span style="color: #ed9d13">&#39;/dog&#39;</span><span style="color: #d0d0d0">,</span> <span style="color: #d0d0d0">dogRoute);</span>
-<span style="color: #d0d0d0">app.use(</span><span style="color: #ed9d13">&#39;/goodDog&#39;</span><span style="color: #d0d0d0">,</span> <span style="color: #d0d0d0">goodDogRoute);</span>
-<span style="color: #d0d0d0">app.use(</span><span style="color: #ed9d13">&#39;/wiggle&#39;</span><span style="color: #d0d0d0">,</span> <span style="color: #d0d0d0">wiggleRoute);</span>
-<span style="color: #d0d0d0">app.use(</span><span style="color: #ed9d13">&#39;/login&#39;</span><span style="color: #d0d0d0">,</span> <span style="color: #d0d0d0">loginRoute);</span>
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">express</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;express&#39;</span><span style="color: #f8f8f2">);</span>
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">cookieParser</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;cookie-parser&#39;</span><span style="color: #f8f8f2">);</span>
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">dogRoute</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;./dogRoute&#39;</span><span style="color: #f8f8f2">);</span>
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">goodDogRoute</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;./goodDogRoute&#39;</span><span style="color: #f8f8f2">);</span>
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">wiggleRoute</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;./wiggleRoute&#39;</span><span style="color: #f8f8f2">);</span>
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">loginRoute</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;./loginRoute&#39;</span><span style="color: #f8f8f2">);</span>
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">app</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">express</span><span style="color: #f8f8f2">();</span>
 
-<span style="color: #d0d0d0">app.listen(</span><span style="color: #3677a9">8080</span><span style="color: #d0d0d0">,</span> <span style="color: #6ab825; font-weight: bold">function</span><span style="color: #d0d0d0">(){</span>
-    <span style="color: #d0d0d0">console.log(</span><span style="color: #ed9d13">&#39;Listening on port 8080...&#39;</span><span style="color: #d0d0d0">);</span>
-<span style="color: #d0d0d0">});</span>
+<span style="color: #a6e22e">app</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">use</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">cookieParser</span><span style="color: #f8f8f2">());</span>
+<span style="color: #a6e22e">app</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">use</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;/dog&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">dogRoute</span><span style="color: #f8f8f2">);</span>
+<span style="color: #a6e22e">app</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">use</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;/goodDog&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">goodDogRoute</span><span style="color: #f8f8f2">);</span>
+<span style="color: #a6e22e">app</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">use</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;/wiggle&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">wiggleRoute</span><span style="color: #f8f8f2">);</span>
+<span style="color: #a6e22e">app</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">use</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;/login&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">loginRoute</span><span style="color: #f8f8f2">);</span>
+
+<span style="color: #a6e22e">app</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">listen</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">8080</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(){</span>
+    <span style="color: #a6e22e">console</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">log</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;Listening on port 8080...&#39;</span><span style="color: #f8f8f2">);</span>
+<span style="color: #f8f8f2">});</span>
 </pre></div>
 
               <div class="ac-caption">Adding Login Route To Our Application</div>
@@ -418,9 +637,7 @@
               </header>
 
               <p align="justify">
-                I've created another branch named <b>Lecture 4</b> in the <a href="https://github.com/andrebot/Lecture2-NodeExpressAC">same repository</a>
-                that we used in <a href="/acbook-nodejs/lecture3.html#three">Lecture 3: Exercises</a>. Please move all the
-                code that you did in the master branch and move it to this new branch.
+                Keep using your code which you developed on <a href="lecture3.html#three">last lecture</a>
               </p>
 
               <header>
@@ -428,8 +645,19 @@
               </header>
 
               <p align="justify">
-                Using the server created at <a href="/acbook-nodejs/lecture3.html#three">Lesson 3: Exercises</a> create
-                a <b>Grunt</b> task to use <b>nodemon</b> to bounce our server.
+                Now that we have all endpoints done, lets create a login feature. First create a POST login route, where it receives 
+                an email and a password. This route will get this information, try to get the user from the database and create a
+                cookie to be stored in the client. The content of this cookie is an object which contains the attribute <b>logged</b> 
+                that receives a boolean value. You have already created a cookie middleware in the last exercices, refactor it to
+                get the auth cookie and authorize the client to use this routes:
+
+                <ul>
+                  <li>GET: retrive a specific user;</li>
+                  <li>DELETE: remove a user;</li>
+                  <li>PUT: change user's password.</li>
+                </ul>
+
+                Don't forget to handle errors, problems and create a log out route.
               </p>
 
               <header>
@@ -437,8 +665,14 @@
               </header>
 
               <p align="justify">
-                Using the same code from last exercise create Unit Tests for your routes (Using the same stack as the
-                example in <a href="/acbook-nodejs/lecture3.html#two">Test</a>).
+                Create a JWT middleware to add another security layer to your APP. User JWT standard in your auth cookie created
+                in the last exercise. It should expire in one hour. Your payload should have this attributes:
+
+                <ul>
+                  <li>email;</li>
+                  <li>admin;</li>
+                  <li>issuer.</li>
+                </ul>
               </p>
 
               <header>
@@ -446,7 +680,7 @@
               </header>
 
               <p align="justify">
-                Using the same code from last exercise create a task to run your test cases automatically.
+                Create in your HTML providaded by your exercise's repository a section to log in into your application.
               </p>
 
               <header>
@@ -454,7 +688,8 @@
               </header>
 
               <p align="justify">
-                Using the same code from last exercise add a coverage feature for your source code.
+                Using the same code from last exercise create a new route that get the info from the logged user.
+                Your route should be <b>http://localhost:3000/me</b>
               </p>
 
               <header>
@@ -462,14 +697,11 @@
               </header>
 
               <p align="justify">
-                Using the same code from last exercise create a login feature that validates your user by email and
-                password. Your login route should be <b>localhost:3000/login</b>. You should use <b>JSON Web Token</b>
-                concepts. Your token should expire in one day. Your payload must have these info:
+                Add these new rules into your API:
 
                 <ul>
-                  <li>name;</li>
-                  <li>role(admin or user);</li>
-                  <li>issuer;</li>
+                  <li>Delete user should require authentication and the logged user should be an Admin;</li>
+                  <li>Change user's password should require authentication and should only be done by the same user;</li>
                 </ul>
               </p>
 
@@ -478,8 +710,8 @@
               </header>
 
               <p align="justify">
-                Using the same code from last exercise create a new route that get the info form the logged user.
-                Your route should be <b>http://localhost:3000/me</b>
+                Enable CORS in your application for any domain, making any action and having any headers. Remember to have a config 
+                file for that. You can use what you already have.
               </p>
 
               <header>
@@ -487,19 +719,26 @@
               </header>
 
               <p align="justify">
-                Using the same code from last exercise add Authorizaton and Athentication to your user routes:
+                Create a white list of domains which can access your domain. And make it only this endpoints available:
 
                 <ul>
-                  <li>List all users should require authentication;</li>
-                  <li>Get logged user should require authentication;</li>
-                  <li>Get user should require authentication;</li>
-                  <li>Delete user should require authentication and the logged user should be an Admin;</li>
-                  <li>Change user's password should require authentication;</li>
+                  <li>Get all users;</li>
+                  <li>Log in;</li>
+                  <li>Get info from logged user.</li>
                 </ul>
               </p>
 
               <header>
                 <h4>Exercise 8:</h4>
+              </header>
+
+              <p align="justify">
+                Revise your code. Try to see if there is any security issues. Validate all your incoming data. Make your API
+                robust.
+              </p>
+
+              <header>
+                <h4>Exercise 9:</h4>
               </header>
 
               <p align="justify">
@@ -545,6 +784,14 @@
                 <li>blockUserRequested: id</li>
                 <li>blockUserRequester: id</li>
               </ul>
+
+              <header>
+                <h4>Exercise 10:</h4>
+              </header>
+
+              <p align="justify">
+                <b>CHALLENGE:</b> search for 'CORS preflight' and implement it in your application.
+              </p>
             </div>
           </section>
         </div>
