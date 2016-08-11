@@ -6,7 +6,7 @@
 -->
 <html>
 	<head>
-		<title>Node.js - Lecture 4</title>
+		<title>Node.js - Lecture 5</title>
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
@@ -18,9 +18,9 @@
 		<script src="js/skel-layers.min.js"></script>
 		<script src="js/init.js"></script>
     <script type="text/javascript">
-      function toggleCode (id) {
-        var element = $(id);
-        if (element.is(':visible')) {
+      function toggleCode(id) {
+        var $element = $(id);
+        if ($element.is(':visible')) {
           $(id).slideUp();
         } else {
           $(id).slideDown();
@@ -28,7 +28,7 @@
 
       }
     </script>
-		
+
 		<noscript>
 			<link rel="stylesheet" href="css/skel.css" />
 			<link rel="stylesheet" href="css/style.css" />
@@ -79,9 +79,9 @@
 			<!-- Header -->
 				<section id="header" class="skel-layers-fixed">
 					<header>
-						
+
 						<h1 id="logo"><a href="#">Node.js - Lecture 4</a></h1>
-						
+
 					</header>
 					<nav id="nav">
 						<ul>
@@ -154,18 +154,19 @@
                 need to install it:
               </p>
 
-              <!-- HTML generated using hilite.me -->
-              <div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #a6e22e">$</span> <span style="color: #a6e22e">npm</span> <span style="color: #a6e22e">install</span> <span style="color: #a6e22e">grunt</span>
+							<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #a6e22e">$</span> <span style="color: #a6e22e">npm</span> <span style="color: #a6e22e">install</span> <span style="color: #a6e22e">grunt</span> <span style="color: #f92672">--</span><span style="color: #a6e22e">save</span><span style="color: #f92672">-</span><span style="color: #a6e22e">dev</span>
 </pre></div>
+
               <div class="ac-caption">Installing Grunt</div>
 
               <p align="justify">
-                We have to install Grunt's CLI too, which is a Command Line Interface. This will allow us to call and use Grunt as easy as typing commands in our terminal. This package must be installed globaly.
+                We have to install Grunt's CLI too, which is a Command Line Interface. This will allow us to call and use
+								Grunt easily with NPM.
               </p>
 
-              <!-- HTML generated using hilite.me -->
-              <div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #a6e22e">$</span> <span style="color: #a6e22e">npm</span> <span style="color: #a6e22e">install</span> <span style="color: #a6e22e">grunt</span><span style="color: #f92672">-</span><span style="color: #a6e22e">cli</span> <span style="color: #f92672">-</span><span style="color: #a6e22e">g</span>
+							<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #a6e22e">$</span> <span style="color: #a6e22e">npm</span> <span style="color: #a6e22e">install</span> <span style="color: #a6e22e">grunt</span><span style="color: #f92672">-</span><span style="color: #a6e22e">cli</span> <span style="color: #f92672">--</span><span style="color: #a6e22e">save</span><span style="color: #f92672">-</span><span style="color: #a6e22e">dev</span>
 </pre></div>
+
               <div class="ac-caption">Installing Grunt-CLI</div>
 
               <p align="justify">
@@ -189,25 +190,25 @@
                 should have inside.
               </p>
 
-              <!-- HTML generated using hilite.me -->
-              <div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #a6e22e">module</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">exports</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">grunt</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
-<span style="color: #a6e22e">grunt</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">initConfig</span><span style="color: #f8f8f2">({</span>
-  <span style="color: #a6e22e">task1</span><span style="color: #f92672">:</span> <span style="color: #f8f8f2">{</span>
-    <span style="color: #a6e22e">sub_task</span><span style="color: #f92672">:</span> <span style="color: #f8f8f2">{</span>
-     <span style="color: #f8f8f2">...</span>
-    <span style="color: #f8f8f2">},</span>
-    <span style="color: #a6e22e">sub_task2</span><span style="color: #f92672">:</span><span style="color: #f8f8f2">{</span>
-      <span style="color: #f8f8f2">...</span>
+							<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #a6e22e">module</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">exports</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">grunt</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+  <span style="color: #a6e22e">grunt</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">initConfig</span><span style="color: #f8f8f2">({</span>
+    <span style="color: #a6e22e">task1</span><span style="color: #f92672">:</span> <span style="color: #f8f8f2">{</span>
+      <span style="color: #a6e22e">sub_task</span><span style="color: #f92672">:</span> <span style="color: #f8f8f2">{</span>
+       <span style="color: #f8f8f2">...</span>
+      <span style="color: #f8f8f2">},</span>
+      <span style="color: #a6e22e">sub_task2</span><span style="color: #f92672">:</span><span style="color: #f8f8f2">{</span>
+        <span style="color: #f8f8f2">...</span>
+      <span style="color: #f8f8f2">}</span>
     <span style="color: #f8f8f2">}</span>
-  <span style="color: #f8f8f2">}</span>
-<span style="color: #f8f8f2">});</span>
+  <span style="color: #f8f8f2">});</span>
 
-<span style="color: #a6e22e">grunt</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">loadNpmTasks</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;package_task1&#39;</span><span style="color: #f8f8f2">);</span>
+  <span style="color: #a6e22e">grunt</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">loadNpmTasks</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;package_task1&#39;</span><span style="color: #f8f8f2">);</span>
 
-<span style="color: #a6e22e">grunt</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">registerTask</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;default&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">[</span><span style="color: #e6db74">&#39;task1&#39;</span><span style="color: #f8f8f2">]);</span>
-<span style="color: #a6e22e">grunt</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">registerTask</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;justOne&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">[</span><span style="color: #e6db74">&#39;task1:sub_task2&#39;</span><span style="color: #f8f8f2">]);</span>
+  <span style="color: #a6e22e">grunt</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">registerTask</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;default&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">[</span><span style="color: #e6db74">&#39;task1&#39;</span><span style="color: #f8f8f2">]);</span>
+  <span style="color: #a6e22e">grunt</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">registerTask</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;justOne&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">[</span><span style="color: #e6db74">&#39;task1:sub_task2&#39;</span><span style="color: #f8f8f2">]);</span>
 <span style="color: #f8f8f2">};</span>
 </pre></div>
+
               <div class="ac-caption">Glance At a Gruntfile</div>
 
               <p align="justify">
@@ -236,12 +237,12 @@
               <p align="justify">
                 Enough talk. First thing, lets get right of this cursed task that is to bounce our server every time we
                 do some changes. Lets automate it. First, we will install <a href="http://nodemon.io/">nodemon</a>. However,
-                we need nodemon for <b>Grunt</b> that is <a href="https://github.com/ChrisWren/grunt-nodemon">grunt-nodemon</a>.
+                we need nodemon for <b>Grunt</b> which can be found at <a href="https://github.com/ChrisWren/grunt-nodemon">grunt-nodemon</a>.
               </p>
 
-              <!-- HTML generated using hilite.me -->
-              <div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #a6e22e">$</span> <span style="color: #a6e22e">npm</span> <span style="color: #a6e22e">install</span> <span style="color: #a6e22e">grunt-nodemon</span>
+							<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #a6e22e">$</span> <span style="color: #a6e22e">npm</span> <span style="color: #a6e22e">install</span> <span style="color: #a6e22e">grunt</span><span style="color: #f92672">-</span><span style="color: #a6e22e">nodemon</span> <span style="color: #f92672">--</span><span style="color: #a6e22e">save</span><span style="color: #f92672">-</span><span style="color: #a6e22e">dev</span>
 </pre></div>
+
               <div class="ac-caption">Installing Nodemon For Grunt</div>
 
               <p align="justify">
@@ -249,36 +250,70 @@
                 changed:
               </p>
 
-              <!-- HTML generated using hilite.me -->
-              <div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #a6e22e">module</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">exports</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">grunt</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
-<span style="color: #a6e22e">grunt</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">initConfig</span><span style="color: #f8f8f2">({</span>
-  <span style="color: #a6e22e">nodemon</span><span style="color: #f92672">:</span> <span style="color: #f8f8f2">{</span>
-    <span style="color: #a6e22e">express</span><span style="color: #f92672">:</span> <span style="color: #f8f8f2">{</span>
-      <span style="color: #a6e22e">script</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;index.js&#39;</span><span style="color: #f8f8f2">,</span>
-      <span style="color: #a6e22e">options</span><span style="color: #f92672">:</span> <span style="color: #f8f8f2">{</span>
-        <span style="color: #a6e22e">watch</span><span style="color: #f92672">:</span> <span style="color: #f8f8f2">[</span><span style="color: #e6db74">&#39;./&#39;</span><span style="color: #f8f8f2">],</span>
-        <span style="color: #a6e22e">cwd</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;src&#39;</span>
+							<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #a6e22e">module</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">exports</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">grunt</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+  <span style="color: #a6e22e">grunt</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">initConfig</span><span style="color: #f8f8f2">({</span>
+    <span style="color: #a6e22e">nodemon</span><span style="color: #f92672">:</span> <span style="color: #f8f8f2">{</span>
+      <span style="color: #a6e22e">express</span><span style="color: #f92672">:</span> <span style="color: #f8f8f2">{</span>
+        <span style="color: #a6e22e">script</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;index.js&#39;</span><span style="color: #f8f8f2">,</span>
+        <span style="color: #a6e22e">options</span><span style="color: #f92672">:</span> <span style="color: #f8f8f2">{</span>
+          <span style="color: #a6e22e">watch</span><span style="color: #f92672">:</span> <span style="color: #f8f8f2">[</span><span style="color: #e6db74">&#39;./&#39;</span><span style="color: #f8f8f2">],</span>
+          <span style="color: #a6e22e">cwd</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;src&#39;</span>
+        <span style="color: #f8f8f2">}</span>
       <span style="color: #f8f8f2">}</span>
     <span style="color: #f8f8f2">}</span>
-  <span style="color: #f8f8f2">}</span>
-<span style="color: #f8f8f2">});</span>
+  <span style="color: #f8f8f2">});</span>
 
-<span style="color: #a6e22e">grunt</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">loadNpmTasks</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;grunt-nodemon&#39;</span><span style="color: #f8f8f2">);</span>
+  <span style="color: #a6e22e">grunt</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">loadNpmTasks</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;grunt-nodemon&#39;</span><span style="color: #f8f8f2">);</span>
 
-<span style="color: #a6e22e">grunt</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">registerTask</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;default&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">[</span><span style="color: #e6db74">&#39;nodemon&#39;</span><span style="color: #f8f8f2">]);</span>
+  <span style="color: #a6e22e">grunt</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">registerTask</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;default&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">[</span><span style="color: #e6db74">&#39;nodemon&#39;</span><span style="color: #f8f8f2">]);</span>
 <span style="color: #f8f8f2">};</span>
 </pre></div>
+
               <div class="ac-caption">Gruntfile with Nodemon</div>
 
+							<p align="justify">
+								Grunt is ready, although there is something we need to do if we want to execute Grunt tasks. We need to
+								have a way to use it. Since we've installed <i>grunt-cli</i> and <i>grunt</i> locally we can use NPM
+								to execute grunt.
+							</p>
+
+							<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #f8f8f2">{</span>
+  <span style="color: #e6db74">&quot;name&quot;</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&quot;lecture5&quot;</span><span style="color: #f8f8f2">,</span>
+  <span style="color: #e6db74">&quot;version&quot;</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&quot;1.0.0&quot;</span><span style="color: #f8f8f2">,</span>
+  <span style="color: #e6db74">&quot;description&quot;</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&quot;&quot;</span><span style="color: #f8f8f2">,</span>
+  <span style="color: #e6db74">&quot;main&quot;</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&quot;index.js&quot;</span><span style="color: #f8f8f2">,</span>
+  <span style="color: #e6db74">&quot;scripts&quot;</span><span style="color: #f92672">:</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #e6db74">&quot;test&quot;</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #e6db74">&quot;start&quot;</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&quot;grunt&quot;</span>
+  <span style="color: #f8f8f2">},</span>
+  <span style="color: #e6db74">&quot;author&quot;</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&quot;Andre Botelho&quot;</span><span style="color: #f8f8f2">,</span>
+  <span style="color: #e6db74">&quot;license&quot;</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&quot;ISC&quot;</span><span style="color: #f8f8f2">,</span>
+  <span style="color: #e6db74">&quot;dependencies&quot;</span><span style="color: #f92672">:</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #e6db74">&quot;body-parser&quot;</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&quot;^1.15.1&quot;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #e6db74">&quot;cookie-parser&quot;</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&quot;^1.4.3&quot;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #e6db74">&quot;cors&quot;</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&quot;^2.7.1&quot;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #e6db74">&quot;express&quot;</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&quot;^4.13.4&quot;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #e6db74">&quot;jquery&quot;</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&quot;^3.1.0&quot;</span>
+  <span style="color: #f8f8f2">},</span>
+  <span style="color: #e6db74">&quot;devDependencies&quot;</span><span style="color: #f92672">:</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #e6db74">&quot;grunt&quot;</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&quot;^1.0.1&quot;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #e6db74">&quot;grunt-cli&quot;</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&quot;^1.2.0&quot;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #e6db74">&quot;grunt-nodemon&quot;</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&quot;^0.4.2&quot;</span>
+  <span style="color: #f8f8f2">}</span>
+<span style="color: #f8f8f2">}</span>
+</pre></div>
+
+							<div class="ac-caption">Addin script <b>start</b> to NPM scripts</div>
+
               <p align="justify">
-                And finally we call <b>grunt</b>.
-                Pay attention that Gruntfile.js is in the root of your project. It will look at changes on file ./src/index.js
+                And finally we call <b>npm start</b> and run <b>grunt</b>. Pay attention that Gruntfile.js is in the root
+								of your project. The task will be watching all changes on file ./src/index.js.
               </p>
 
-              <!-- HTML generated using hilite.me -->
-              <div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #a6e22e">$</span> <span style="color: #a6e22e">grunt</span>
+							<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #a6e22e">$</span> <span style="color: #a6e22e">npm</span> <span style="color: #a6e22e">start</span>
 </pre></div>
-              <div class="ac-caption">Executing Grunt With Nodemon</div>
+
+              <div class="ac-caption">Executing Grunt With Nodemon using NPM</div>
 
 
               <p align="justify">
@@ -567,9 +602,7 @@
               </header>
 
               <p align="justify">
-                I've created another branch named <b>Lecture 4</b> in the <a href="https://github.com/andrebot/Lecture2-NodeExpressAC">same repository</a>
-                that we used in <a href="/acbook-nodejs/lecture3.html#three">Lecture 3: Exercises</a>. Please move all the
-                code that you did in the master branch and move it to this new branch.
+                Keep using your code which you developed on <a href="lecture4.html#four">last lecture</a>
               </p>
 
               <header>
