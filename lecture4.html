@@ -86,7 +86,8 @@
 					<nav id="nav">
 						<ul>
               <li><a href="#one">Security Measures</a></li>
-              <li><a href="#two">Cookie Authentication</a></li>
+              <li><a href="#two">Cross-Origin Resource Sharing</a></li>
+              <li><a href="#three">Cookie Authentication</a></li>
               <li><a href="#six">Exercises</a></li>
 						</ul>
 						<img src="images/ac-logo.png" alt="">
@@ -124,7 +125,7 @@
                   authentication token an use it to access the service/application;
                 </li>
                 <li>
-                  <b>CORS</b>: Cross-Origin Resource Sharing standard is a set of headers that grant different domians
+                  <b>CORS</b>: Cross-Origin Resource Sharing standard is a set of headers that grant different domains
                   access to a different domain than which they are from. For instance, a website at http://domain.com
                   links a image from http://domainX.com, and the last domain allows for external clients get its
                   resources.
@@ -133,7 +134,7 @@
 
               <p align="justify">
                 So, every time we build a web application we must be aware of these flaws and fight against them, as
-                hard as we can! Now is the time to ask: André, how can we fight against tem? No rush, take your time
+                hard as we can! Now is the time to ask: André, how can we fight against them? No rush, take your time
                 to ask, don't be shy, I'm very friendly.
               </p>
 
@@ -190,6 +191,85 @@
 
           <!-- Two -->
           <section id="two">
+            <div class="container">
+              <header class="major">
+                <h2>Cross-Origin Resource Sharing</h2>
+              </header>
+
+              <p align="justify">
+                Lets start with something easy to solve, CORS. Imagine that you have a bunch of different APIs up and running in
+                different places. One day you had the big idea to create another SPA, however you decided to reuse some endpoints
+                from another API which you have, because it felt right. So, as a smart boy as you are, you dicided to create
+                a server just to serve your new SPA application. However, while you were developing your SPA, for some reason, you 
+                couldn´t do any AJAX.
+              </p>
+
+              <p align="justify">
+                Well, this happens to protect any server from running any harmful or unauthorized action into its core. So enabling
+                CORS to a specific amount of domains is a secure way to white list which domain is secure to receive actions from.
+                So now it is a good moment to show you guys how to do this in Node. As Express is all about middlewares, why not
+                creating one?
+              </p>
+
+              <!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #e6db74">&#39;use strict&#39;</span><span style="color: #f8f8f2">;</span>
+
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">allowedMethods</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">[</span><span style="color: #e6db74">&#39;GET&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;PUT&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;POST&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;DELETE&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;PATCH&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;OPTIONS&#39;</span><span style="color: #f8f8f2">];</span>
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">allowedHeaders</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">[</span><span style="color: #e6db74">&#39;Content-Type&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;Authorization&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;Content-Length&#39;</span><span style="color: #f8f8f2">];</span>
+
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">CORSEnabler</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">function</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">request</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">next</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+  <span style="color: #a6e22e">console</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">log</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;Configuring CORS&#39;</span><span style="color: #f8f8f2">);</span>
+  <span style="color: #a6e22e">console</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">log</span><span style="color: #f8f8f2">(</span><span style="color: yellow;">`</span><span style="color: #a6e22e">Method</span> <span style="color: #a6e22e">$</span><span style="color: #f8f8f2">{</span><span style="color: #a6e22e">request</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">method</span><span style="color: #f8f8f2">}</span> <span style="color: #a6e22e">from</span> <span style="color: #a6e22e">$</span><span style="color: #f8f8f2">{</span><span style="color: #a6e22e">request</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">origin</span><span style="color: #f8f8f2">}</span><span style="color: yellow;">`</span><span style="color: #f8f8f2">);</span>
+
+  <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">allowedMethod</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">indexOf</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">request</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">method</span><span style="color: #f8f8f2">)</span> <span style="color: #f92672">&gt;</span> <span style="color: #f92672">-</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">header</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;Access-Control-Allow-Origin&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;*&#39;</span><span style="color: #f8f8f2">);</span>
+    <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">header</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;Access-Control-Allow-Methods&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">allowedMethods</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">join</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;,&#39;</span><span style="color: #f8f8f2">));</span>
+    <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">header</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;Access-Control-Allow-Headers&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">allowedHeaders</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">join</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;, &#39;</span><span style="color: #f8f8f2">));</span>
+  <span style="color: #f8f8f2">}</span>
+
+  <span style="color: #a6e22e">next</span><span style="color: #f8f8f2">();</span>
+<span style="color: #f8f8f2">}</span>
+
+<span style="color: #a6e22e">module</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">exports</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">CORSEnabler</span><span style="color: #f8f8f2">;</span>
+</pre></div>
+
+              <div class="ac-caption">CORS Middleware</div>
+
+              <p align="justify">
+                Now we add it as a middleware in our API.
+              </p>
+
+              <!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #e6db74">&#39;use strict&#39;</span><span style="color: #f8f8f2">;</span>
+
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">express</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;express&#39;</span><span style="color: #f8f8f2">);</span>
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">dogRoute</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;./dogRoute&#39;</span><span style="color: #f8f8f2">);</span>
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">goodDogRoute</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;./goodDogRoute&#39;</span><span style="color: #f8f8f2">);</span>
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">wiggleRoute</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;./wiggleRoute&#39;</span><span style="color: #f8f8f2">);</span>
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">CORS</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;./CORSEnabler&#39;</span><span style="color: #f8f8f2">);</span>
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">app</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">express</span><span style="color: #f8f8f2">();</span>
+
+<span style="color: #a6e22e">app</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">use</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">CORS</span><span style="color: #f8f8f2">);</span>
+
+<span style="color: #a6e22e">app</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">use</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;/dog&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">dogRoute</span><span style="color: #f8f8f2">);</span>
+<span style="color: #a6e22e">app</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">use</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;/goodDog&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">goodDogRoute</span><span style="color: #f8f8f2">);</span>
+<span style="color: #a6e22e">app</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">use</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;/wiggle&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">wiggleRoute</span><span style="color: #f8f8f2">);</span>
+
+<span style="color: #a6e22e">app</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">listen</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">8080</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">function</span> <span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+  <span style="color: #a6e22e">console</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">log</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;Listening on port 8080...&#39;</span><span style="color: #f8f8f2">);</span>
+<span style="color: #f8f8f2">});</span>
+</pre></div>
+
+              <div class="ac-caption">Server with CORS configuration</div>
+
+              <p align="justify">
+                As this CORS configuration is a middleware we can use it in all the ways we now it can be used, like enabling CORS for
+                just a specific route or a specific endpoint.
+              </p>
+
+            </div>
+          </section>
+
+          <!-- Three -->
+          <section id="three">
             <div class="container">
               <header class="major">
                 <h2>Cookie Authentication</h2>
@@ -557,9 +637,7 @@
               </header>
 
               <p align="justify">
-                I've created another branch named <b>Lecture 4</b> in the <a href="https://github.com/andrebot/Lecture2-NodeExpressAC">same repository</a>
-                that we used in <a href="/acbook-nodejs/lecture3.html#three">Lecture 3: Exercises</a>. Please move all the
-                code that you did in the master branch and move it to this new branch.
+                Keep using your code which you developed on <a href="lecture3.html#three">last lecture</a>
               </p>
 
               <header>
@@ -567,8 +645,19 @@
               </header>
 
               <p align="justify">
-                Using the server created at <a href="/acbook-nodejs/lecture3.html#three">Lesson 3: Exercises</a> create
-                a <b>Grunt</b> task to use <b>nodemon</b> to bounce our server.
+                Now that we have all endpoints done, lets create a login feature. First create a POST login route, where it receives 
+                an email and a password. This route will get this information, try to get the user from the database and create a
+                cookie to be stored in the client. The content of this cookie is an object which contains the attribute <b>logged</b> 
+                that receives a boolean value. You have already created a cookie middleware in the last exercices, refactor it to
+                get the auth cookie and authorize the client to use this routes:
+
+                <ul>
+                  <li>GET: retrive a specific user;</li>
+                  <li>DELETE: remove a user;</li>
+                  <li>PUT: change user's password.</li>
+                </ul>
+
+                Don't forget to handle errors, problems and create a log out route.
               </p>
 
               <header>
@@ -576,8 +665,14 @@
               </header>
 
               <p align="justify">
-                Using the same code from last exercise create Unit Tests for your routes (Using the same stack as the
-                example in <a href="/acbook-nodejs/lecture3.html#two">Test</a>).
+                Create a JWT middleware to add another security layer to your APP. User JWT standard in your auth cookie created
+                in the last exercise. It should expire in one hour. Your payload should have this attributes:
+
+                <ul>
+                  <li>email;</li>
+                  <li>admin;</li>
+                  <li>issuer.</li>
+                </ul>
               </p>
 
               <header>
@@ -585,7 +680,7 @@
               </header>
 
               <p align="justify">
-                Using the same code from last exercise create a task to run your test cases automatically.
+                Create in your HTML providaded by your exercise's repository a section to log in into your application.
               </p>
 
               <header>
@@ -593,7 +688,8 @@
               </header>
 
               <p align="justify">
-                Using the same code from last exercise add a coverage feature for your source code.
+                Using the same code from last exercise create a new route that get the info from the logged user.
+                Your route should be <b>http://localhost:3000/me</b>
               </p>
 
               <header>
@@ -601,14 +697,11 @@
               </header>
 
               <p align="justify">
-                Using the same code from last exercise create a login feature that validates your user by email and
-                password. Your login route should be <b>localhost:3000/login</b>. You should use <b>JSON Web Token</b>
-                concepts. Your token should expire in one day. Your payload must have these info:
+                Add these new rules into your API:
 
                 <ul>
-                  <li>name;</li>
-                  <li>role(admin or user);</li>
-                  <li>issuer;</li>
+                  <li>Delete user should require authentication and the logged user should be an Admin;</li>
+                  <li>Change user's password should require authentication and should only be done by the same user;</li>
                 </ul>
               </p>
 
@@ -617,8 +710,8 @@
               </header>
 
               <p align="justify">
-                Using the same code from last exercise create a new route that get the info form the logged user.
-                Your route should be <b>http://localhost:3000/me</b>
+                Enable CORS in your application for any domain, making any action and having any headers. Remember to have a config 
+                file for that. You can use what you already have.
               </p>
 
               <header>
@@ -626,19 +719,26 @@
               </header>
 
               <p align="justify">
-                Using the same code from last exercise add Authorizaton and Athentication to your user routes:
+                Create a white list of domains which can access your domain. And make it only this endpoints available:
 
                 <ul>
-                  <li>List all users should require authentication;</li>
-                  <li>Get logged user should require authentication;</li>
-                  <li>Get user should require authentication;</li>
-                  <li>Delete user should require authentication and the logged user should be an Admin;</li>
-                  <li>Change user's password should require authentication;</li>
+                  <li>Get all users;</li>
+                  <li>Log in;</li>
+                  <li>Get info from logged user.</li>
                 </ul>
               </p>
 
               <header>
                 <h4>Exercise 8:</h4>
+              </header>
+
+              <p align="justify">
+                Revise your code. Try to see if there is any security issues. Validate all your incoming data. Make your API
+                robust.
+              </p>
+
+              <header>
+                <h4>Exercise 9:</h4>
               </header>
 
               <p align="justify">
@@ -684,6 +784,14 @@
                 <li>blockUserRequested: id</li>
                 <li>blockUserRequester: id</li>
               </ul>
+
+              <header>
+                <h4>Exercise 10:</h4>
+              </header>
+
+              <p align="justify">
+                <b>CHALLENGE:</b> search for 'CORS preflight' and implement it in your application.
+              </p>
             </div>
           </section>
         </div>

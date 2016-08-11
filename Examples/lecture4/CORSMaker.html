@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>CORS MAKER</title>
+  </head>
+  <body>
+
+    <button>Brian is a good dog?</button>
+
+    <script type="text/javascript" src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript">
+      $('button').on('click', function (evt) {
+        $.ajax({
+          url: 'http://localhost:8080/goodDog/0',
+          crossDomain: true,
+          success: function (response) {
+            console.log(response);
+          },
+          error: function (error) {
+            console.log(error);
+          }
+        });
+      });
+    </script>
+
+  </body>
+</html>
