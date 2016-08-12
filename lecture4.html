@@ -88,7 +88,7 @@
               <li><a href="#one">Security Measures</a></li>
               <li><a href="#two">Cross-Origin Resource Sharing</a></li>
               <li><a href="#three">Cookie Authentication</a></li>
-              <li><a href="#six">Exercises</a></li>
+              <li><a href="#four">Exercises</a></li>
 						</ul>
 						<img src="images/ac-logo.png" alt="">
 					</nav>
@@ -200,7 +200,7 @@
                 Lets start with something easy to solve, CORS. Imagine that you have a bunch of different APIs up and running in
                 different places. One day you had the big idea to create another SPA, however you decided to reuse some endpoints
                 from another API which you have, because it felt right. So, as a smart boy as you are, you dicided to create
-                a server just to serve your new SPA application. However, while you were developing your SPA, for some reason, you 
+                a server just to serve your new SPA application. However, while you were developing your SPA, for some reason, you
                 couldn´t do any AJAX.
               </p>
 
@@ -629,8 +629,8 @@
             </div>
           </section>
 
-          <!-- Six -->
-          <section id="six">
+          <!-- Four -->
+          <section id="four">
             <div class="container">
               <header class="major">
                 <h2>Exercises</h2>
@@ -645,9 +645,9 @@
               </header>
 
               <p align="justify">
-                Now that we have all endpoints done, lets create a login feature. First create a POST login route, where it receives 
+                Now that we have all endpoints done, lets create a login feature. First create a POST login route, where it receives
                 an email and a password. This route will get this information, try to get the user from the database and create a
-                cookie to be stored in the client. The content of this cookie is an object which contains the attribute <b>logged</b> 
+                cookie to be stored in the client. The content of this cookie is an object which contains the attribute <b>logged</b>
                 that receives a boolean value. You have already created a cookie middleware in the last exercices, refactor it to
                 get the auth cookie and authorize the client to use this routes:
 
@@ -710,7 +710,7 @@
               </header>
 
               <p align="justify">
-                Enable CORS in your application for any domain, making any action and having any headers. Remember to have a config 
+                Enable CORS in your application for any domain, making any action and having any headers. Remember to have a config
                 file for that. You can use what you already have.
               </p>
 

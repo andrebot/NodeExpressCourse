@@ -2,7 +2,7 @@
 
 const express = require('express');
 const router = express.Router();
-const auth = require('./auth');
+const auth = require('./CookieAuthMiddleware');
 const bodyParser = require('body-parser');
 const parseUrlencoded = bodyParser.urlencoded({extended: false});
 let dogs = require('./dogs');
