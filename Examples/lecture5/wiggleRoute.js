@@ -7,10 +7,11 @@ let dogs = require('./dogs');
 router.route('/:doggyId')
   .get(function (request, response) {
     const doggyIndex = request.params.doggyId;
-    if (doggyIndex && doggyIndex >= 0 && doggyIndex < dogs.length) {
-      response.send(dogs[doggyIndex].wiggle());
+
+    if (doggyIndex >= 0 && doggyIndex < dogs.length) {
+      response.json({ msg: dogs[doggyIndex].wiggle() });
     } else {
-      response.sendStatus(404);
+      response.sendStatus(403);
     }
   });
 

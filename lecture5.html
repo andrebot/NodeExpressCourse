@@ -85,7 +85,7 @@
 					</header>
 					<nav id="nav">
 						<ul>
-							<li><a href="#one" class="active">Grunt</a></li>
+							<li><a href="#one" class="active">Gulp</a></li>
 							<li><a href="#two">Test</a></li>
               <li><a href="#six">Exercises</a></li>
 						</ul>
@@ -102,22 +102,22 @@
           <section id="one">
             <div class="container">
               <header class="major">
-                <h2>Grunt</h2>
+                <h2>Gulp</h2>
               </header>
 
               <header>
-                <h4>What is Grunt?</h4>
+                <h4>What is Gulp?</h4>
               </header>
 
               <p align="justify">
                 <i>
-                  "Grunt is a tool for task automation in Node."
+                  "Gulp is a tool for task automation in Node."
                 </i>
                 <p align="right">- <a href="https://www.facebook.com/pedroboi?fref=ts">Dias, Pedro</a></p>
               </p>
 
               <p align="justify">
-                Pedro is right! Grunt is a excellent tool to have in your projects! All of them! No exceptions! Use it!
+                Pedro is right! Gulp is a excellent tool to have in your projects! All of them! No exceptions! Use it!
                 If you don't know, this is the time to learn it! It is very powerful. When I started stu<b>dying</b> Node
                 I got confused! There is lot to learn! I was afraid to look into one more tool of this huge stack because
                 it seemed hard and awkward. I couldn't see the benefits of it, I could do everything myself. But once I
@@ -146,33 +146,23 @@
               </p>
 
               <header>
-                <h4>Gruntfile</h4>
+                <h4>Gulpfile</h4>
               </header>
 
               <p align="justify">
-                Now that I've built into your soul that Grunt is cool lets start understanding how it works: First, we
+                Now that I've built into your soul that Gulp is cool lets start understanding how it works: First, we
                 need to install it:
               </p>
 
-							<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #a6e22e">$</span> <span style="color: #a6e22e">npm</span> <span style="color: #a6e22e">install</span> <span style="color: #a6e22e">grunt</span> <span style="color: #f92672">--</span><span style="color: #a6e22e">save</span><span style="color: #f92672">-</span><span style="color: #a6e22e">dev</span>
+							<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #a6e22e">$</span> <span style="color: #a6e22e">npm</span> <span style="color: #a6e22e">install</span> <span style="color: #a6e22e">gulp</span> <span style="color: #f92672">--</span><span style="color: #a6e22e">save</span><span style="color: #f92672">-</span><span style="color: #a6e22e">dev</span>
 </pre></div>
 
-              <div class="ac-caption">Installing Grunt</div>
+              <div class="ac-caption">Installing Gulp</div>
 
               <p align="justify">
-                We have to install Grunt's CLI too, which is a Command Line Interface. This will allow us to call and use
-								Grunt easily with NPM.
-              </p>
-
-							<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #a6e22e">$</span> <span style="color: #a6e22e">npm</span> <span style="color: #a6e22e">install</span> <span style="color: #a6e22e">grunt</span><span style="color: #f92672">-</span><span style="color: #a6e22e">cli</span> <span style="color: #f92672">--</span><span style="color: #a6e22e">save</span><span style="color: #f92672">-</span><span style="color: #a6e22e">dev</span>
-</pre></div>
-
-              <div class="ac-caption">Installing Grunt-CLI</div>
-
-              <p align="justify">
-                This time we are all set to go. We have Grunt installed. Now we have to tell Grunt what he can do. To do
-                that we need to create a file named <i>Gruntfile.js</i> in our root folder (This file must be named this
-                way, Grunt will look for this file once executed).
+                We are already all set to go. We have Gulp installed. Now we have to tell Gulp what he can do. To do
+                that we need to create a file named <i>gulpfile.js</i> in our root folder (This file must be named this
+                way, Gulp will look for this file once executed).
               </p>
 
               <div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
@@ -180,54 +170,60 @@
                 <span style="color: #d0d0d0">└── nodeCode</span>
                 <span style="color: #d0d0d0">    ├── src</span>
                 <span style="color: #d0d0d0">    ├── package.json</span>
-                <span style="color: #d0d0d0">    └── Gruntfile.js</span>
+                <span style="color: #d0d0d0">    └── gulpfile.js</span>
               </pre>
               </div>
-              <div class="ac-caption">Gruntfile.js In The Root Folder</div>
+              <div class="ac-caption">gulpfile.js In The Root Folder</div>
 
               <p align="justify">
                 Ok, we have to know what to add to this new file of ours. First lets take a look into what this file
                 should have inside.
               </p>
 
-							<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #a6e22e">module</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">exports</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">grunt</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
-  <span style="color: #a6e22e">grunt</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">initConfig</span><span style="color: #f8f8f2">({</span>
-    <span style="color: #a6e22e">task1</span><span style="color: #f92672">:</span> <span style="color: #f8f8f2">{</span>
-      <span style="color: #a6e22e">sub_task</span><span style="color: #f92672">:</span> <span style="color: #f8f8f2">{</span>
-       <span style="color: #f8f8f2">...</span>
-      <span style="color: #f8f8f2">},</span>
-      <span style="color: #a6e22e">sub_task2</span><span style="color: #f92672">:</span><span style="color: #f8f8f2">{</span>
-        <span style="color: #f8f8f2">...</span>
-      <span style="color: #f8f8f2">}</span>
-    <span style="color: #f8f8f2">}</span>
-  <span style="color: #f8f8f2">});</span>
+							<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #e6db74">&#39;use strict&#39;</span><span style="color: #f8f8f2">;</span>
 
-  <span style="color: #a6e22e">grunt</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">loadNpmTasks</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;package_task1&#39;</span><span style="color: #f8f8f2">);</span>
+<span style="color: #75715e">//imports</span>
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">gulp</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;gulp&#39;</span><span style="color: #f8f8f2">);</span>
 
-  <span style="color: #a6e22e">grunt</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">registerTask</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;default&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">[</span><span style="color: #e6db74">&#39;task1&#39;</span><span style="color: #f8f8f2">]);</span>
-  <span style="color: #a6e22e">grunt</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">registerTask</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;justOne&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">[</span><span style="color: #e6db74">&#39;task1:sub_task2&#39;</span><span style="color: #f8f8f2">]);</span>
-<span style="color: #f8f8f2">};</span>
+<span style="color: #a6e22e">gulp</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">task</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;default&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">()</span> <span style="color: #f92672">=&gt;</span> <span style="color: #f8f8f2">{</span>
+  <span style="color: #75715e">//...</span>
+<span style="color: #f8f8f2">});</span>
+
+<span style="color: #a6e22e">gulp</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">task</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;task2&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">()</span> <span style="color: #f92672">=&gt;</span> 
+  <span style="color: #75715e">//...</span>
+<span style="color: #f8f8f2">);</span>
 </pre></div>
 
-              <div class="ac-caption">Glance At a Gruntfile</div>
+              <div class="ac-caption">Glance At a Gulpfile</div>
 
               <p align="justify">
-                Here we can see how Grunt works. We have the <b>grunt-cli</b> installed with <b>grunt</b> in our environment.
-                If we execute <i>grunt</i> in the terminal it will search for the <i>Gruntfile.js</i> and execute it.
-                If you guessed that the task named <i>"default"</i> will be executed, you were right. The <i>"default"</i>
-                task will execute <i>"task1"</i> that we configured on <b>grunt.initConfig()</b>.
+                Here we can see how Gulp works. With this configuration I can execute Gulp using NPM, adding new commands under
+                the "script" attribute in package.json. I have two tasks configured, <i>default</i> and <i>task1</i>. To execute a 
+                task with gulp you have to do this syntax:
+              </p>
+
+              <!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #a6e22e">$</span> <span style="color: #a6e22e">gulp</span> <span style="color: #f92672">&lt;</span><span style="color: #a6e22e">task_name</span><span style="color: #f92672">&gt;</span>
+</pre></div>
+
+              <div class="ac-caption">Executing a gulp task</div>
+
+              <p align="justify">
+                However, everything under the <i>default</i> task will be executed without the need of naming it, meaning that I can
+                execute:
+              </p>
+
+              <!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #a6e22e">$</span> <span style="color: #a6e22e">gulp</span>
+</pre></div>
+
+              <div class="ac-caption">Executing default task</div>
+
+              <p align="justify">
+                And the task <i>default</i> will be run. Neat, right?
               </p>
 
               <p align="justify">
-                You may be asking about that <b>grunt.loadNpmTasks('package_task1');</b> line. This <b>loadNpmTasks</b>
-                is loading the package/plugin needed to execute the <i>task1</i> task. Without it we can't run <i>task1</i>.
-                Basically you need to load every plugin into <b>Grunt</b> if you want to use it.
-              </p>
-
-              <p align="justify">
-                It is pretty obvious that when we call <b>grunt.registerTask()</b> we are registering available tasks to
-                be executed. You can see that we can define which task to be executed in which command. We can even decide
-                which sub-task to execute.
+                As you can see Gulp uses a code syntax to configure its tasks. This way, if you want to use any other package or
+                module, you just need to install it with NPM and import it using <b>require</b>. For instance, if I want to
               </p>
 
               <header>
@@ -367,13 +363,11 @@
               <ul>
                 <li><a href="http://mochajs.org/">Mocha</a> for our test framework;</li>
                 <li><a href="https://www.npmjs.com/package/should">Should</a> as our BDD assertion library;</li>
-                <li><a href="https://github.com/pghalliday/grunt-mocha-test">grunt-mocha-test</a> for our automated test task;</li>
                 <li><a href="https://www.npmjs.com/package/supertest">Supertest</a> as our library to make requests in the test environment;</li>
-                <li><a href="https://www.npmjs.com/package/blanket">Blanket</a> for test coverage.</li>
               </ul>
 
               <header>
-                <h4>Configuring Grunt</h4>
+                <h4>Configuring Gulp</h4>
               </header>
 
               <p align="justify">
@@ -381,39 +375,39 @@
                 Installed everything? Go to go? NICE! Lets configure our gruntfile.
               </p>
 
-              <!-- HTML generated using hilite.me -->
-              <div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #a6e22e">module</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">exports</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">grunt</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+             <!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #e6db74">&#39;use strict&#39;</span><span style="color: #f8f8f2">;</span>
+
+<span style="color: #a6e22e">module</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">exports</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">grunt</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
   <span style="color: #a6e22e">grunt</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">initConfig</span><span style="color: #f8f8f2">({</span>
     <span style="color: #a6e22e">nodemon</span><span style="color: #f92672">:</span> <span style="color: #f8f8f2">{</span>
       <span style="color: #a6e22e">express</span><span style="color: #f92672">:</span> <span style="color: #f8f8f2">{</span>
-        <span style="color: #a6e22e">script</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;index.js&#39;</span><span style="color: #f8f8f2">,</span>
+        <span style="color: #a6e22e">script</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;server.js&#39;</span><span style="color: #f8f8f2">,</span>
         <span style="color: #a6e22e">options</span><span style="color: #f92672">:</span> <span style="color: #f8f8f2">{</span>
-          <span style="color: #a6e22e">watch</span><span style="color: #f92672">:</span> <span style="color: #f8f8f2">[</span><span style="color: #e6db74">&#39;src/&#39;</span><span style="color: #f8f8f2">],</span>
-          <span style="color: #a6e22e">cwd</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;src&#39;</span>
+          <span style="color: #a6e22e">watch</span><span style="color: #f92672">:</span> <span style="color: #f8f8f2">[</span><span style="color: #e6db74">&#39;./&#39;</span><span style="color: #f8f8f2">]</span>
         <span style="color: #f8f8f2">}</span>
       <span style="color: #f8f8f2">}</span>
     <span style="color: #f8f8f2">},</span>
     <span style="color: #a6e22e">mochaTest</span><span style="color: #f92672">:</span> <span style="color: #f8f8f2">{</span>
       <span style="color: #a6e22e">test</span><span style="color: #f92672">:</span> <span style="color: #f8f8f2">{</span>
         <span style="color: #a6e22e">options</span><span style="color: #f92672">:</span> <span style="color: #f8f8f2">{</span>
-          <span style="color: #a6e22e">reporter</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;spec&#39;</span><span style="color: #f8f8f2">,</span>
-          <span style="color: #a6e22e">require</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;blanketWrapper&#39;</span>
+          <span style="color: #a6e22e">reporter</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;spec&#39;</span>
         <span style="color: #f8f8f2">},</span>
         <span style="color: #a6e22e">src</span><span style="color: #f92672">:</span> <span style="color: #f8f8f2">[</span><span style="color: #e6db74">&#39;tests/*.js&#39;</span><span style="color: #f8f8f2">]</span>
-      <span style="color: #f8f8f2">},</span>
-      <span style="color: #a6e22e">coverage</span><span style="color: #f92672">:</span> <span style="color: #f8f8f2">{</span>
+      <span style="color: #f8f8f2">}</span>
+    <span style="color: #f8f8f2">},</span>
+    <span style="color: #a6e22e">concurrent</span><span style="color: #f92672">:</span> <span style="color: #f8f8f2">{</span>
+      <span style="color: #a6e22e">test</span><span style="color: #f92672">:</span> <span style="color: #f8f8f2">{</span>
+        <span style="color: #a6e22e">tasks</span><span style="color: #f92672">:</span> <span style="color: #f8f8f2">[</span><span style="color: #e6db74">&#39;nodemon:express&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;mochaTest&#39;</span><span style="color: #f8f8f2">],</span>
         <span style="color: #a6e22e">options</span><span style="color: #f92672">:</span> <span style="color: #f8f8f2">{</span>
-          <span style="color: #a6e22e">reporter</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;html-cov&#39;</span><span style="color: #f8f8f2">,</span>
-          <span style="color: #a6e22e">quiet</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">true</span><span style="color: #f8f8f2">,</span>
-          <span style="color: #a6e22e">captureFile</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;coverage.html&#39;</span>
-        <span style="color: #f8f8f2">},</span>
-        <span style="color: #a6e22e">src</span><span style="color: #f92672">:</span> <span style="color: #f8f8f2">[</span><span style="color: #e6db74">&#39;tests/*.js&#39;</span><span style="color: #f8f8f2">]</span>
+                <span style="color: #a6e22e">logConcurrentOutput</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">true</span>
+            <span style="color: #f8f8f2">}</span>
       <span style="color: #f8f8f2">}</span>
     <span style="color: #f8f8f2">}</span>
   <span style="color: #f8f8f2">});</span>
 
   <span style="color: #a6e22e">grunt</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">loadNpmTasks</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;grunt-nodemon&#39;</span><span style="color: #f8f8f2">);</span>
   <span style="color: #a6e22e">grunt</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">loadNpmTasks</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;grunt-mocha-test&#39;</span><span style="color: #f8f8f2">);</span>
+  <span style="color: #a6e22e">grunt</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">loadNpmTasks</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;grunt-concurrent&#39;</span><span style="color: #f8f8f2">);</span>
 
   <span style="color: #a6e22e">grunt</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">registerTask</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;default&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">[</span><span style="color: #e6db74">&#39;nodemon:express&#39;</span><span style="color: #f8f8f2">]);</span>
   <span style="color: #a6e22e">grunt</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">registerTask</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;testServer&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">[</span><span style="color: #e6db74">&#39;mochaTest&#39;</span><span style="color: #f8f8f2">]);</span>
@@ -469,83 +463,89 @@
                 <li>http://localhost:8080/wiggle</li>
               </ul>
 
-              <!-- HTML generated using hilite.me -->
-              <div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #66d9ef">var</span> <span style="color: #a6e22e">serverObject</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;../src/server&#39;</span><span style="color: #f8f8f2">),</span>
-  <span style="color: #a6e22e">request</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;supertest&#39;</span><span style="color: #f8f8f2">),</span>
-  <span style="color: #a6e22e">should</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;should&#39;</span><span style="color: #f8f8f2">),</span>
-  <span style="color: #a6e22e">dogData</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">{</span>
+              <!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #e6db74">&#39;use strict&#39;</span><span style="color: #f8f8f2">;</span>
+
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">supertest</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;supertest&#39;</span><span style="color: #f8f8f2">);</span>
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">should</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;should&#39;</span><span style="color: #f8f8f2">);</span>
+<span style="color: #66d9ef">let</span> <span style="color: #a6e22e">dogData</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">{</span>
     <span style="color: #a6e22e">name</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;testDog&#39;</span>
   <span style="color: #f8f8f2">},</span>
   <span style="color: #a6e22e">updateDog</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">{</span>
-    <span style="color: #a6e22e">name</span><span style="color: #f92672">:</span> <span style="color: #a6e22e">dogData</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">name</span><span style="color: #f8f8f2">,</span>
-    <span style="color: #a6e22e">newName</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;testDog2&#39;</span>
+    <span style="color: #a6e22e">index</span><span style="color: #f92672">:</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #a6e22e">name</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;testDog2&#39;</span>
   <span style="color: #f8f8f2">};</span>
 
 <span style="color: #a6e22e">describe</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;Dog Service&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
-  <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">server</span><span style="color: #f8f8f2">;</span>
-  <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">url</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&#39;http://localhost:8080&#39;</span><span style="color: #f8f8f2">;</span>
-  <span style="color: #a6e22e">request</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">request</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">url</span><span style="color: #f8f8f2">);</span>
+  <span style="color: #66d9ef">let</span> <span style="color: #a6e22e">url</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&#39;http://localhost:8080&#39;</span><span style="color: #f8f8f2">;</span>
+  <span style="color: #66d9ef">let</span> <span style="color: #a6e22e">request</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">supertest</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">url</span><span style="color: #f8f8f2">);</span>
 
-  <span style="color: #a6e22e">before</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">function</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">done</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
-    <span style="color: #a6e22e">server</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">serverObject</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">makeServer</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">done</span><span style="color: #f8f8f2">);</span>
-  <span style="color: #f8f8f2">});</span>
+  <span style="color: #a6e22e">describe</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;/dog&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">function</span> <span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #a6e22e">it</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;should create a dog&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">done</span><span style="color: #f8f8f2">){</span>
+      <span style="color: #a6e22e">request</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">post</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;/dog&#39;</span><span style="color: #f8f8f2">)</span>
+        <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">send</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">dogData</span><span style="color: #f8f8f2">)</span>
+        <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">expect</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">201</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">done</span><span style="color: #f8f8f2">);</span>
+    <span style="color: #f8f8f2">});</span>
 
-  <span style="color: #a6e22e">after</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">function</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">done</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
-    <span style="color: #a6e22e">server</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">close</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">done</span><span style="color: #f8f8f2">);</span>
-  <span style="color: #f8f8f2">});</span>
-
-  <span style="color: #a6e22e">it</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;should create a dog&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">done</span><span style="color: #f8f8f2">){</span>
-    <span style="color: #a6e22e">request</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">post</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;/dog&#39;</span><span style="color: #f8f8f2">)</span>
-      <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">send</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">dogData</span><span style="color: #f8f8f2">)</span>
-      <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">expect</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">201</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">done</span><span style="color: #f8f8f2">);</span>
-  <span style="color: #f8f8f2">});</span>
-
-  <span style="color: #a6e22e">it</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;should update the test dog&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">done</span><span style="color: #f8f8f2">){</span>
-    <span style="color: #a6e22e">request</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">put</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;/dog&#39;</span><span style="color: #f8f8f2">)</span>
-      <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">send</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">updateDog</span><span style="color: #f8f8f2">)</span>
-      <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">expect</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">200</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">done</span><span style="color: #f8f8f2">);</span>
-  <span style="color: #f8f8f2">});</span>
-
-  <span style="color: #a6e22e">it</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;should delete the first dog&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">done</span><span style="color: #f8f8f2">){</span>
-    <span style="color: #a6e22e">request</span><span style="color: #f8f8f2">.</span><span style="color: #66d9ef">delete</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;/dog/0&#39;</span><span style="color: #f8f8f2">)</span>
-      <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">expect</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">200</span><span style="color: #f8f8f2">)</span>
-      <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">end</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">error</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">){</span>
-        <span style="color: #66d9ef">if</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">error</span><span style="color: #f8f8f2">)</span> <span style="color: #66d9ef">return</span> <span style="color: #a6e22e">done</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">error</span><span style="color: #f8f8f2">);</span>
-
-        <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">dog</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">body</span><span style="color: #f8f8f2">;</span>
-        <span style="color: #a6e22e">dog</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">should</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">not</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">be</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">empty</span><span style="color: #f8f8f2">;</span>
-
-        <span style="color: #a6e22e">done</span><span style="color: #f8f8f2">();</span>
+      <span style="color: #a6e22e">it</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;should update the test dog&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">done</span><span style="color: #f8f8f2">){</span>
+        <span style="color: #a6e22e">request</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">put</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;/dog&#39;</span><span style="color: #f8f8f2">)</span>
+          <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">send</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">updateDog</span><span style="color: #f8f8f2">)</span>
+          <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">expect</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">200</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">done</span><span style="color: #f8f8f2">);</span>
       <span style="color: #f8f8f2">});</span>
   <span style="color: #f8f8f2">});</span>
 
-  <span style="color: #a6e22e">it</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;should wiggle the first dog\&#39;s tail&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">done</span><span style="color: #f8f8f2">){</span>
-    <span style="color: #a6e22e">request</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">get</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;/wiggle/0&#39;</span><span style="color: #f8f8f2">)</span>
-      <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">expect</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">200</span><span style="color: #f8f8f2">)</span>
-      <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">end</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">error</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">){</span>
-        <span style="color: #66d9ef">if</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">error</span><span style="color: #f8f8f2">)</span> <span style="color: #66d9ef">return</span> <span style="color: #a6e22e">done</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">error</span><span style="color: #f8f8f2">);</span>
+  <span style="color: #a6e22e">describe</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;/dog/:doggyId&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">function</span> <span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
 
-        <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">dogWiggle</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">body</span><span style="color: #f8f8f2">;</span>
-        <span style="color: #a6e22e">dogWiggle</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">should</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">not</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">be</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">empty</span><span style="color: #f8f8f2">;</span>
-        <span style="color: #a6e22e">dogWiggle</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">should</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">be</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">an</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">instanceOf</span><span style="color: #f8f8f2">(String);</span>
-        <span style="color: #a6e22e">done</span><span style="color: #f8f8f2">()</span>
-      <span style="color: #f8f8f2">});</span>
+    <span style="color: #a6e22e">it</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;should delete the first dog&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">done</span><span style="color: #f8f8f2">){</span>
+      <span style="color: #a6e22e">request</span><span style="color: #f8f8f2">.</span><span style="color: #66d9ef">delete</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;/dog/0&#39;</span><span style="color: #f8f8f2">)</span>
+        <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">expect</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">200</span><span style="color: #f8f8f2">)</span>
+        <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">end</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">error</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">){</span>
+          <span style="color: #66d9ef">if</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">error</span><span style="color: #f8f8f2">)</span> <span style="color: #66d9ef">return</span> <span style="color: #a6e22e">done</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">error</span><span style="color: #f8f8f2">);</span>
+
+          <span style="color: #66d9ef">let</span> <span style="color: #a6e22e">dog</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">body</span><span style="color: #f8f8f2">;</span>
+          <span style="color: #a6e22e">dog</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">should</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">not</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">be</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">empty</span><span style="color: #f8f8f2">;</span>
+
+          <span style="color: #a6e22e">done</span><span style="color: #f8f8f2">();</span>
+        <span style="color: #f8f8f2">});</span>
+    <span style="color: #f8f8f2">});</span>
   <span style="color: #f8f8f2">});</span>
 
-  <span style="color: #a6e22e">it</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;should say that the first dog is a good dog&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">done</span><span style="color: #f8f8f2">){</span>
-    <span style="color: #a6e22e">request</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">get</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;/goodDog/0&#39;</span><span style="color: #f8f8f2">)</span>
-      <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">expect</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">200</span><span style="color: #f8f8f2">)</span>
-      <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">end</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">error</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">){</span>
-        <span style="color: #66d9ef">if</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">error</span><span style="color: #f8f8f2">)</span> <span style="color: #66d9ef">return</span> <span style="color: #a6e22e">done</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">error</span><span style="color: #f8f8f2">);</span>
+  <span style="color: #a6e22e">describe</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;/wiggle/:doggyId&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">function</span> <span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
 
-        <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">goodDog</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">body</span><span style="color: #f8f8f2">;</span>
-        <span style="color: #a6e22e">goodDog</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">should</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">not</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">be</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">empty</span><span style="color: #f8f8f2">;</span>
-        <span style="color: #a6e22e">goodDog</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">should</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">be</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">an</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">instanceOf</span><span style="color: #f8f8f2">(String);</span>
-        <span style="color: #a6e22e">done</span><span style="color: #f8f8f2">();</span>
-      <span style="color: #f8f8f2">});</span>
+    <span style="color: #a6e22e">it</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;should wiggle the first dog\&#39;s tail&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">done</span><span style="color: #f8f8f2">){</span>
+      <span style="color: #a6e22e">request</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">get</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;/wiggle/0&#39;</span><span style="color: #f8f8f2">)</span>
+        <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">expect</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">200</span><span style="color: #f8f8f2">)</span>
+        <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">end</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">error</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">){</span>
+          <span style="color: #66d9ef">if</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">error</span><span style="color: #f8f8f2">)</span> <span style="color: #66d9ef">return</span> <span style="color: #a6e22e">done</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">error</span><span style="color: #f8f8f2">);</span>
+
+          <span style="color: #66d9ef">let</span> <span style="color: #a6e22e">dogWiggle</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">body</span><span style="color: #f8f8f2">;</span>
+
+          <span style="color: #a6e22e">dogWiggle</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">should</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">not</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">be</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">empty</span><span style="color: #f8f8f2">;</span>
+          <span style="color: #a6e22e">dogWiggle</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">msg</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">should</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">not</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">be</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">empty</span><span style="color: #f8f8f2">;</span>
+          <span style="color: #a6e22e">dogWiggle</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">msg</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">should</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">be</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">an</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">instanceOf</span><span style="color: #f8f8f2">(String);</span>
+          <span style="color: #a6e22e">done</span><span style="color: #f8f8f2">()</span>
+        <span style="color: #f8f8f2">});</span>
+    <span style="color: #f8f8f2">});</span>
+  <span style="color: #f8f8f2">});</span>
+
+  <span style="color: #a6e22e">describe</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;/goodDog&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">function</span> <span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+
+    <span style="color: #a6e22e">it</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;should say that the first dog is a good dog&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">done</span><span style="color: #f8f8f2">){</span>
+      <span style="color: #a6e22e">request</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">get</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;/goodDog/0&#39;</span><span style="color: #f8f8f2">)</span>
+        <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">expect</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">200</span><span style="color: #f8f8f2">)</span>
+        <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">end</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">error</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">){</span>
+          <span style="color: #66d9ef">if</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">error</span><span style="color: #f8f8f2">)</span> <span style="color: #66d9ef">return</span> <span style="color: #a6e22e">done</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">error</span><span style="color: #f8f8f2">);</span>
+
+          <span style="color: #66d9ef">let</span> <span style="color: #a6e22e">goodDog</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">body</span><span style="color: #f8f8f2">;</span>
+          <span style="color: #a6e22e">goodDog</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">should</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">not</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">be</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">empty</span><span style="color: #f8f8f2">;</span>
+          <span style="color: #a6e22e">goodDog</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">msg</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">should</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">not</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">be</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">empty</span><span style="color: #f8f8f2">;</span>
+          <span style="color: #a6e22e">goodDog</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">msg</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">should</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">be</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">an</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">instanceOf</span><span style="color: #f8f8f2">(String);</span>
+          <span style="color: #a6e22e">done</span><span style="color: #f8f8f2">();</span>
+        <span style="color: #f8f8f2">});</span>
+    <span style="color: #f8f8f2">});</span>
   <span style="color: #f8f8f2">});</span>
 <span style="color: #f8f8f2">});</span>
 </pre></div>
+
               <div class="ac-caption">Test File For Dog Service</div>
 
               <p align="justify">
@@ -610,8 +610,7 @@
               </header>
 
               <p align="justify">
-                Using the server created at <a href="/acbook-nodejs/lecture3.html#three">Lesson 3: Exercises</a> create
-                a <b>Grunt</b> task to use <b>nodemon</b> to bounce our server.
+                Using the server which you were working until now, create a Gulp task to use nodemon to run it.
               </p>
 
               <header>
@@ -619,8 +618,15 @@
               </header>
 
               <p align="justify">
-                Using the same code from last exercise create Unit Tests for your routes (Using the same stack as the
-                example in <a href="/acbook-nodejs/lecture3.html#two">Test</a>).
+                Using the same code from last exercise create an API Tests for your routes (Using the same stack as shwon here).
+
+                <ul>
+                  <li>supertest</li>
+                  <li>mocha</li>
+                  <li>should</li>
+                </ul>
+
+                You might need to refector a thing or two, ;-)
               </p>
 
               <header>
@@ -636,48 +642,14 @@
               </header>
 
               <p align="justify">
-                Using the same code from last exercise add a coverage feature for your source code.
+                Now, instead of running an API test (which is very expensive), create unit tests to test your controllers. This way
+                you wont need to run your server to test your code.
+
+                hint: maybe you will need to decouple your controllers from your route code.
               </p>
 
-              <header>
-                <h4>Exercise 5:</h4>
-              </header>
-
               <p align="justify">
-                Using the same code from last exercise create a login feature that validates your user by email and
-                password. Your login route should be <b>localhost:3000/login</b>. You should use <b>JSON Web Token</b>
-                concepts. Your token should expire in one day. Your payload must have these info:
-
-                <ul>
-                  <li>name;</li>
-                  <li>role(admin or user);</li>
-                  <li>issuer;</li>
-                </ul>
-              </p>
-
-              <header>
-                <h4>Exercise 6:</h4>
-              </header>
-
-              <p align="justify">
-                Using the same code from last exercise create a new route that get the info form the logged user.
-                Your route should be <b>http://localhost:3000/me</b>
-              </p>
-
-              <header>
-                <h4>Exercise 7:</h4>
-              </header>
-
-              <p align="justify">
-                Using the same code from last exercise add Authorizaton and Athentication to your user routes:
-
-                <ul>
-                  <li>List all users should require authentication;</li>
-                  <li>Get logged user should require authentication;</li>
-                  <li>Get user should require authentication;</li>
-                  <li>Delete user should require authentication and the logged user should be an Admin;</li>
-                  <li>Change user's password should require authentication;</li>
-                </ul>
+                Now that you have these new unit tests, create a task to run them (keep you API test task)
               </p>
 
               <header>
@@ -685,48 +657,10 @@
               </header>
 
               <p align="justify">
-                <b>CHALLENGE:</b> Using the same code from last exercise implement complete new set of routes for friendship.
-                You should creates all routes and the friendshipDAO (you should use the same concept applied to userDAO).
-                You should implement this routes:
+                <b>Challenge:</b> add a coverege report for your tests.
+
+                Hint: <b>gulp coverage</b>
               </p>
-
-              <ul>
-                <li>http://localhost:3000/friendships/ - GET - list all friendships - Require Authentication;</li>
-                <li>http://localhost:3000/friendships/me - GET - list logged user friendships - Require Authentication;</li>
-                <li>http://localhost:3000/friendships/:friendId - GET - get friendship with a user - Require Authentication;</li>
-                <li>http://localhost:3000/friendships/:friendId - POST - send friend request to a user - Require Authentication;</li>
-                <li>http://localhost:3000/friendships/:friendId - PUT - accept friend request - Require Authentication;</li>
-                <li>http://localhost:3000/friendships/:friendId - delete - reject friend request - Require Authentication;</li>
-                <li>http://localhost:3000/friendships/:friendId/block - GET - block user - Require Authentication;</li>
-                <li>http://localhost:3000/friendships/:friendId/block - GET - unblock user - Require Authentication;</li>
-              </ul>
-
-              <p align="justify">
-                Your friendshipDao should have this methods:
-              </p>
-
-              <ul>
-                <li>getFriendship = function(id, succesCB, failCB)</li>
-                <li>getFriendshipByUserId = function(userId, friendId, successCB, failCB) </li>
-                <li>listAllFriendships = function(successCB, failCB)</li>
-                <li>listAllMyFriendships = function(userId, successCB, failCB)</li>
-                <li>createFriendship = function(userId, friendId, successCB, failCB)</li>
-                <li>updateFriendshipProperty = function(userId, friendId, property, value, successCB, failCB)</li>
-                <li>updateFriendshipPropertyById = function(id, property, value, successCB, failCB)</li>
-                <li>updateFriendshipStatus = function(id, status, successCB, failCB)</li>
-              </ul>
-
-              <p align="justify">
-                Your friendship model should have this attributes:
-              </p>
-
-              <ul>
-                <li>status: number</li>
-                <li>userRequested: id</li>
-                <li>userRequester: id</li>
-                <li>blockUserRequested: id</li>
-                <li>blockUserRequester: id</li>
-              </ul>
             </div>
           </section>
         </div>

@@ -8,7 +8,7 @@ router.route('/:doggyId')
   .get(function (request, response) {
     var doggyIndex = request.params.doggyId;
     if (doggyIndex && doggyIndex >= 0  && doggyIndex < dogs.length) {
-      response.send(dogs[doggyIndex].whoIsAGoodBoy());
+      response.json({ msg: dogs[doggyIndex].whoIsAGoodBoy() });
     } else {
       response.sendStatus(404);
     }
